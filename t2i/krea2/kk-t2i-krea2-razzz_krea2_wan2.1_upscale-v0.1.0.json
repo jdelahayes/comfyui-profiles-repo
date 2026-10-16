@@ -1304,11 +1304,11 @@
       },
       "widgets_values": [
         "krea2-heretic",
-        "https://github.com/jdelahayes/runpod-comfy-blackwell/raw/refs/heads/main/scripts/profiles.json"
+        "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       ],
       "widgets_values_named": {
         "profiles": "krea2-heretic",
-        "source": "https://github.com/jdelahayes/runpod-comfy-blackwell/raw/refs/heads/main/scripts/profiles.json"
+        "source": "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       }
     }
   ],
