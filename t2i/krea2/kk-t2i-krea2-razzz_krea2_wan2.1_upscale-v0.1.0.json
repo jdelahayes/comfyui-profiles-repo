@@ -357,7 +357,7 @@
       ],
       "size": [
         410.0285508162982,
-        81.99999999999999
+        82
       ],
       "flags": {},
       "order": 9,
@@ -1303,11 +1303,11 @@
         "Node name for S&R": "WorkflowProfiles"
       },
       "widgets_values": [
-        "krea2-heretic",
+        "krea2-raw,krea2-heretic",
         "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       ],
       "widgets_values_named": {
-        "profiles": "krea2-heretic",
+        "profiles": "krea2-raw,krea2-heretic",
         "source": "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       }
     }
@@ -1552,8 +1552,8 @@
     "ds": {
       "scale": 0.5209868481924402,
       "offset": [
-        1390.6375616130701,
-        1483.4519599111202
+        1237.0828216468703,
+        1249.2809228861818
       ]
     },
     "frontendVersion": "1.55.17",
