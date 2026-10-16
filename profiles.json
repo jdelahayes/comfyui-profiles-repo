@@ -117,9 +117,15 @@
     },
 
     "krea2-common": {
-      "description": "Krea 2 : composants partagés (text encoder Qwen3-VL, VAE Qwen Image). Pas utilisable seul.",
+      "description": "Krea 2 Common",
       "size": "5,5 Go",
       "extends": ["comfyui-common"],
+      "custom_nodes": [
+        {"git": "https://github.com/Auryg/Krea-2-Two-Stage-Sampler.git"},
+        {"git": "https://github.com/lunaaispace-eng/ComfyUI-DeGrid.git"},
+        {"git": "https://github.com/LoganBooker/SesquiLSR.git"},
+        {"git": "https://github.com/spacepxl/ComfyUI-VAE-Utils.git"}
+      ],
       "models": [
         {"type": "text_encoders/krea2", "hf": "Comfy-Org/Krea-2", "file": "text_encoders/qwen3vl_4b_fp8_scaled.safetensors", "size": 5242467968},
         {"type": "vae/krea2", "hf": "Comfy-Org/Krea-2", "file": "vae/qwen_image_vae.safetensors", "size": 253806246}
@@ -165,12 +171,13 @@
 
     "krea2-heretic": {
       "description": "Krea 2 + Heretic",
-      "size": "27,2 Go",
+      "size": "28,8 Go",
       "extends": ["krea2"],
       "models": [
         {"type": "loras/krea2/conradlocke", "hf": "conradlocke/krea2-identity-edit", "file": "krea2_identity_edit_v1_2.safetensors", "size": 1828256432},
         {"type": "text_encoders/krea2/dreamfast", "hf": "DreamFast/Qwen3-VL-4b-Heretic-ComfyUI", "file": "qwen3-vl-4b-heretic_int8.safetensors", "size": 4836949032},
-        {"type": "loras/krea2/ashen3", "civitai": "3390681", "name": "snofs_krea_v1_5.safetensors", "size": 1562410216}
+        {"type": "loras/krea2/ashen3", "civitai": "3390681", "name": "snofs_krea_v1_5.safetensors", "size": 1562410216},
+        {"type": "loras/krea2/razzz", "civitai": "3109006", "name": "realism_engine_krea2_v3.1.safetensors", "size": 1562410296}
       ]
     },
 
