@@ -116,6 +116,30 @@
       ]
     },
 
+    "minimax-h3-obvpm-r2v": {
+      "description": "MiniMax H3 OBVPM Timeline R2V (workflows h3/obvpm : Ref2VA int8, text encoder nvfp4, LoRA turbo)",
+      "size": "50,5 Go",
+      "extends": ["minimax-h3-common"],
+      "models": [
+        {"type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors", "size": 20970379616},
+        {"type": "text_encoders/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors", "size": 15687142551},
+        {"type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_video_vae_int8_convrot.safetensors", "size": 2811065184},
+        {"type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_video_vae_fp16.safetensors", "size": 5207808496},
+        {"type": "loras/h3/lightx2v/Minimax-h3-Turbo", "hf": "lightx2v/Minimax-h3-Turbo", "file": "minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors", "size": 1956192992},
+        {"type": "loras/h3/lightx2v/Minimax-h3-Turbo", "hf": "lightx2v/Minimax-h3-Turbo", "file": "minimax_h3_ref2v_turbo_8step_v1.0_768p_comfyui_bf16.safetensors", "size": 1956193000},
+        {"type": "loras/h3/drbaph", "hf": "drbaph/MiniMax-H3-Turbo-Lora-ComfyUI", "file": "minimax_h3_turbo_v4_step600_ema_pruned_comfyui.safetensors", "size": 620285592}
+      ]
+    },
+
+    "minimax-h3-obvpm-r2v-picker": {
+      "description": "MiniMax H3 OBVPM Timeline R2V + H3RefModPicker (workflow h3/obvpm ...-refmod-picker)",
+      "size": "50,5 Go",
+      "extends": ["minimax-h3-obvpm-r2v"],
+      "custom_nodes": [
+        {"git": "https://github.com/FranckyB/ComfyUI-H3RefModPicker"}
+      ]
+    },
+
     "krea2-common": {
       "description": "Krea 2 Common",
       "size": "5,5 Go",
