@@ -4,7 +4,7 @@
       "description": "custom-nodes common",
       "custom_nodes": [
         {"git": "https://github.com/kijai/ComfyUI-KJNodes.git"},
-        {"git": "https://github.com/rgthree/rgthree-comfy.git"},
+        {"git": "https://github.com/rgthree/rgthree-comfy.git", "ref": "main"},
         {"git": "https://github.com/pixaroma/ComfyUI-Pixaroma.git"},
         {"git": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git"},
         {"git": "https://github.com/AlexYez/comfyui-artius-browser.git"}
