@@ -131,6 +131,11 @@
         {"type": "loras/h3/lightx2v/Minimax-h3-Turbo", "hf": "lightx2v/Minimax-h3-Turbo", "file": "minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors", "size": 1956192992},
         {"type": "loras/h3/lightx2v/Minimax-h3-Turbo", "hf": "lightx2v/Minimax-h3-Turbo", "file": "minimax_h3_ref2v_turbo_8step_v1.0_768p_comfyui_bf16.safetensors", "size": 1956193000},
         {"type": "loras/h3/drbaph", "hf": "drbaph/MiniMax-H3-Turbo-Lora-ComfyUI", "file": "minimax_h3_turbo_v4_step600_ema_pruned_comfyui.safetensors", "size": 620285592}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro.json", "size": 507403},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro-refmod.json", "size": 528013},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro-refmod-picker.json", "size": 517379}
       ]
     },
 
@@ -150,7 +155,7 @@
       ]
     },
 
-    "krea2": {
+    "krea2-turbo": {
       "description": "Krea 2 Turbo (image), int8_convrot.",
       "size": "19,0 Go",
       "extends": ["krea2-common"],
@@ -172,7 +177,7 @@
     "krea2-styles": {
       "description": "Krea 2 Turbo + les 10 LoRA de style officiels. Chaque LoRA a son mot déclencheur (voir le README du dépôt Comfy-Org/Krea-2).",
       "size": "23,7 Go",
-      "extends": ["krea2"],
+      "extends": ["krea2-turbo"],
       "models": [
         {"type": "loras/krea2/style", "hf": "Comfy-Org/Krea-2", "file": "loras/krea2_darkbrush.safetensors", "size": 469291992},
         {"type": "loras/krea2/style", "hf": "Comfy-Org/Krea-2", "file": "loras/krea2_dotmatrix.safetensors", "size": 469291992},
@@ -190,12 +195,29 @@
     "krea2-heretic": {
       "description": "Krea 2 + Heretic",
       "size": "28,8 Go",
-      "extends": ["krea2"],
+      "extends": ["krea2-turbo"],
       "models": [
         {"type": "loras/krea2/conradlocke", "hf": "conradlocke/krea2-identity-edit", "file": "krea2_identity_edit_v1_2.safetensors", "size": 1828256432},
         {"type": "text_encoders/krea2/dreamfast", "hf": "DreamFast/Qwen3-VL-4b-Heretic-ComfyUI", "file": "qwen3-vl-4b-heretic_int8.safetensors", "size": 4836949032},
         {"type": "loras/krea2/ashen3", "civitai": "3390681", "name": "snofs_krea_v1_5.safetensors", "size": 1562410216},
         {"type": "loras/krea2/razzz", "civitai": "3109006", "name": "realism_engine_krea2_v3.1.safetensors", "size": 1562410296}
+      ]
+    },
+
+    "krea2-raw-heretic": {
+      "description": "Krea 2 Raw + Heretic (workflows t2i/krea2 : ashen3 dual sampler, razzz Wan2.1 upscale)",
+      "size": "43,5 Go",
+      "extends": ["krea2-raw", "krea2-heretic"],
+      "custom_nodes": [
+        {"git": "https://github.com/ltdrdata/was-node-suite-comfyui"}
+      ],
+      "models": [
+        {"type": "vae", "hf": "spacepxl/Wan2.1-VAE-upscale2x", "file": "Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors", "size": 507684560},
+        {"type": "loras/krea2/purplelady", "civitai": "3328996", "name": "Purple_Grainy_KR2_V2_D.safetensors", "size": 228588912}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "t2i/krea2/kk-t2i-krea2-ashen3_dual_sampler-v0.1.0.json", "size": 17894},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "t2i/krea2/kk-t2i-krea2-razzz_krea2_wan2.1_upscale-v0.1.0.json", "size": 30518}
       ]
     },
 

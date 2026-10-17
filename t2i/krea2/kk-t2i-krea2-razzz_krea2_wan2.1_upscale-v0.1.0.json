@@ -1303,11 +1303,11 @@
         "Node name for S&R": "WorkflowProfiles"
       },
       "widgets_values": [
-        "krea2-raw,krea2-heretic",
+        "krea2-raw-heretic",
         "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       ],
       "widgets_values_named": {
-        "profiles": "krea2-raw,krea2-heretic",
+        "profiles": "krea2-raw-heretic",
         "source": "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       }
     }
