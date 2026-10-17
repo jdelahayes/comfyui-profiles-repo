@@ -9451,7 +9451,7 @@
         "Node name for S&R": "WorkflowProfiles"
       },
       "widgets_values": [
-        "minimax-h3-obvpm-r2v-picker",
+        "minimax-h3-obvpm-r2v",
         "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       ]
     }
