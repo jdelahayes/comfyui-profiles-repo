@@ -206,18 +206,30 @@
 
     "krea2-raw-heretic": {
       "description": "Krea 2 Raw + Heretic (workflows t2i/krea2 : ashen3 dual sampler, razzz Wan2.1 upscale)",
-      "size": "43,5 Go",
-      "extends": ["krea2-raw", "krea2-heretic"],
+      "size": "44,6 Go",
+      "extends": ["krea2-raw", "krea2-heretic", "krea2-purplelady-loras"],
       "custom_nodes": [
         {"git": "https://github.com/ltdrdata/was-node-suite-comfyui"}
       ],
       "models": [
-        {"type": "vae", "hf": "spacepxl/Wan2.1-VAE-upscale2x", "file": "Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors", "size": 507684560},
-        {"type": "loras/krea2/purplelady", "civitai": "3328996", "name": "Purple_Grainy_KR2_V2_D.safetensors", "size": 228588912}
+        {"type": "vae", "hf": "spacepxl/Wan2.1-VAE-upscale2x", "file": "Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors", "size": 507684560}
       ],
       "workflows": [
         {"github": "jdelahayes/comfyui-profiles-repo", "file": "t2i/krea2/kk-t2i-krea2-ashen3_dual_sampler-v0.1.0.json", "size": 17894},
         {"github": "jdelahayes/comfyui-profiles-repo", "file": "t2i/krea2/kk-t2i-krea2-razzz_krea2_wan2.1_upscale-v0.1.0.json", "size": 30518}
+      ]
+    },
+
+    "krea2-purplelady-loras": {
+      "description": "Krea 2 purplelady loras (https://civitai.com/user/purplelady)",
+      "size": "20,4 Go",
+      "extends": ["krea2-turbo"],
+      "models": [
+        {"type": "loras/krea2/purplelady", "civitai": "3328996", "name": "Purple_Grainy_KR2_V2_D.safetensors", "size": 228588912},
+        {"type": "loras/krea2/purplelady", "civitai": "3113770", "name": "Purple_Graphics_KR2.safetensors", "size": 228588856},
+        {"type": "loras/krea2/purplelady", "civitai": "3141844", "name": "Purple_Dreams_Kr2.safetensors", "size": 228588904},
+        {"type": "loras/krea2/purplelady", "civitai": "3209626", "name": "Elegance_Niji_KR2.safetensors", "size": 228588856},
+        {"type": "loras/krea2/purplelady", "civitai": "3380710", "name": "Purple_Aether-KR2.safetensors", "size": 457113176}
       ]
     },
 
