@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/jdelahayes/comfyui-profiles/main/profiles.schema.json",
   "profiles": {
     "comfyui-common": {
       "description": "custom-nodes common",
