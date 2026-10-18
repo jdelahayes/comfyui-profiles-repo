@@ -6,20 +6,28 @@
       "custom_nodes": [
         {"git": "https://github.com/kijai/ComfyUI-KJNodes.git"},
         {"git": "https://github.com/rgthree/rgthree-comfy.git", "ref": "main"},
+        {"git": "https://github.com/ClownsharkBatwing/RES4LYF.git"},
         {"git": "https://github.com/pixaroma/ComfyUI-Pixaroma.git"},
         {"git": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git"},
-        {"git": "https://github.com/AlexYez/comfyui-artius-browser.git"}
+        {"git": "https://github.com/AlexYez/comfyui-artius-browser.git"},
+        {"git": "https://github.com/goodguy1963/ComfyUI-ThinkingLLM.git"}
       ]
     },
 
     "minimax-h3-common": {
-      "description": "MiniMax H3 common : profil partagés par toutes les variantes minimax-*",
-      "size": "1,3 Go",
+      "description": "MiniMax H3 common : partagé par tous les profils minimax-h3-*",
+      "size": {"int8": "31,3 Go", "bf16": "58,0 Go"},
       "extends": ["comfyui-common"],
+      "variants": ["int8", "bf16"],
+      "default_variant": "int8",
       "models": [
         {"type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_audio_vae_fp32.safetensors", "size": 605254808},
         {"type": "vae_approx/h3/madebyollin", "github": "https://github.com/madebyollin/taehv.git", "file": "safetensors/taeh3.safetensors", "size": 22709752},
-        {"type": "latent_upscale_models/h3/lbh-123-ai", "hf": "LBH-123-AI/Minimax_h3_latent_Upscaler", "file": "minimax_h3_latent_upscaler_3d_conv_v1/minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors", "size": 690592672}
+        {"type": "latent_upscale_models/h3/lbh-123-ai", "hf": "LBH-123-AI/Minimax_h3_latent_Upscaler", "file": "minimax_h3_latent_upscaler_3d_conv_v1/minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors", "size": 690592672},
+        {"variant": "int8", "type": "text_encoders/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors", "size": 27141342152},
+        {"variant": "int8", "type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_video_vae_int8_convrot.safetensors", "size": 2811065184},
+        {"variant": "bf16", "type": "text_encoders/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "text_encoders/qwen3vl_32b_minimax_h3_bf16.safetensors", "size": 51506295256},
+        {"variant": "bf16", "type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_video_vae_fp16.safetensors", "size": 5207808496}
       ],
       "custom_nodes": [
         {"git": "https://github.com/PlagueKind/ComfyUI-PlagueKind-Nodes.git"},
@@ -37,78 +45,42 @@
       ]
     },
 
-    "minimax-h3-common-bf16": {
-      "description": "MiniMax H3 common (bf16)",
-      "size": "58,0 Go",
+    "minimax-h3-fl2va": {
+      "description": "MiniMax H3 FL2VA",
+      "size": {"int8": "52,2 Go", "bf16": "124,3 Go"},
       "extends": ["minimax-h3-common"],
+      "variants": ["int8", "bf16"],
+      "default_variant": "int8",
       "models": [
-        {"type": "text_encoders/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "text_encoders/qwen3vl_32b_minimax_h3_bf16.safetensors", "size": 51506295256},
-        {"type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_video_vae_fp16.safetensors", "size": 5207808496}
+        {"variant": "int8", "type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors", "size": 20970379616},
+        {"variant": "bf16", "type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_fl2va_bf16.safetensors", "size": 66280487368}
       ]
     },
 
-    "minimax-h3-fl2va-bf16": {
-      "description": "MiniMax H3 FL2VA (bf16)",
-      "size": "124,3 Go",
-      "extends": ["minimax-h3-common-bf16"],
-      "models": [
-        {"type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_fl2va_bf16.safetensors", "size": 66280487368}
-      ]
-    },
-
-    "minimax-h3-ref2va-bf16": {
-      "description": "MiniMax H3 Ref2VA (bf16)",
-      "size": "124,3 Go",
-      "extends": ["minimax-h3-common-bf16"],
-      "models": [
-        {"type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_ref2va_bf16.safetensors", "size": 66280487368}
-      ]
-    },
-
-    "minimax-h3-all-bf16": {
-      "description": "MiniMax H3 all profiles (bf16)",
-      "size": "190,6 Go",
-      "extends": ["minimax-h3-fl2va-bf16", "minimax-h3-ref2va-bf16"]
-    },
-
-    "minimax-h3-common-pruned_int8": {
-      "description": "MiniMax H3 common (pruned_int8)",
-      "size": "31,3 Go",
+    "minimax-h3-ref2va": {
+      "description": "MiniMax H3 Ref2VA",
+      "size": {"int8": "52,2 Go", "bf16": "124,3 Go"},
       "extends": ["minimax-h3-common"],
+      "variants": ["int8", "bf16"],
+      "default_variant": "int8",
       "models": [
-        {"type": "text_encoders/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors", "size": 27141342152},
-        {"type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_video_vae_int8_convrot.safetensors", "size": 2811065184}
+        {"variant": "int8", "type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors", "size": 20970379616},
+        {"variant": "bf16", "type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_ref2va_bf16.safetensors", "size": 66280487368}
       ]
     },
 
-    "minimax-h3-fl2va-pruned_int8": {
-      "description": "MiniMax H3 FL2VA (int8)",
-      "size": "52,2 Go",
-      "extends": ["minimax-h3-common-pruned_int8"],
-      "models": [
-        {"type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors", "size": 20970379616}
-      ]
-    },
-
-    "minimax-h3-ref2va-pruned_int8": {
-      "description": "MiniMax H3 Ref2VA (int8)",
-      "size": "52,2 Go",
-      "extends": ["minimax-h3-common-pruned_int8"],
-      "models": [
-        {"type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors", "size": 20970379616}
-      ]
-    },
-
-    "minimax-h3-all-pruned_int8": {
-      "description": "MiniMax H3 All profiles (pruned_int8)",
-      "size": "73,2 Go",
-      "extends": ["minimax-h3-common-pruned_int8", "minimax-h3-fl2va-pruned_int8", "minimax-h3-ref2va-pruned_int8"]
+    "minimax-h3-all": {
+      "description": "MiniMax H3 FL2VA + Ref2VA",
+      "size": {"int8": "73,2 Go", "bf16": "190,6 Go"},
+      "extends": ["minimax-h3-fl2va", "minimax-h3-ref2va"],
+      "variants": ["int8", "bf16"],
+      "default_variant": "int8"
     },
 
     "minimax-h3-hybrid-int8": {
       "description": "MiniMax H3 Hybrid (smhfacct, int8)",
       "size": "52,2 Go",
-      "extends": ["minimax-h3-common-pruned_int8"],
+      "extends": ["minimax-h3-common[int8]"],
       "models": [
         {"type": "diffusion_models/h3/smhfacct", "hf": "smhfacct/Minimax-H3-fl2va-ref2va-hybrid-models", "file": "minimax_h3_hybrid_fl2va_ref2va_b20-49-int8.safetensors", "size": 20970379632}
       ]
@@ -117,7 +89,7 @@
     "minimax-h3-obvpm-r2v": {
       "description": "MiniMax H3 OBVPM Timeline R2V (workflows h3/obvpm : Ref2VA int8, text encoder nvfp4, LoRA turbo)",
       "size": "50,5 Go",
-      "extends": ["minimax-h3-common"],
+      "extends": ["minimax-h3-common[]"],
       "custom_nodes": [
         {"gdrive": "https://drive.google.com/file/d/1oQ-RoHad2miNaDtNl-LhznrRslrO21LF/view?usp=sharing", "name": "comfyui-obvpm-timeline"},
         {"gdrive": "https://drive.google.com/file/d/1wmBt4Xxtg6zVO4_ueKVVUsk5_9N-zD55/view?usp=sharing", "name": "comfyui-obvpm-pro-extensions"},
@@ -142,43 +114,53 @@
 
     "krea2-common": {
       "description": "Krea 2 Common",
-      "size": "5,5 Go",
+      "size": "507,6 Mo",
       "extends": ["comfyui-common"],
-      "custom_nodes": [
-        {"git": "https://github.com/Auryg/Krea-2-Two-Stage-Sampler.git"},
-        {"git": "https://github.com/lunaaispace-eng/ComfyUI-DeGrid.git"},
-        {"git": "https://github.com/LoganBooker/SesquiLSR.git"},
-        {"git": "https://github.com/spacepxl/ComfyUI-VAE-Utils.git"}
-      ],
       "models": [
-        {"type": "text_encoders/krea2", "hf": "Comfy-Org/Krea-2", "file": "text_encoders/qwen3vl_4b_fp8_scaled.safetensors", "size": 5242467968},
-        {"type": "vae/krea2", "hf": "Comfy-Org/Krea-2", "file": "vae/qwen_image_vae.safetensors", "size": 253806246}
+        {"type": "vae/krea2", "hf": "Comfy-Org/Krea-2", "file": "vae/qwen_image_vae.safetensors", "size": 253806246},
+        {"type": "vae/krea2", "hf": "Comfy-Org/Wan_2.2_ComfyUI_Repackaged", "file": "split_files/vae/wan_2.1_vae.safetensors", "size": 253815318}
       ]
     },
 
     "krea2-turbo": {
-      "description": "Krea 2 Turbo (image), int8_convrot.",
-      "size": "19,0 Go",
+      "description": "Krea 2 Turbo.",
+      "size": {"int8": "18,9 Go", "fp8": "18,9 Go", "bf16": "35,7 Go"},
       "extends": ["krea2-common"],
+      "variants": ["int8", "fp8", "bf16"],
+      "default_variant": "int8",
       "models": [
-        {"type": "diffusion_models/krea2", "hf": "Comfy-Org/Krea-2", "file": "diffusion_models/krea2_turbo_int8_convrot.safetensors", "size": 13492686496}
+        {"variant": "int8", "type": "text_encoders/krea2", "hf": "Comfy-Org/Krea-2", "file": "text_encoders/qwen3vl_4b_int8_convrot.safetensors", "size": 4858559240},
+        {"variant": "int8", "type": "diffusion_models/krea2", "hf": "Comfy-Org/Krea-2", "file": "diffusion_models/krea2_turbo_int8_convrot.safetensors", "size": 13492686496},
+        {"variant": "fp8", "type": "text_encoders/krea2", "hf": "Comfy-Org/Krea-2", "file": "text_encoders/qwen3vl_4b_fp8_scaled.safetensors", "size": 5242467968},
+        {"variant": "fp8", "type": "diffusion_models/krea2", "hf": "Comfy-Org/Krea-2", "file": "diffusion_models/krea2_turbo_fp8_scaled.safetensors", "size": 13141730784},
+        {"variant": "bf16", "type": "text_encoders/krea2", "hf": "Comfy-Org/Krea-2", "file": "text_encoders/qwen3vl_4b_bf16.safetensors", "size": 8875719384},
+        {"variant": "bf16", "type": "diffusion_models/krea2", "hf": "Comfy-Org/Krea-2", "file": "diffusion_models/krea2_turbo_bf16.safetensors", "size": 26283332608}
       ]
     },
 
     "krea2-raw": {
-      "description": "Krea 2 Raw (modèle non distillé, tous les steps), int8_convrot.",
-      "size": "19,5 Go",
+      "description": "Krea 2 Raw.",
+      "size": {"int8": "19,3 Go", "fp8": "19,4 Go", "bf16": "36,1 Go"},
       "extends": ["krea2-common"],
+      "variants": ["int8", "fp8", "bf16"],
+      "default_variant": "int8",
       "models": [
-        {"type": "diffusion_models/krea2", "hf": "Comfy-Org/Krea-2", "file": "diffusion_models/krea2_raw_int8_convrot.safetensors", "size": 13492686496},
-        {"type": "loras/krea2", "hf": "Comfy-Org/Krea-2", "file": "loras/krea2_turbo_lora_rank_64_bf16.safetensors", "size": 469423778}
+        {"type": "loras/krea2", "hf": "Comfy-Org/Krea-2", "file": "loras/krea2_turbo_lora_rank_64_bf16.safetensors", "size": 469423778},
+        {"variant": "int8", "type": "text_encoders/krea2", "hf": "Comfy-Org/Krea-2", "file": "text_encoders/qwen3vl_4b_int8_convrot.safetensors", "size": 4858559240},
+        {"variant": "int8", "type": "diffusion_models/krea2", "hf": "Comfy-Org/Krea-2", "file": "diffusion_models/krea2_raw_int8_convrot.safetensors", "size": 13492686496},
+        {"variant": "fp8", "type": "text_encoders/krea2", "hf": "Comfy-Org/Krea-2", "file": "text_encoders/qwen3vl_4b_fp8_scaled.safetensors", "size": 5242467968},
+        {"variant": "fp8", "type": "diffusion_models/krea2", "hf": "Comfy-Org/Krea-2", "file": "diffusion_models/krea2_raw_fp8_scaled.safetensors", "size": 13141730784},
+        {"variant": "bf16", "type": "text_encoders/krea2", "hf": "Comfy-Org/Krea-2", "file": "text_encoders/qwen3vl_4b_bf16.safetensors", "size": 8875719384},
+        {"variant": "bf16", "type": "diffusion_models/krea2", "hf": "Comfy-Org/Krea-2", "file": "diffusion_models/krea2_raw_bf16.safetensors", "size": 26283332608}
       ]
     },
 
     "krea2-styles": {
-      "description": "Krea 2 Turbo + les 10 LoRA de style officiels. Chaque LoRA a son mot déclencheur (voir le README du dépôt Comfy-Org/Krea-2).",
-      "size": "23,7 Go",
+      "description": "Krea 2 Turbo + 10 official LoRAs.",
+      "size": {"int8": "23,5 Go", "fp8": "23,6 Go", "bf16": "40,3 Go"},
       "extends": ["krea2-turbo"],
+      "variants": ["int8", "fp8", "bf16"],
+      "default_variant": "int8",
       "models": [
         {"type": "loras/krea2/style", "hf": "Comfy-Org/Krea-2", "file": "loras/krea2_darkbrush.safetensors", "size": 469291992},
         {"type": "loras/krea2/style", "hf": "Comfy-Org/Krea-2", "file": "loras/krea2_dotmatrix.safetensors", "size": 469291992},
@@ -195,36 +177,26 @@
 
     "krea2-heretic": {
       "description": "Krea 2 + Heretic",
-      "size": "28,8 Go",
+      "size": {"int8": "33,7 Go", "fp8": "33,7 Go", "bf16": "50,5 Go"},
       "extends": ["krea2-turbo"],
+      "variants": ["int8", "fp8", "bf16"],
+      "default_variant": "int8",
       "models": [
         {"type": "loras/krea2/conradlocke", "hf": "conradlocke/krea2-identity-edit", "file": "krea2_identity_edit_v1_2.safetensors", "size": 1828256432},
         {"type": "text_encoders/krea2/dreamfast", "hf": "DreamFast/Qwen3-VL-4b-Heretic-ComfyUI", "file": "qwen3-vl-4b-heretic_int8.safetensors", "size": 4836949032},
+        {"type": "text_encoders/krea2/ahmed22xa", "hf": "ahmed22xa/Huihui-Qwen3-VL-4B-Instruct-abliterated-comfy", "file": "Huihui-Qwen3-VL-4B-Instruct-abliterated-int8_convrot.safetensors", "size": 5064440625},
         {"type": "loras/krea2/ashen3", "civitai": "3390681", "name": "snofs_krea_v1_5.safetensors", "size": 1562410216},
-        {"type": "loras/krea2/razzz", "civitai": "3109006", "name": "realism_engine_krea2_v3.1.safetensors", "size": 1562410296}
+        {"type": "loras/krea2/razzz", "civitai": "3109006", "name": "realism_engine_krea2_v3.1.safetensors", "size": 1562410296},
+        {"type": "loras/krea2/uzumix", "hf": "uzumix/krea2filterbypass3.safetensors", "file": "krea2filterbypass3.safetensors", "size": 160}
       ]
     },
 
-    "krea2-raw-heretic": {
-      "description": "Krea 2 Raw + Heretic (workflows t2i/krea2 : ashen3 dual sampler, razzz Wan2.1 upscale)",
-      "size": "44,6 Go",
-      "extends": ["krea2-raw", "krea2-heretic", "krea2-purplelady-loras"],
-      "custom_nodes": [
-        {"git": "https://github.com/ltdrdata/was-node-suite-comfyui"}
-      ],
-      "models": [
-        {"type": "vae", "hf": "spacepxl/Wan2.1-VAE-upscale2x", "file": "Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors", "size": 507684560}
-      ],
-      "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "t2i/krea2/kk-t2i-krea2-ashen3_dual_sampler-v0.1.0.json", "size": 17894},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "t2i/krea2/kk-t2i-krea2-razzz_krea2_wan2.1_upscale-v0.1.0.json", "size": 30518}
-      ]
-    },
-
-    "krea2-purplelady-loras": {
+    "krea2-loras-purplelady": {
       "description": "Krea 2 purplelady loras (https://civitai.com/user/purplelady)",
-      "size": "20,4 Go",
+      "size": {"int8": "20,2 Go", "fp8": "20,3 Go", "bf16": "37,0 Go"},
       "extends": ["krea2-turbo"],
+      "variants": ["int8", "fp8", "bf16"],
+      "default_variant": "int8",
       "models": [
         {"type": "loras/krea2/purplelady", "civitai": "3328996", "name": "Purple_Grainy_KR2_V2_D.safetensors", "size": 228588912},
         {"type": "loras/krea2/purplelady", "civitai": "3113770", "name": "Purple_Graphics_KR2.safetensors", "size": 228588856},
@@ -247,74 +219,50 @@
 
     "qwen_image_2.1-common": {
       "description": "Qwen Image 2.1 Common",
-      "size": "10,1 Go",
+      "size": {"int8": "19,5 Go", "bf16": "27,7 Go"},
       "extends": ["comfyui-common"],
+      "variants": ["int8", "bf16"],
+      "default_variant": "int8",
       "models": [
         {"type": "text_encoders/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "text_encoders/qwen3.5_9b_qwen_image_2.1_pe_i2i.int8_convrot.safetensors", "size": 9471072252},
-        {"type": "vae/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "vae/qwen_image_2.1_vae_bf16.safetensors", "size": 675509688}
+        {"type": "vae/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "vae/qwen_image_2.1_vae_bf16.safetensors", "size": 675509688},
+        {"variant": "int8", "type": "text_encoders/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "text_encoders/qwen3vl_8b_int8_convrot.safetensors", "size": 9350798360},
+        {"variant": "bf16", "type": "text_encoders/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "text_encoders/qwen3vl_8b_bf16.safetensors", "size": 17534334616}
       ]
     },
 
-    "qwen_image_2.1-common-int8": {
-      "description": "Qwen Image 2.1 Common (int8)",
-      "size": "19,5 Go",
+    "qwen_image_2.1-turbo": {
+      "description": "Qwen Image 2.1 Turbo",
+      "size": {"int8": "26,8 Go", "bf16": "41,9 Go"},
       "extends": ["qwen_image_2.1-common"],
+      "variants": ["int8", "bf16"],
+      "default_variant": "int8",
       "models": [
-        {"type": "text_encoders/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "text_encoders/qwen3vl_8b_int8_convrot.safetensors", "size": 9350798360}
+        {"variant": "int8", "type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_turbo_int8_convrot.safetensors", "size": 7256787829},
+        {"variant": "bf16", "type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_turbo_bf16.safetensors", "size": 14230280616}
       ]
     },
 
-    "qwen_image_2.1-turbo-int8": {
-      "description": "Qwen Image 2.1 Turbo (int8)",
-      "size": "26,8 Go",
-      "extends": ["qwen_image_2.1-common-int8"],
-      "models": [
-        {"type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_turbo_int8_convrot.safetensors", "size": 7256787829}
-      ]
-    },
-
-    "qwen_image_2.1-int8": {
-      "description": "Qwen Image 2.1 (int8)",
-      "size": "26,8 Go",
-      "extends": ["qwen_image_2.1-common-int8"],
-      "models": [
-        {"type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_int8_convrot.safetensors", "size": 7256783064}
-      ]
-    },
-
-    "qwen_image_2.1-common-bf16": {
-      "description": "Qwen Image 2.1 Common (bf16)",
-      "size": "27,7 Go",
+    "qwen_image_2.1": {
+      "description": "Qwen Image 2.1",
+      "size": {"int8": "26,8 Go", "bf16": "41,9 Go"},
       "extends": ["qwen_image_2.1-common"],
+      "variants": ["int8", "bf16"],
+      "default_variant": "int8",
       "models": [
-        {"type": "text_encoders/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "text_encoders/qwen3vl_8b_bf16.safetensors", "size": 17534334616}
+        {"variant": "int8", "type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_int8_convrot.safetensors", "size": 7256783064},
+        {"variant": "bf16", "type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_bf16.safetensors", "size": 14230280616}
       ]
     },
 
-    "qwen_image_2.1-turbo-bf16": {
-      "description": "Qwen Image 2.1 Turbo (bf16)",
-      "size": "41,9 Go",
-      "extends": ["qwen_image_2.1-common-bf16"],
-      "models": [
-        {"type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_turbo_bf16.safetensors", "size": 14230280616}
-      ]
-    },
-
-    "qwen_image_2.1-bf16": {
-      "description": "Qwen Image 2.1 (bf16)",
-      "size": "41,9 Go",
-      "extends": ["qwen_image_2.1-common-bf16"],
-      "models": [
-        {"type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_bf16.safetensors", "size": 14230280616}
-      ]
-    },
-
-    "qwen_image_edit_2511-turbo-int8": {
-      "description": "Qwen Image Edit 2511 (int8) + Turbo",
-      "size": "31,6 Go",
+    "qwen_image_edit_2511-turbo": {
+      "description": "Qwen Image Edit 2511 + Turbo",
+      "size": {"int8": "31,6 Go"},
       "extends": ["comfyui-common"],
+      "variants": ["int8"],
+      "default_variant": "int8",
       "models": [
-        {"type": "diffusion_models/qwen_image_edit_2511", "hf": "Comfy-Org/Qwen-Image-Edit_ComfyUI", "file": "split_files/diffusion_models/qwen_image_edit_2511_int8_convrot.safetensors", "size": 20499083824},
+        {"variant": "int8", "type": "diffusion_models/qwen_image_edit_2511", "hf": "Comfy-Org/Qwen-Image-Edit_ComfyUI", "file": "split_files/diffusion_models/qwen_image_edit_2511_int8_convrot.safetensors", "size": 20499083824},
         {"type": "text_encoders/qwen_image_edit_2511", "hf": "Comfy-Org/HunyuanVideo_1.5_repackaged", "file": "split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors", "size": 9384670680},
         {"type": "vae/qwen_image_edit_2511", "hf": "Comfy-Org/Qwen-Image_ComfyUI", "file": "split_files/vae/qwen_image_vae.safetensors", "size": 253806246},
         {"type": "loras/qwen_image_edit_2511/lightx2v", "hf": "lightx2v/Qwen-Image-Edit-2511-Lightning", "file": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors", "size": 849608296},
@@ -323,12 +271,14 @@
       ]
     },
 
-    "yue2-3b-int8": {
-      "description": "YuE2 (3b, int8)",
-      "size": "5,3 Go",
+    "yue2-3b": {
+      "description": "YuE2 (3b)",
+      "size": {"int8": "5,3 Go"},
       "extends": ["comfyui-common"],
+      "variants": ["int8"],
+      "default_variant": "int8",
       "models": [
-        {"type": "checkpoints/yue2", "hf": "Comfy-Org/YuE2", "file": "checkpoints/yue2_3b_int8_convrot.safetensors", "size": 3960938800},
+        {"variant": "int8", "type": "checkpoints/yue2", "hf": "Comfy-Org/YuE2", "file": "checkpoints/yue2_3b_int8_convrot.safetensors", "size": 3960938800},
         {"type": "audio_encoders", "hf": "Comfy-Org/YuE2", "file": "audio_encoders/sheetsage2_bf16.safetensors", "size": 1386868122}
       ]
     }
