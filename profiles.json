@@ -206,14 +206,105 @@
       ]
     },
 
-    "flux2-klein-9b": {
-      "description": "FLUX.2 [klein] 9B",
-      "size": "34,9 Go",
+    "flux2-klein-9b-common": {
+      "description": "FLUX.2 [klein] 9B commun : VAE (complet et small decoder des templates ComfyUI), text encoder Qwen3-8B à la précision de la variante.",
+      "size": {"fp8": "9,3 Go", "kv-fp8": "9,3 Go", "nvfp4": "7,4 Go", "bf16": "17,0 Go"},
       "extends": ["comfyui-common"],
+      "variants": ["fp8", "kv-fp8", "nvfp4", "bf16"],
+      "default_variant": "fp8",
       "models": [
-        {"type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-9B", "file": "flux-2-klein-9b.safetensors", "size": 18157185168},
-        {"type": "text_encoders/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "file": "split_files/text_encoders/qwen_3_8b.safetensors", "size": 16381517176},
-        {"type": "vae/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "file": "split_files/vae/flux2-vae.safetensors", "size": 336211292}
+        {"type": "vae/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "file": "split_files/vae/flux2-vae.safetensors", "size": 336211292},
+        {"type": "vae/flux2-klein", "hf": "black-forest-labs/FLUX.2-small-decoder", "file": "full_encoder_small_decoder.safetensors", "size": 249519092},
+        {"variant": ["fp8", "kv-fp8"], "type": "text_encoders/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "file": "split_files/text_encoders/qwen_3_8b_fp8mixed.safetensors", "size": 8664848742},
+        {"variant": "nvfp4", "type": "text_encoders/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "file": "split_files/text_encoders/qwen_3_8b_fp4mixed.safetensors", "size": 6802593327},
+        {"variant": "bf16", "type": "text_encoders/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-9b", "file": "split_files/text_encoders/qwen_3_8b.safetensors", "size": 16381517176}
+      ]
+    },
+    "flux2-klein-9b": {
+      "description": "FLUX.2 [klein] 9B distillé : texte vers image et édition multi-références, 4 steps, CFG 1. kv-fp8 : cache KV, édition multi-références plus rapide. nvfp4 : GPU Blackwell uniquement. Dépôts gated : licence à accepter sur Hugging Face.",
+      "size": {"fp8": "18,7 Go", "kv-fp8": "19,1 Go", "nvfp4": "13,1 Go", "bf16": "35,1 Go"},
+      "extends": ["flux2-klein-9b-common"],
+      "variants": ["fp8", "kv-fp8", "nvfp4", "bf16"],
+      "default_variant": "fp8",
+      "models": [
+        {"variant": "fp8", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-9b-fp8", "file": "flux-2-klein-9b-fp8.safetensors", "size": 9433061528},
+        {"variant": "kv-fp8", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-9b-kv-fp8", "file": "flux-2-klein-9b-kv-fp8.safetensors", "size": 9818935984},
+        {"variant": "nvfp4", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-9b-nvfp4", "file": "flux-2-klein-9b-nvfp4.safetensors", "size": 5760960048},
+        {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-9B", "file": "flux-2-klein-9b.safetensors", "size": 18157185168}
+      ],
+      "workflows": [
+        {"variant": "fp8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_distilled.json", "size": 101251},
+        {"variant": "kv-fp8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_9b_kv_image_edit.json", "size": 46626}
+      ]
+    },
+    "flux2-klein-base-9b": {
+      "description": "FLUX.2 [klein] Base 9B, non distillé : 20 steps, CFG 5 ; meilleure diversité, pour le fine-tuning et l'entraînement de LoRA. nvfp4 : GPU Blackwell uniquement. Dépôts gated : licence à accepter sur Hugging Face.",
+      "size": {"fp8": "18,8 Go", "nvfp4": "13,2 Go", "bf16": "35,1 Go"},
+      "extends": ["flux2-klein-9b-common"],
+      "variants": ["fp8", "nvfp4", "bf16"],
+      "default_variant": "fp8",
+      "models": [
+        {"variant": "fp8", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9b-fp8", "file": "flux-2-klein-base-9b-fp8.safetensors", "size": 9567278472},
+        {"variant": "nvfp4", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9b-nvfp4", "file": "flux-2-klein-base-9b-nvfp4.safetensors", "size": 5809193808},
+        {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9B", "file": "flux-2-klein-base-9b.safetensors", "size": 18157185168}
+      ],
+      "workflows": [
+        {"variant": "fp8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_base.json", "size": 99469}
+      ]
+    },
+
+    "flux3-klein-common": {
+      "description": "FLUX.3 [klein] commun : VAE, text encoder Qwen3-VL-4B et prompt upsampler Qwen3.5-9B (int8 et nvfp4 : text encoder int8 et upsampler w4a8 ; bf16 : tout en bf16). Dépôt gated : licence FLUX Kommunity à accepter sur Hugging Face.",
+      "size": {"int8": "11,9 Go", "nvfp4": "11,9 Go", "bf16": "28,0 Go"},
+      "extends": ["comfyui-common"],
+      "variants": ["int8", "nvfp4", "bf16"],
+      "default_variant": "int8",
+      "models": [
+        {"type": "vae/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "vae/flux2-vae.safetensors", "size": 336211292},
+        {"variant": ["int8", "nvfp4"], "type": "text_encoders/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "text_encoders/qwen3vl_4b_int8_convrot.safetensors", "size": 4858559240},
+        {"variant": "bf16", "type": "text_encoders/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "text_encoders/qwen3vl_4b_bf16.safetensors", "size": 8875719408},
+        {"variant": ["int8", "nvfp4"], "type": "text_encoders/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "text_encoders/qwen3.5_9b_flux3_prompt_upsampler_w4a8.safetensors", "size": 6724090780},
+        {"variant": "bf16", "type": "text_encoders/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "text_encoders/qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors", "size": 18819722392}
+      ]
+    },
+    "flux3-klein": {
+      "description": "FLUX.3 [klein] distillé (5,6B) : texte vers image et édition jusqu'à 10 images de référence, 16 steps sans guidance. nvfp4 : GPU Blackwell uniquement, pas de workflow officiel (prendre un workflow int8 et changer le modèle).",
+      "size": {"int8": "17,7 Go", "nvfp4": "17,2 Go", "bf16": "39,1 Go"},
+      "extends": ["flux3-klein-common"],
+      "variants": ["int8", "nvfp4", "bf16"],
+      "default_variant": "int8",
+      "models": [
+        {"variant": "int8", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-int8-convrot.safetensors", "size": 5827874779},
+        {"variant": "nvfp4", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-nvfp4.safetensors", "size": 5277685632},
+        {"variant": "bf16", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-bf16.safetensors", "size": 11097404512}
+      ],
+      "workflows": [
+        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_t2i.json", "size": 84167},
+        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_i2i.json", "size": 108376},
+        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_mi2i.json", "size": 115392},
+        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_bf16_t2i.json", "size": 83981},
+        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_bf16_i2i.json", "size": 108190},
+        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_bf16_mi2i.json", "size": 115206}
+      ]
+    },
+    "flux3-klein-base": {
+      "description": "FLUX.3 [klein] Base, non distillé : 50 steps, CFG 3.5 ; pour le fine-tuning et l'entraînement de LoRA. nvfp4 : GPU Blackwell uniquement, pas de workflow officiel.",
+      "size": {"int8": "17,7 Go", "nvfp4": "17,2 Go", "bf16": "39,1 Go"},
+      "extends": ["flux3-klein-common"],
+      "variants": ["int8", "nvfp4", "bf16"],
+      "default_variant": "int8",
+      "models": [
+        {"variant": "int8", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-base-int8-convrot.safetensors", "size": 5807427339},
+        {"variant": "nvfp4", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-base-nvfp4.safetensors", "size": 5257238192},
+        {"variant": "bf16", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-base-bf16.safetensors", "size": 11076957072}
+      ],
+      "workflows": [
+        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_t2i.json", "size": 85259},
+        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_i2i.json", "size": 109468},
+        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_mi2i.json", "size": 116484},
+        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_bf16_t2i.json", "size": 85073},
+        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_bf16_i2i.json", "size": 109282},
+        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_bf16_mi2i.json", "size": 116298}
       ]
     },
 
@@ -279,7 +370,7 @@
       "default_variant": "int8",
       "models": [
         {"variant": "int8", "type": "checkpoints/yue2", "hf": "Comfy-Org/YuE2", "file": "checkpoints/yue2_3b_int8_convrot.safetensors", "size": 3960938800},
-        {"type": "audio_encoders", "hf": "Comfy-Org/YuE2", "file": "audio_encoders/sheetsage2_bf16.safetensors", "size": 1386868122}
+        {"type": "audio_encoders/yue2", "hf": "Comfy-Org/YuE2", "file": "audio_encoders/sheetsage2_bf16.safetensors", "size": 1386868122}
       ]
     }
   }
