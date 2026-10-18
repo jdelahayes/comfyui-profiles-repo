@@ -233,7 +233,7 @@
         {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-9B", "file": "flux-2-klein-9b.safetensors", "size": 18157185168}
       ],
       "workflows": [
-        {"variant": "fp8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_distilled.json", "size": 101251},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_distilled.json", "size": 101251},
         {"variant": "kv-fp8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_9b_kv_image_edit.json", "size": 46626}
       ]
     },
@@ -249,7 +249,7 @@
         {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9B", "file": "flux-2-klein-base-9b.safetensors", "size": 18157185168}
       ],
       "workflows": [
-        {"variant": "fp8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_base.json", "size": 99469}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_base.json", "size": 99469}
       ]
     },
 
@@ -279,12 +279,9 @@
         {"variant": "bf16", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-bf16.safetensors", "size": 11097404512}
       ],
       "workflows": [
-        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_t2i.json", "size": 84167},
-        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_i2i.json", "size": 108376},
-        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_mi2i.json", "size": 115392},
-        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_bf16_t2i.json", "size": 83981},
-        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_bf16_i2i.json", "size": 108190},
-        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_bf16_mi2i.json", "size": 115206}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_t2i.json", "size": 84167},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_i2i.json", "size": 108376},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_mi2i.json", "size": 115392}
       ]
     },
     "flux3-klein-base": {
@@ -299,12 +296,9 @@
         {"variant": "bf16", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-base-bf16.safetensors", "size": 11076957072}
       ],
       "workflows": [
-        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_t2i.json", "size": 85259},
-        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_i2i.json", "size": 109468},
-        {"variant": "int8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_mi2i.json", "size": 116484},
-        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_bf16_t2i.json", "size": 85073},
-        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_bf16_i2i.json", "size": 109282},
-        {"variant": "bf16", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_bf16_mi2i.json", "size": 116298}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_t2i.json", "size": 85259},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_i2i.json", "size": 109468},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_mi2i.json", "size": 116484}
       ]
     },
 
