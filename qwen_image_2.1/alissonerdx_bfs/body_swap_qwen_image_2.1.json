@@ -1472,11 +1472,11 @@
         }
       },
       "widgets_values": [
-        "Downloads/bfs_body_swap_v1.0_qwen_2.1.safetensors",
+        "qwen_image_2.1/alissonerdx/bfs_body_swap_v1.0_qwen_2.1.safetensors",
         1
       ],
       "widgets_values_named": {
-        "lora_name": "Downloads/bfs_body_swap_v1.0_qwen_2.1.safetensors",
+        "lora_name": "qwen_image_2.1/alissonerdx/bfs_body_swap_v1.0_qwen_2.1.safetensors",
         "strength_model": 1
       }
     },
@@ -1626,11 +1626,11 @@
         }
       },
       "widgets_values": [
-        "Downloads/p_qwen_image_2.1_8step_v0.1.safetensors",
+        "qwen_image_2.1/ameno-tech/p_qwen_image_2.1_8step_v0.1.safetensors",
         1
       ],
       "widgets_values_named": {
-        "lora_name": "Downloads/p_qwen_image_2.1_8step_v0.1.safetensors",
+        "lora_name": "qwen_image_2.1/ameno-tech/p_qwen_image_2.1_8step_v0.1.safetensors",
         "strength_model": 1
       }
     },
@@ -2001,11 +2001,11 @@
         "Node name for S&R": "WorkflowProfiles"
       },
       "widgets_values": [
-        "qwen_image_2.1[int8]",
+        "qwen_image_2.1[int8], alissonerdx-bfs[qwen_2.1]",
         "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       ],
       "widgets_values_named": {
-        "profiles": "qwen_image_2.1[int8]",
+        "profiles": "qwen_image_2.1[int8], alissonerdx-bfs[qwen_2.1]",
         "source": "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       }
     }

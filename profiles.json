@@ -475,18 +475,20 @@
     },
 
     "alissonerdx-bfs": {
-      "description": "BFS: Best Face Swap",
-      "size": {"qwen_2.1": "10,6 Go + 2 fichier(s) de taille inconnue"},
-      "extends": ["qwen_image_2.1-common"],
+      "description": "BFS: Best Face Swap, LoRAs and workflows: one variant per base model, to install with its profile",
+      "size": {"qwen_2.1": "1,3 Go"},
+      "extends": ["comfyui-common"],
       "variants": ["qwen_2.1"],
       "default_variant": "qwen_2.1",
       "models": [
         {"variant": "qwen_2.1", "type": "loras/qwen_image_2.1/alissonerdx", "hf": "Alissonerdx/BFS-Best-Face-Swap", "file": "bfs_body_swap_v1.0_qwen_2.1.safetensors", "size": 209753576},
-        {"variant": "qwen_2.1", "type": "loras/qwen_image_2.1/alissonerdx", "hf": "Alissonerdx/BFS-Best-Face-Swap", "file": "bfs_head_v1.1_qwen_2.1.safetensors", "size": 260096144}
+        {"variant": "qwen_2.1", "type": "loras/qwen_image_2.1/alissonerdx", "hf": "Alissonerdx/BFS-Best-Face-Swap", "file": "bfs_head_v1.1_qwen_2.1.safetensors", "size": 260096144},
+        {"variant": "qwen_2.1", "type": "loras/qwen_image_2.1/ameno-tech", "hf": "ameno-tech/Pruna-Qwen-Image-2.1", "file": "p_qwen_image_2.1_8step_v0.1.safetensors", "size": 335606104},
+        {"variant": "qwen_2.1", "type": "background_removal", "hf": "Comfy-Org/BiRefNet", "file": "background_removal/birefnet.safetensors", "size": 444473596}
       ],
       "workflows": [
-        {"variant": "qwen_2.1", "github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/alissonerdx_bfs/body_swap_qwen_image_2.1.json"},
-        {"variant": "qwen_2.1", "github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/alissonerdx_bfs/head_swap_qwen_image_2.1.json"}
+        {"variant": "qwen_2.1", "github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/alissonerdx_bfs/body_swap_qwen_image_2.1.json", "size": 66585},
+        {"variant": "qwen_2.1", "github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/alissonerdx_bfs/head_swap_qwen_image_2.1.json", "size": 54090}
       ]
     },
 
