@@ -69,15 +69,15 @@ blocks for the others.
 | `z-image-turbo-controlnet` | Z-Image Turbo + Fun ControlNets (Union, Union 2.1 lite, Tile 2.1 lite) | int8 (19.4 GB), nvfp4 (15.5 GB), bf16 (27.9 GB) |
 | `qwen_image_2.1-turbo` | Qwen Image 2.1 Turbo | int8 (26.8 GB), bf16 (41.9 GB) |
 | `qwen_image_2.1` | Qwen Image 2.1 | int8 (26.8 GB), bf16 (41.9 GB) |
-| `alissonerdx-bfs` | [BFS: Best Face Swap](https://huggingface.co/Alissonerdx/BFS-Best-Face-Swap) LoRAs and workflows, without the base model (see below) | qwen_2.1 (1.3 GB), krea2 (1.8 GB) |
+| `alissonerdx-bfs` | [BFS: Best Face Swap](https://huggingface.co/Alissonerdx/BFS-Best-Face-Swap) LoRAs and workflows, without the base model (see below) | qwen_2.1 (1.3 GB), krea2 (1.8 GB), flux2-klein-4b (1.8 GB), flux2-klein-9b (994 MB) |
 | `qwen_image_edit_2511-turbo` | Qwen Image Edit 2511 + Lightning 4 steps and edit LoRAs | int8 (31.6 GB) |
 | `yue2-3b` | YuE2 3B, music generation | int8 (5.3 GB) |
 
 `comfy_profiles.py list` (or the panel) shows the full, up-to-date list with descriptions.
 
 `alissonerdx-bfs` gathers the BFS LoRAs and workflows, with one variant per base model
-(`qwen_2.1`, `krea2`; FLUX.2 [klein], Qwen Image Edit... to come). It does not install the
-base model: install it with the profile of its family, e.g.
+(`qwen_2.1`, `krea2`, `flux2-klein-4b`, `flux2-klein-9b`; Qwen Image Edit... to come). It does
+not install the base model: install it with the profile of its family, e.g.
 `qwen_image_2.1[int8],alissonerdx-bfs[qwen_2.1]` or `krea2-turbo[int8],alissonerdx-bfs[krea2]`,
 which is what the workflows declare.
 
@@ -91,6 +91,7 @@ which is what the workflows declare.
 | [`z-image/`](z-image/) | `z-image-turbo`, `z-image-turbo-controlnet` | Official ComfyUI templates (MIT) |
 | [`h3/obvpm/`](h3/obvpm/) | `minimax-h3-obvpm-r2v` | OBVPM Timeline R2V |
 | [`qwen_image_2.1/alissonerdx_bfs/`](qwen_image_2.1/alissonerdx_bfs/) | `alissonerdx-bfs[qwen_2.1]` (with `qwen_image_2.1[int8]`) | BFS workflows by Alissonerdx (MIT) |
+| [`flux2/klein/alissonerdx_bfs/`](flux2/klein/alissonerdx_bfs/) | `alissonerdx-bfs[flux2-klein-4b]`, `alissonerdx-bfs[flux2-klein-9b]` (with `flux2-klein-4b[fp8]`, `flux2-klein-9b[fp8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`krea2/alissonerdx_bfs/`](krea2/alissonerdx_bfs/) | `alissonerdx-bfs[krea2]` (with `krea2-turbo[int8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`krea2/`](krea2/) | `krea2-heretic` (declared in the workflow, not installed by the profile) | Krea 2 text to image (ThinkingLLM + ClownSharkSampler) |
 
