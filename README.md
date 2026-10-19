@@ -65,6 +65,8 @@ blocks for the others.
 | `flux3-klein-base` | FLUX.3 [klein] Base, not distilled | int8 (17.7 GB), nvfp4 (17.2 GB), bf16 (39.1 GB) |
 | `moss-image` | MOSS-Image SFT: text to image, with bounding boxes | w4a8 (13.3 GB), int8 (15.7 GB), bf16 (30.1 GB) |
 | `moss-image-base` | MOSS-Image Base | w4a8 (13.3 GB), int8 (15.7 GB), bf16 (30.1 GB) |
+| `z-image-turbo` | Z-Image Turbo: text to image in 8 steps, 2K upscale | int8 (12.2 GB), nvfp4 (8.4 GB), bf16 (20.8 GB) |
+| `z-image-turbo-controlnet` | Z-Image Turbo + Fun ControlNets (Union, Union 2.1 lite, Tile 2.1 lite) | int8 (19.4 GB), nvfp4 (15.5 GB), bf16 (27.9 GB) |
 | `qwen_image_2.1-turbo` | Qwen Image 2.1 Turbo | int8 (26.8 GB), bf16 (41.9 GB) |
 | `qwen_image_2.1` | Qwen Image 2.1 | int8 (26.8 GB), bf16 (41.9 GB) |
 | `qwen_image_edit_2511-turbo` | Qwen Image Edit 2511 + Lightning 4 steps and edit LoRAs | int8 (31.6 GB) |
@@ -79,6 +81,7 @@ blocks for the others.
 | [`flux2/klein/`](flux2/klein/) | `flux2-klein-9b`, `flux2-klein-base-9b`, `flux2-klein-4b`, `flux2-klein-base-4b`, `flux2-klein-4b-all` | Official ComfyUI templates (MIT) |
 | [`flux3/klein/`](flux3/klein/) | `flux3-klein`, `flux3-klein-base` | Official Black Forest Labs workflows (MIT) |
 | [`moss/`](moss/) | `moss-image`, `moss-image-base` | Official ComfyUI templates (MIT) |
+| [`z-image/`](z-image/) | `z-image-turbo`, `z-image-turbo-controlnet` | Official ComfyUI templates (MIT) |
 | [`h3/obvpm/`](h3/obvpm/) | `minimax-h3-obvpm-r2v` | OBVPM Timeline R2V |
 | [`krea2/`](krea2/) | `krea2-heretic` (declared in the workflow, not installed by the profile) | Krea 2 text to image (ThinkingLLM + ClownSharkSampler) |
 

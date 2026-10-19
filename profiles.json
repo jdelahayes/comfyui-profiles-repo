@@ -399,6 +399,43 @@
       ]
     },
 
+    "z-image-turbo": {
+      "description": "Z-Image Turbo (Tongyi-MAI, 6B) : texte vers image en 8 steps, CFG 1. int8 : modèle int8 et text encoder Qwen3-4B fp8 (configuration du template int8) ; nvfp4 : GPU Blackwell uniquement, text encoder fp4 ; bf16 : tout en bf16. Avec RealESRGAN x4 pour le workflow d'upscale 2K.",
+      "size": {"int8": "12,2 Go", "nvfp4": "8,4 Go", "bf16": "20,8 Go"},
+      "extends": ["comfyui-common"],
+      "variants": ["int8", "nvfp4", "bf16"],
+      "default_variant": "int8",
+      "models": [
+        {"type": "vae/z-image", "hf": "Comfy-Org/z_image_turbo", "file": "split_files/vae/ae.safetensors", "size": 335304388},
+        {"type": "upscale_models/z-image", "hf": "Comfy-Org/Real-ESRGAN_repackaged", "file": "RealESRGAN_x4plus.safetensors", "size": 66857836},
+        {"variant": "int8", "type": "text_encoders/z-image", "hf": "Comfy-Org/z_image_turbo", "file": "split_files/text_encoders/qwen_3_4b_fp8_mixed.safetensors", "size": 5631994051},
+        {"variant": "int8", "type": "diffusion_models/z-image", "hf": "Comfy-Org/z_image_turbo", "file": "split_files/diffusion_models/z_image_turbo_int8_convrot.safetensors", "size": 6201001296},
+        {"variant": "nvfp4", "type": "text_encoders/z-image", "hf": "Comfy-Org/z_image_turbo", "file": "split_files/text_encoders/qwen_3_4b_fp4_mixed.safetensors", "size": 3479416193},
+        {"variant": "nvfp4", "type": "diffusion_models/z-image", "hf": "Comfy-Org/z_image_turbo", "file": "split_files/diffusion_models/z_image_turbo_nvfp4.safetensors", "size": 4509509600},
+        {"variant": "bf16", "type": "text_encoders/z-image", "hf": "Comfy-Org/z_image_turbo", "file": "split_files/text_encoders/qwen_3_4b.safetensors", "size": 8044982048},
+        {"variant": "bf16", "type": "diffusion_models/z-image", "hf": "Comfy-Org/z_image_turbo", "file": "split_files/diffusion_models/z_image_turbo_bf16.safetensors", "size": 12309866400}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "z-image/image_z_image_turbo_int8.json", "size": 28981},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "z-image/utility_z_image_turbo_2k_upscaler.app.json", "size": 35907}
+      ]
+    },
+    "z-image-turbo-controlnet": {
+      "description": "Z-Image Turbo + ControlNet Fun d'alibaba-pai : Union (celui du template ComfyUI), Union 2.1 lite et Tile 2.1 lite (8 steps).",
+      "size": {"int8": "19,4 Go", "nvfp4": "15,5 Go", "bf16": "27,9 Go"},
+      "extends": ["z-image-turbo"],
+      "variants": ["int8", "nvfp4", "bf16"],
+      "default_variant": "int8",
+      "models": [
+        {"type": "model_patches/z-image", "hf": "alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union", "file": "Z-Image-Turbo-Fun-Controlnet-Union.safetensors", "size": 3101572408},
+        {"type": "model_patches/z-image", "hf": "alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union-2.1", "file": "Z-Image-Turbo-Fun-Controlnet-Union-2.1-lite-2601-8steps.safetensors", "size": 2016627488},
+        {"type": "model_patches/z-image", "hf": "alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union-2.1", "file": "Z-Image-Turbo-Fun-Controlnet-Tile-2.1-lite-2601-8steps.safetensors", "size": 2016627488}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "z-image/image_z_image_turbo_fun_union_controlnet.json", "size": 43032}
+      ]
+    },
+
     "qwen_image_2.1-common": {
       "description": "Qwen Image 2.1 Common",
       "size": {"int8": "19,5 Go", "bf16": "27,7 Go"},
