@@ -1,7 +1,7 @@
 {
   "id": "e8f30439-267f-45de-b260-db0d114b2c85",
   "revision": 0,
-  "last_node_id": 132,
+  "last_node_id": 133,
   "last_link_id": 145,
   "nodes": [
     {
@@ -505,6 +505,34 @@
         "unet_name": "flux3-klein/flux3-image-klein-int8-convrot.safetensors",
         "clip_name": "flux3-klein/qwen3vl_4b_int8_convrot.safetensors",
         "vae_name": "flux3-klein/flux2-vae.safetensors"
+      }
+    },
+    {
+      "id": 133,
+      "type": "WorkflowProfiles",
+      "pos": [
+        -530,
+        -130
+      ],
+      "size": [
+        600,
+        106
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "WorkflowProfiles"
+      },
+      "widgets_values": [
+        "flux3-klein[int8]",
+        "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
+      ],
+      "widgets_values_named": {
+        "profiles": "flux3-klein[int8]",
+        "source": "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
       }
     }
   ],

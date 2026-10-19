@@ -233,8 +233,8 @@
         {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-9B", "file": "flux-2-klein-9b.safetensors", "size": 18157185168}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_distilled.json", "size": 101251},
-        {"variant": "kv-fp8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_9b_kv_image_edit.json", "size": 46626}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_distilled.json", "size": 101940},
+        {"variant": "kv-fp8", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_9b_kv_image_edit.json", "size": 47350}
       ]
     },
     "flux2-klein-base-9b": {
@@ -249,7 +249,7 @@
         {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9B", "file": "flux-2-klein-base-9b.safetensors", "size": 18157185168}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_base.json", "size": 99469}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_base.json", "size": 100168}
       ]
     },
 
@@ -279,9 +279,9 @@
         {"variant": "bf16", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-bf16.safetensors", "size": 11097404512}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_t2i.json", "size": 84167},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_i2i.json", "size": 108376},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_mi2i.json", "size": 115392}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_t2i.json", "size": 84854},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_i2i.json", "size": 109063},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_int8_mi2i.json", "size": 116079}
       ]
     },
     "flux3-klein-base": {
@@ -296,9 +296,54 @@
         {"variant": "bf16", "type": "diffusion_models/flux3-klein", "hf": "black-forest-labs/flux-3-image-klein-comfy", "file": "diffusion_models/flux3-image-klein-base-bf16.safetensors", "size": 11076957072}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_t2i.json", "size": 85259},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_i2i.json", "size": 109468},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_mi2i.json", "size": 116484}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_t2i.json", "size": 85956},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_i2i.json", "size": 110165},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux3/klein/flux3_klein_base_int8_mi2i.json", "size": 117181}
+      ]
+    },
+
+    "moss-image-common": {
+      "description": "MOSS-Image commun : VAE FLUX.2 (complet et small), text encoder Qwen3.5-9B (w4a8 : GPTQ w4a8 ; int8 : int8 ; bf16 : bf16).",
+      "size": {"w4a8": "7,9 Go", "int8": "10,3 Go", "bf16": "19,9 Go"},
+      "extends": ["comfyui-common"],
+      "variants": ["w4a8", "int8", "bf16"],
+      "default_variant": "w4a8",
+      "models": [
+        {"type": "vae/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "vae/flux2-vae.safetensors", "size": 336211292},
+        {"type": "vae/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "vae/flux2-vae_small.safetensors", "size": 249521340},
+        {"variant": "w4a8", "type": "text_encoders/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "text_encoders/qwen3.5_9b_w4a8_gptq.safetensors", "size": 7343591088},
+        {"variant": "int8", "type": "text_encoders/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "text_encoders/qwen3.5_9b_int8_convrot.safetensors", "size": 9748121532},
+        {"variant": "bf16", "type": "text_encoders/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "text_encoders/qwen3.5_9b_bf16.safetensors", "size": 19306312328}
+      ]
+    },
+    "moss-image": {
+      "description": "MOSS-Image SFT (OpenMOSS-Team/MOSS-Image-SFT) ; w4a8 : modèle int8 et text encoder w4a8 (configuration des workflows officiels).",
+      "size": {"w4a8": "13,3 Go", "int8": "15,7 Go", "bf16": "30,1 Go"},
+      "extends": ["moss-image-common"],
+      "variants": ["w4a8", "int8", "bf16"],
+      "default_variant": "w4a8",
+      "models": [
+        {"variant": ["w4a8", "int8"], "type": "diffusion_models/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "diffusion_models/moss_image_sft_int8_convrot.safetensors", "size": 5413698958},
+        {"variant": "bf16", "type": "diffusion_models/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "diffusion_models/moss_image_sft_bf16.safetensors", "size": 10164655808}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_t2i.json", "size": 60688},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_t2i_bboxes.json", "size": 75266}
+      ]
+    },
+    "moss-image-base": {
+      "description": "MOSS-Image Base (OpenMOSS-Team/MOSS-Image-Base), non affiné ; pour le fine-tuning et l'entraînement de LoRA ; w4a8 : modèle int8 et text encoder w4a8 (configuration des workflows officiels).",
+      "size": {"w4a8": "13,3 Go", "int8": "15,7 Go", "bf16": "30,1 Go"},
+      "extends": ["moss-image-common"],
+      "variants": ["w4a8", "int8", "bf16"],
+      "default_variant": "w4a8",
+      "models": [
+        {"variant": ["w4a8", "int8"], "type": "diffusion_models/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "diffusion_models/moss_image_base_int8_convrot.safetensors", "size": 5413698958},
+        {"variant": "bf16", "type": "diffusion_models/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "diffusion_models/moss_image_base_bf16.safetensors", "size": 10164655808}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_base_t2i.json", "size": 59334},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_base_t2i_bboxes.json", "size": 71634}
       ]
     },
 

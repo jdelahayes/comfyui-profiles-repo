@@ -1,7 +1,7 @@
 {
   "id": "e8f30439-267f-45de-b260-db0d114b2c85",
   "revision": 0,
-  "last_node_id": 149,
+  "last_node_id": 150,
   "last_link_id": 207,
   "nodes": [
     {
@@ -751,6 +751,34 @@
       ],
       "color": "#232",
       "bgcolor": "#353"
+    },
+    {
+      "id": 150,
+      "type": "WorkflowProfiles",
+      "pos": [
+        -530,
+        -130
+      ],
+      "size": [
+        600,
+        106
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "WorkflowProfiles"
+      },
+      "widgets_values": [
+        "flux3-klein[int8]",
+        "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
+      ],
+      "widgets_values_named": {
+        "profiles": "flux3-klein[int8]",
+        "source": "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
+      }
     }
   ],
   "links": [
