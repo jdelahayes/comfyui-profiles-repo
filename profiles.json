@@ -463,7 +463,7 @@
     },
 
     "qwen_image_2.1": {
-      "description": "Qwen Image 2.1",
+      "description": "Qwen Image 2.1 Base",
       "size": {"int8": "26,8 Go", "bf16": "41,9 Go"},
       "extends": ["qwen_image_2.1-common"],
       "variants": ["int8", "bf16"],
@@ -471,6 +471,22 @@
       "models": [
         {"variant": "int8", "type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_int8_convrot.safetensors", "size": 7256783064},
         {"variant": "bf16", "type": "diffusion_models/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "diffusion_models/qwen_image_2.1_bf16.safetensors", "size": 14230280616}
+      ]
+    },
+
+    "alissonerdx-bfs": {
+      "description": "BFS: Best Face Swap",
+      "size": {"qwen_2.1": "10,6 Go + 2 fichier(s) de taille inconnue"},
+      "extends": ["qwen_image_2.1-common"],
+      "variants": ["qwen_2.1"],
+      "default_variant": "qwen_2.1",
+      "models": [
+        {"variant": "qwen_2.1", "type": "loras/qwen_image_2.1/alissonerdx", "hf": "Alissonerdx/BFS-Best-Face-Swap", "file": "bfs_body_swap_v1.0_qwen_2.1.safetensors", "size": 209753576},
+        {"variant": "qwen_2.1", "type": "loras/qwen_image_2.1/alissonerdx", "hf": "Alissonerdx/BFS-Best-Face-Swap", "file": "bfs_head_v1.1_qwen_2.1.safetensors", "size": 260096144}
+      ],
+      "workflows": [
+        {"variant": "qwen_2.1", "github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/alissonerdx_bfs/body_swap_qwen_image_2.1.json"},
+        {"variant": "qwen_2.1", "github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/alissonerdx_bfs/head_swap_qwen_image_2.1.json"}
       ]
     },
 
