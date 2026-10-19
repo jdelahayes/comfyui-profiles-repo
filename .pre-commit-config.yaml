@@ -1,0 +1,11 @@
+# Same check as the GitHub workflow, before each commit: pip install pre-commit && pre-commit install
+repos:
+  - repo: local
+    hooks:
+      - id: validate-profiles
+        name: Validate profiles.json
+        language: python
+        additional_dependencies: [jsonschema]
+        entry: python .github/scripts/validate_profiles.py profiles.json
+        files: (^profiles\.json$|\.json$|^\.github/scripts/validate_profiles\.py$)
+        pass_filenames: false

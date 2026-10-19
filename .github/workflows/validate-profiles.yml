@@ -1,0 +1,29 @@
+# Validates profiles.json (JSON schema of comfyui-profiles + extends, variants and workflows of
+# this repository) on every push and pull request that touches it or the workflows.
+name: Validate profiles.json
+
+on:
+  push:
+    paths:
+      - "profiles.json"
+      - "**/*.json"
+      - ".github/scripts/validate_profiles.py"
+      - ".github/workflows/validate-profiles.yml"
+  pull_request:
+    paths:
+      - "profiles.json"
+      - "**/*.json"
+      - ".github/scripts/validate_profiles.py"
+      - ".github/workflows/validate-profiles.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jsonschema
+      - run: python .github/scripts/validate_profiles.py profiles.json
