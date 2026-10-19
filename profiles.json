@@ -253,6 +253,58 @@
       ]
     },
 
+    "flux2-klein-4b-common": {
+      "description": "FLUX.2 [klein] 4B commun : VAE (complet et small decoder des templates ComfyUI), text encoder Qwen3-4B (fp8 et bf16 : bf16, pas de version fp8 ; nvfp4 : fp4).",
+      "size": {"fp8": "8,6 Go", "nvfp4": "4,4 Go", "bf16": "8,6 Go"},
+      "extends": ["comfyui-common"],
+      "variants": ["fp8", "nvfp4", "bf16"],
+      "default_variant": "fp8",
+      "models": [
+        {"type": "vae/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-4b", "file": "split_files/vae/flux2-vae.safetensors", "size": 336211292},
+        {"type": "vae/flux2-klein", "hf": "black-forest-labs/FLUX.2-small-decoder", "file": "full_encoder_small_decoder.safetensors", "size": 249519092},
+        {"variant": ["fp8", "bf16"], "type": "text_encoders/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-4b", "file": "split_files/text_encoders/qwen_3_4b.safetensors", "size": 8044982048},
+        {"variant": "nvfp4", "type": "text_encoders/flux2-klein", "hf": "Comfy-Org/vae-text-encorder-for-flux-klein-4b", "file": "split_files/text_encoders/qwen_3_4b_fp4_flux2.safetensors", "size": 3848213998}
+      ]
+    },
+    "flux2-klein-4b": {
+      "description": "FLUX.2 [klein] 4B distillé (Apache 2.0) : texte vers image et édition multi-références, 4 steps, CFG 1. nvfp4 : GPU Blackwell uniquement.",
+      "size": {"fp8": "12,7 Go", "nvfp4": "6,9 Go", "bf16": "16,4 Go"},
+      "extends": ["flux2-klein-4b-common"],
+      "variants": ["fp8", "nvfp4", "bf16"],
+      "default_variant": "fp8",
+      "models": [
+        {"variant": "fp8", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-4b-fp8", "file": "flux-2-klein-4b-fp8.safetensors", "size": 4070624520},
+        {"variant": "nvfp4", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-4b-nvfp4", "file": "flux-2-klein-4b-nvfp4.safetensors", "size": 2460413488},
+        {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-4B", "file": "flux-2-klein-4b.safetensors", "size": 7751105712}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_4b_distilled.json", "size": 110235}
+      ]
+    },
+    "flux2-klein-base-4b": {
+      "description": "FLUX.2 [klein] Base 4B (Apache 2.0), non distillé : 20 steps, CFG 5 ; meilleure diversité, pour le fine-tuning et l'entraînement de LoRA. nvfp4 : GPU Blackwell uniquement.",
+      "size": {"fp8": "12,7 Go", "nvfp4": "6,9 Go", "bf16": "16,4 Go"},
+      "extends": ["flux2-klein-4b-common"],
+      "variants": ["fp8", "nvfp4", "bf16"],
+      "default_variant": "fp8",
+      "models": [
+        {"variant": "fp8", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-4b-fp8", "file": "flux-2-klein-base-4b-fp8.safetensors", "size": 4089498488},
+        {"variant": "nvfp4", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-4b-nvfp4", "file": "flux-2-klein-base-4b-nvfp4.safetensors", "size": 2487544776},
+        {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-4B", "file": "flux-2-klein-base-4b.safetensors", "size": 7751105712}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_4b_base.json", "size": 101362}
+      ]
+    },
+    "flux2-klein-4b-all": {
+      "description": "FLUX.2 [klein] 4B distillé et Base en bf16, avec le template ComfyUI texte vers image qui les compare.",
+      "size": "24,1 Go",
+      "extends": ["flux2-klein-4b[bf16]", "flux2-klein-base-4b[bf16]"],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_text_to_image.json", "size": 70731}
+      ]
+    },
+
     "flux3-klein-common": {
       "description": "FLUX.3 [klein] commun : VAE, text encoder Qwen3-VL-4B et prompt upsampler Qwen3.5-9B (int8 et nvfp4 : text encoder int8 et upsampler w4a8 ; bf16 : tout en bf16). Dépôt gated : licence FLUX Kommunity à accepter sur Hugging Face.",
       "size": {"int8": "11,9 Go", "nvfp4": "11,9 Go", "bf16": "28,0 Go"},

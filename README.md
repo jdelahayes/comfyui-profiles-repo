@@ -34,8 +34,8 @@ variant only: for another one, change it in the workflow's **Workflow profiles**
 
 ### Access
 
-- **FLUX.2 / FLUX.3 [klein]**: gated Hugging Face repositories, accept the license on Hugging
-  Face and set `HF_TOKEN`.
+- **FLUX.2 [klein] 9B, FLUX.3 [klein]**: gated Hugging Face repositories, accept the license
+  on Hugging Face and set `HF_TOKEN` (the FLUX.2 [klein] 4B is not gated).
 - **CivitAI** models (`krea2-heretic`, `krea2-loras-purplelady`): set `CIVITAI_TOKEN`.
 
 ## Profiles
@@ -58,6 +58,9 @@ blocks for the others.
 | `krea2-loras-purplelady` | Krea 2 Turbo + [purplelady](https://civitai.com/user/purplelady)'s LoRAs | int8 (20.2 GB), fp8 (20.3 GB), bf16 (37.0 GB) |
 | `flux2-klein-9b` | FLUX.2 [klein] 9B distilled: text to image, multi-reference edit | fp8 (18.7 GB), kv-fp8 (19.1 GB), nvfp4 (13.1 GB), bf16 (35.1 GB) |
 | `flux2-klein-base-9b` | FLUX.2 [klein] Base 9B, not distilled | fp8 (18.8 GB), nvfp4 (13.2 GB), bf16 (35.1 GB) |
+| `flux2-klein-4b` | FLUX.2 [klein] 4B distilled (Apache 2.0): text to image, multi-reference edit | fp8 (12.7 GB), nvfp4 (6.9 GB), bf16 (16.4 GB) |
+| `flux2-klein-base-4b` | FLUX.2 [klein] Base 4B, not distilled | fp8 (12.7 GB), nvfp4 (6.9 GB), bf16 (16.4 GB) |
+| `flux2-klein-4b-all` | `flux2-klein-4b` + `flux2-klein-base-4b` in bf16, with the text to image template comparing them | 24.1 GB |
 | `flux3-klein` | FLUX.3 [klein] distilled: text to image, edit with up to 10 references | int8 (17.7 GB), nvfp4 (17.2 GB), bf16 (39.1 GB) |
 | `flux3-klein-base` | FLUX.3 [klein] Base, not distilled | int8 (17.7 GB), nvfp4 (17.2 GB), bf16 (39.1 GB) |
 | `moss-image` | MOSS-Image SFT: text to image, with bounding boxes | w4a8 (13.3 GB), int8 (15.7 GB), bf16 (30.1 GB) |
@@ -73,7 +76,7 @@ blocks for the others.
 
 | Folder | Profiles | Origin |
 |---|---|---|
-| [`flux2/klein/`](flux2/klein/) | `flux2-klein-9b`, `flux2-klein-base-9b` | Official ComfyUI templates (MIT) |
+| [`flux2/klein/`](flux2/klein/) | `flux2-klein-9b`, `flux2-klein-base-9b`, `flux2-klein-4b`, `flux2-klein-base-4b`, `flux2-klein-4b-all` | Official ComfyUI templates (MIT) |
 | [`flux3/klein/`](flux3/klein/) | `flux3-klein`, `flux3-klein-base` | Official Black Forest Labs workflows (MIT) |
 | [`moss/`](moss/) | `moss-image`, `moss-image-base` | Official ComfyUI templates (MIT) |
 | [`h3/obvpm/`](h3/obvpm/) | `minimax-h3-obvpm-r2v` | OBVPM Timeline R2V |
