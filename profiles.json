@@ -108,7 +108,10 @@
       "workflows": [
         {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro.json", "size": 507403},
         {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro-refmod.json", "size": 528013},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro-refmod-picker.json", "size": 517379}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro-refmod-picker.json", "size": 517379},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.2-012-pro.json", "size": 502438},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.2-012-pro-fantastic-loaders.json", "size": 435529},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.2-012-pro-fantastic-full.json", "size": 446342}
       ]
     },
 
