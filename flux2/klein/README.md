@@ -14,6 +14,9 @@ MIT license (see `LICENSE.upstream`).
 | `image_flux2_klein_text_to_image.json` (4B distilled and Base side by side, bf16) | `flux2-klein-4b-all` |
 
 Changes:
+- the FLUX.2 VAE (shared with FLUX.3 [klein], MOSS-Image, Fibo 2.0) is in `vae/flux2/` (`flux2-vae`
+  profile), the bf16 Qwen3-4B text encoder of the 4B (shared with Z-Image) in
+  `text_encoders/qwen3-4b/`;
 - the models are referenced in their `flux2-klein/` subfolder (`diffusion_models/flux2-klein/`,
   `text_encoders/flux2-klein/`, `vae/flux2-klein/`), where the profiles install them; the 4B and
   9B profiles share the VAE files there;

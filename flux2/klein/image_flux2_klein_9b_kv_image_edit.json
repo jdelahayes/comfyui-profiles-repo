@@ -229,7 +229,7 @@
         "ver": "0.8.2",
         "models": [
           {
-            "name": "flux2-klein/flux2-vae.safetensors",
+            "name": "flux2/flux2-vae.safetensors",
             "url": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors",
             "directory": "vae"
           }
@@ -243,7 +243,7 @@
         "secondTabWidth": 65
       },
       "widgets_values": [
-        "flux2-klein/flux2-vae.safetensors"
+        "flux2/flux2-vae.safetensors"
       ]
     },
     {

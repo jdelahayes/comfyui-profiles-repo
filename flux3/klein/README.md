@@ -5,9 +5,12 @@ Copies of the official workflows of
 MIT license (see `LICENSE.upstream`).
 
 Changes:
+- the FLUX.2 VAE (shared with FLUX.2 [klein], MOSS-Image, Fibo 2.0) is in `vae/flux2/`
+  (`flux2-vae` profile);
 - the models are referenced in their `flux3-klein/` subfolder (`diffusion_models/flux3-klein/`,
   `text_encoders/flux3-klein/`, `vae/flux3-klein/`), where the `flux3-klein` and
-  `flux3-klein-base` profiles install them;
+  `flux3-klein-base` profiles install them, except the int8 Qwen3-VL-4B text encoder, the same
+  file as Krea 2 and Fibo 2.0, in `text_encoders/qwen3vl/`;
 - a "Workflow profiles" node (comfyui-profiles) declares the profile the workflow needs
   (`flux3-klein[int8]` or `flux3-klein-base[int8]`), with this repository's `profiles.json` as
   source.

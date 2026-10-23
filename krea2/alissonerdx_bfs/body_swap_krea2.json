@@ -66,7 +66,7 @@
         "Node name for S&R": "CLIPLoader",
         "models": [
           {
-            "name": "qwen3vl_4b_int8_convrot.safetensors",
+            "name": "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
             "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/text_encoders/qwen3vl_4b_int8_convrot.safetensors",
             "directory": "text_encoders"
           }
@@ -78,7 +78,7 @@
         }
       },
       "widgets_values": [
-        "krea2/qwen3vl_4b_int8_convrot.safetensors",
+        "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
         "krea2",
         "default"
       ]
@@ -116,7 +116,7 @@
         "Node name for S&R": "VAELoader",
         "models": [
           {
-            "name": "qwen_image_vae.safetensors",
+            "name": "qwen-image/qwen_image_vae.safetensors",
             "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/vae/qwen_image_vae.safetensors",
             "directory": "vae"
           }
@@ -128,7 +128,7 @@
         }
       },
       "widgets_values": [
-        "krea2/qwen_image_vae.safetensors"
+        "qwen-image/qwen_image_vae.safetensors"
       ]
     },
     {

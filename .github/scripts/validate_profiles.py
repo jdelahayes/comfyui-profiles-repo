@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Validates profiles.json: its JSON schema (the one named by "$schema", or --schema), then what
 the schema cannot express: extends targets and their variants, inheritance cycles, variants of
-the items, and the workflows of this repository (present, size up to date).
+the items, the same file (sha256) installed in two places, and the workflows of this repository
+(present, size up to date).
 
 Usage: validate_profiles.py [profiles.json] [--schema PATH_OR_URL]
 Exit code 1 on error; a stale workflow size is only a warning (run `comfy_profiles.py sizes`)."""
@@ -114,6 +115,24 @@ def check_variants(profiles):
                 error(f"{name}.size", f"size of undeclared variant(s) {', '.join(extra)}")
 
 
+def check_same_files(profiles):
+    """The same file (same sha256) must be installed in a single place: a shared profile that
+    the families extend (qwen3vl-4b, flux2-vae...), or the same type in each profile."""
+    places = {}
+    for name, profile in profiles.items():
+        for i, item in enumerate(profile.get("models", [])):
+            if not isinstance(item, dict) or not item.get("sha256"):
+                continue
+            local = item.get("name") or str(item.get("file", "")).rsplit("/", 1)[-1]
+            dest = f"{str(item.get('type', '')).strip('/')}/{local}"
+            places.setdefault(item["sha256"], {}).setdefault(dest, []).append(f"{name}.models[{i}]")
+    for sha, dests in places.items():
+        if len(dests) > 1:
+            where = "; ".join(f"{dest} ({', '.join(items)})" for dest, items in dests.items())
+            error(next(iter(dests.values()))[0], f"same file (sha256 {sha[:12]}) installed in "
+                                                  f"{len(dests)} places: {where}")
+
+
 def check_workflows(profiles, root):
     repo = this_repo(root)
     if not repo:
@@ -162,6 +181,7 @@ def main():
     profiles = data["profiles"]
     check_extends(profiles)
     check_variants(profiles)
+    check_same_files(profiles)
     check_workflows(profiles, path.resolve().parent)
     if errors:
         return 1

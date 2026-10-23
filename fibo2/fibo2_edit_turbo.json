@@ -118,12 +118,12 @@
         "Node name for S&R": "CLIPLoader"
       },
       "widgets_values": [
-        "fibo2/qwen3vl_4b_int8_convrot.safetensors",
+        "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
         "fibo2",
         "default"
       ],
       "widgets_values_named": {
-        "clip_name": "fibo2/qwen3vl_4b_int8_convrot.safetensors",
+        "clip_name": "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
         "type": "fibo2",
         "device": "default"
       }
@@ -157,10 +157,10 @@
         "Node name for S&R": "VAELoader"
       },
       "widgets_values": [
-        "fibo2/flux2-vae.safetensors"
+        "flux2/flux2-vae.safetensors"
       ],
       "widgets_values_named": {
-        "vae_name": "fibo2/flux2-vae.safetensors"
+        "vae_name": "flux2/flux2-vae.safetensors"
       }
     },
     {

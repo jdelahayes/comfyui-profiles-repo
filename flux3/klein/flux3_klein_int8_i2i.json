@@ -435,8 +435,8 @@
         "euler",
         "simple",
         "flux3-klein/flux3-image-klein-int8-convrot.safetensors",
-        "flux3-klein/qwen3vl_4b_int8_convrot.safetensors",
-        "flux3-klein/flux2-vae.safetensors"
+        "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
+        "flux2/flux2-vae.safetensors"
       ],
       "widgets_values_named": {
         "prompt": "",
@@ -449,8 +449,8 @@
         "sampler_name": "euler",
         "scheduler": "simple",
         "unet_name": "flux3-klein/flux3-image-klein-int8-convrot.safetensors",
-        "clip_name": "flux3-klein/qwen3vl_4b_int8_convrot.safetensors",
-        "vae_name": "flux3-klein/flux2-vae.safetensors"
+        "clip_name": "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
+        "vae_name": "flux2/flux2-vae.safetensors"
       }
     },
     {
@@ -2342,19 +2342,19 @@
               "Node name for S&R": "CLIPLoader",
               "models": [
                 {
-                  "name": "flux3-klein/qwen3vl_4b_int8_convrot.safetensors",
+                  "name": "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
                   "url": "https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/resolve/main/text_encoders/qwen3vl_4b_int8_convrot.safetensors",
                   "directory": "text_encoders"
                 }
               ]
             },
             "widgets_values": [
-              "flux3-klein/qwen3vl_4b_int8_convrot.safetensors",
+              "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
               "flux3",
               "default"
             ],
             "widgets_values_named": {
-              "clip_name": "flux3-klein/qwen3vl_4b_int8_convrot.safetensors",
+              "clip_name": "qwen3vl/qwen3vl_4b_int8_convrot.safetensors",
               "type": "flux3",
               "device": "default"
             },
@@ -2401,17 +2401,17 @@
               "Node name for S&R": "VAELoader",
               "models": [
                 {
-                  "name": "flux3-klein/flux2-vae.safetensors",
+                  "name": "flux2/flux2-vae.safetensors",
                   "url": "https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/resolve/main/vae/flux2-vae.safetensors",
                   "directory": "vae"
                 }
               ]
             },
             "widgets_values": [
-              "flux3-klein/flux2-vae.safetensors"
+              "flux2/flux2-vae.safetensors"
             ],
             "widgets_values_named": {
-              "vae_name": "flux3-klein/flux2-vae.safetensors"
+              "vae_name": "flux2/flux2-vae.safetensors"
             }
           },
           {

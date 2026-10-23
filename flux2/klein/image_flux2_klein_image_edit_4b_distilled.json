@@ -309,8 +309,8 @@
       },
       "widgets_values": [
         "flux2-klein/flux-2-klein-4b-fp8.safetensors",
-        "flux2-klein/qwen_3_4b.safetensors",
-        "flux2-klein/flux2-vae.safetensors",
+        "qwen3-4b/qwen_3_4b.safetensors",
+        "flux2/flux2-vae.safetensors",
         "stylize the handbag in image1 with the colours and logo from image 2",
         786795143695419
       ]
@@ -383,8 +383,8 @@
       },
       "widgets_values": [
         "flux2-klein/flux-2-klein-4b-fp8.safetensors",
-        "flux2-klein/qwen_3_4b.safetensors",
-        "flux2-klein/flux2-vae.safetensors",
+        "qwen3-4b/qwen_3_4b.safetensors",
+        "flux2/flux2-vae.safetensors",
         "Change the bag color to blue.",
         43301611940728
       ]
@@ -749,7 +749,7 @@
               "ver": "0.8.2",
               "models": [
                 {
-                  "name": "flux2-klein/qwen_3_4b.safetensors",
+                  "name": "qwen3-4b/qwen_3_4b.safetensors",
                   "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors",
                   "directory": "text_encoders"
                 }
@@ -768,7 +768,7 @@
               }
             },
             "widgets_values": [
-              "flux2-klein/qwen_3_4b.safetensors",
+              "qwen3-4b/qwen_3_4b.safetensors",
               "flux2",
               "default"
             ]
@@ -815,7 +815,7 @@
               "ver": "0.8.2",
               "models": [
                 {
-                  "name": "flux2-klein/flux2-vae.safetensors",
+                  "name": "flux2/flux2-vae.safetensors",
                   "url": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors",
                   "directory": "vae"
                 }
@@ -834,7 +834,7 @@
               }
             },
             "widgets_values": [
-              "flux2-klein/flux2-vae.safetensors"
+              "flux2/flux2-vae.safetensors"
             ]
           },
           {
@@ -2556,7 +2556,7 @@
               "ver": "0.8.2",
               "models": [
                 {
-                  "name": "flux2-klein/qwen_3_4b.safetensors",
+                  "name": "qwen3-4b/qwen_3_4b.safetensors",
                   "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors",
                   "directory": "text_encoders"
                 }
@@ -2575,7 +2575,7 @@
               }
             },
             "widgets_values": [
-              "flux2-klein/qwen_3_4b.safetensors",
+              "qwen3-4b/qwen_3_4b.safetensors",
               "flux2",
               "default"
             ]
@@ -2690,7 +2690,7 @@
               "ver": "0.8.2",
               "models": [
                 {
-                  "name": "flux2-klein/flux2-vae.safetensors",
+                  "name": "flux2/flux2-vae.safetensors",
                   "url": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors",
                   "directory": "vae"
                 }
@@ -2709,7 +2709,7 @@
               }
             },
             "widgets_values": [
-              "flux2-klein/flux2-vae.safetensors"
+              "flux2/flux2-vae.safetensors"
             ]
           },
           {

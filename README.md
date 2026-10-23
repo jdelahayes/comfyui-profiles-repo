@@ -22,7 +22,18 @@ they need, with this URL as source: opening one is enough to find out what to in
 
 Models are installed in a subfolder named after their family (`diffusion_models/krea2/`,
 `text_encoders/flux3-klein/`, `vae/moss-image/`...), so that families sharing file names
-(`flux2-vae.safetensors`, Qwen text encoders) don't collide.
+(`flux2-vae.safetensors`, Qwen text encoders) don't collide. A file that is identical (same
+sha256) in several families is installed once, in a shared folder:
+- `text_encoders/qwen3vl/` (`qwen3vl-4b`): the Qwen3-VL-4B text encoder of Krea 2, FLUX.3 [klein]
+  (int8) and Fibo 2.0;
+- `vae/flux2/` (`flux2-vae`): the FLUX.2 VAE of FLUX.2 [klein], FLUX.3 [klein], MOSS-Image and
+  Fibo 2.0;
+- `vae/qwen-image/` (`qwen-image-vae`): the Qwen Image VAE of Krea 2 and Qwen Image Edit 2511;
+- `text_encoders/qwen3-4b/`: the bf16 Qwen3-4B text encoder of FLUX.2 [klein] 4B and Z-Image
+  Turbo, declared in both profiles (it is not used by all their variants).
+
+The models carry their `sha256` (written by `comfy_profiles.py sizes`): the validation of this
+repository refuses the same file installed in two different places.
 
 ### Variants
 
@@ -51,6 +62,9 @@ blocks for the others.
 | `minimax-h3-all` | `minimax-h3-fl2va` + `minimax-h3-ref2va` | int8 (73.2 GB), bf16 (190.6 GB) |
 | `minimax-h3-hybrid-int8` | MiniMax H3 Hybrid (smhfacct) | 52.2 GB |
 | `minimax-h3-obvpm-r2v` | MiniMax H3 OBVPM Timeline R2V, with its workflows | 50.5 GB |
+| `flux2-vae` | FLUX.2 VAE shared by FLUX.2 [klein], FLUX.3 [klein], MOSS-Image and Fibo 2.0, in `vae/flux2/` | 336 MB |
+| `qwen-image-vae` | Qwen Image VAE shared by Krea 2 and Qwen Image Edit 2511, in `vae/qwen-image/` | 254 MB |
+| `qwen3vl-4b` | Qwen3-VL-4B text encoder shared by Krea 2, FLUX.3 [klein] (int8) and Fibo 2.0, in `text_encoders/qwen3vl/` | int8 (4.9 GB), fp8 (5.2 GB), bf16 (8.9 GB) |
 | `krea2-turbo` | Krea 2 Turbo | int8 (18.9 GB), fp8 (18.9 GB), bf16 (35.7 GB) |
 | `krea2-raw` | Krea 2 Raw + turbo LoRA | int8 (19.3 GB), fp8 (19.4 GB), bf16 (36.1 GB) |
 | `krea2-styles` | Krea 2 Turbo + 10 official style LoRAs | int8 (23.5 GB), fp8 (23.6 GB), bf16 (40.3 GB) |
@@ -67,6 +81,7 @@ blocks for the others.
 | `moss-image-base` | MOSS-Image Base | w4a8 (13.3 GB), int8 (15.7 GB), bf16 (30.1 GB) |
 | `ausboss-moss-image` | MOSS-Image workflow by AusBoss: speed LoRAs, SeedVR2, AusBoss nodes, without the base model (with `moss-image[int8]`) | 6.3 GB |
 | `seedvr2` | SeedVR2 3B int8 and its VAE: 2x upscale of the AusBoss workflows | 4.0 GB |
+| `sam3.1` | SAM 3.1: segmentation of a named or clicked thing, for the masks of the AusBoss workflows | 1.7 GB |
 | `z-image-turbo` | Z-Image Turbo: text to image in 8 steps, 2K upscale | int8 (12.2 GB), nvfp4 (8.4 GB), bf16 (20.8 GB) |
 | `z-image-turbo-controlnet` | Z-Image Turbo + Fun ControlNets (Union, Union 2.1 lite, Tile 2.1 lite) | int8 (19.4 GB), nvfp4 (15.5 GB), bf16 (27.9 GB) |
 | `fibo2-dev` | Fibo 2.0 (BRIA AI) Dev: text to image, with the turbo LoRA; non-commercial license (CC BY-NC 4.0) | int8 (15.6 GB), bf16 (27.7 GB) |
@@ -74,6 +89,7 @@ blocks for the others.
 | `ausboss-fibo2` | FIBO 2.0 Generate + Edit workflow by AusBoss: Qwen3-VL 8B (auto prompt), SeedVR2, AusBoss nodes, without the base model (with `fibo2-edit-turbo[int8]`) | 13.3 GB |
 | `qwen_image_2.1-turbo` | Qwen Image 2.1 Turbo | int8 (26.8 GB), bf16 (41.9 GB) |
 | `qwen_image_2.1` | Qwen Image 2.1 | int8 (26.8 GB), bf16 (41.9 GB) |
+| `ausboss-qwen_image_2.1` | The 12 Qwen Image 2.1 workflows by AusBoss, with everything they need: full and turbo int8 models, AusBoss, Viggle, Pruna T8 and BFS LoRAs, AusBoss nodes (Inpaint and Cut Out + Remove also need `sam3.1`) | 36.3 GB |
 | `alissonerdx-bfs` | [BFS: Best Face Swap](https://huggingface.co/Alissonerdx/BFS-Best-Face-Swap) LoRAs and workflows, without the base model (see below) | qwen_2.1 (1.3 GB), krea2 (1.8 GB), flux2-klein-4b (1.8 GB), flux2-klein-9b (994 MB) |
 | `qwen_image_edit_2511-turbo` | Qwen Image Edit 2511 + Lightning 4 steps and edit LoRAs | int8 (31.6 GB) |
 | `yue2-3b` | YuE2 3B, music generation | int8 (5.3 GB) |
@@ -98,6 +114,7 @@ which is what the workflows declare.
 | [`fibo2/`](fibo2/) | `fibo2-dev`, `fibo2-edit-turbo` | Written for this repository (no official template yet) |
 | [`fibo2/ausboss/`](fibo2/ausboss/) | `ausboss-fibo2` (with `fibo2-edit-turbo[int8]`) | FIBO 2.0 edit or text to image by AusBoss (4 steps, auto prompt, SeedVR2 2x) |
 | [`h3/obvpm/`](h3/obvpm/) | `minimax-h3-obvpm-r2v` | OBVPM Timeline R2V |
+| [`qwen_image_2.1/ausboss/`](qwen_image_2.1/ausboss/) | `ausboss-qwen_image_2.1` (and `sam3.1` for Inpaint, Cut Out + Remove) | Qwen Image 2.1 workflows by AusBoss (generate + edit, outpaint, inpaint, swaps, upscale) |
 | [`qwen_image_2.1/alissonerdx_bfs/`](qwen_image_2.1/alissonerdx_bfs/) | `alissonerdx-bfs[qwen_2.1]` (with `qwen_image_2.1[int8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`flux2/klein/alissonerdx_bfs/`](flux2/klein/alissonerdx_bfs/) | `alissonerdx-bfs[flux2-klein-4b]`, `alissonerdx-bfs[flux2-klein-9b]` (with `flux2-klein-4b[fp8]`, `flux2-klein-9b[fp8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`krea2/alissonerdx_bfs/`](krea2/alissonerdx_bfs/) | `alissonerdx-bfs[krea2]` (with `krea2-turbo[int8]`) | BFS workflows by Alissonerdx (MIT) |

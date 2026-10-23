@@ -5,6 +5,8 @@ Copies of the official ComfyUI templates of
 (`image_moss_image_*`), MIT license (see `LICENSE.upstream`).
 
 Changes:
+- the FLUX.2 VAE, the same file as FLUX.2/FLUX.3 [klein] and Fibo 2.0, is in the shared
+  `vae/flux2/` folder (`flux2-vae` profile);
 - the models are referenced in their `moss-image/` subfolder (`diffusion_models/moss-image/`,
   `text_encoders/moss-image/`, `vae/moss-image/`), where the `moss-image` and `moss-image-base`
   profiles install them;

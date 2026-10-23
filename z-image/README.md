@@ -11,6 +11,8 @@ MIT license (see `LICENSE.upstream`).
 | `image_z_image_turbo_fun_union_controlnet.json` | `z-image-turbo-controlnet[bf16]` |
 
 Changes:
+- the bf16 Qwen3-4B text encoder, the same file as FLUX.2 [klein] 4B, is in the shared
+  `text_encoders/qwen3-4b/` folder;
 - the models are referenced in their `z-image/` subfolder (`diffusion_models/z-image/`,
   `text_encoders/z-image/`, `vae/z-image/`, `model_patches/z-image/`, `upscale_models/z-image/`),
   where the profiles install them;
