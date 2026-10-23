@@ -66,10 +66,12 @@ blocks for the others.
 | `moss-image` | MOSS-Image SFT: text to image, with bounding boxes | w4a8 (13.3 GB), int8 (15.7 GB), bf16 (30.1 GB) |
 | `moss-image-base` | MOSS-Image Base | w4a8 (13.3 GB), int8 (15.7 GB), bf16 (30.1 GB) |
 | `ausboss-moss-image` | MOSS-Image workflow by AusBoss: speed LoRAs, SeedVR2, AusBoss nodes, without the base model (with `moss-image[int8]`) | 6.3 GB |
+| `seedvr2` | SeedVR2 3B int8 and its VAE: 2x upscale of the AusBoss workflows | 4.0 GB |
 | `z-image-turbo` | Z-Image Turbo: text to image in 8 steps, 2K upscale | int8 (12.2 GB), nvfp4 (8.4 GB), bf16 (20.8 GB) |
 | `z-image-turbo-controlnet` | Z-Image Turbo + Fun ControlNets (Union, Union 2.1 lite, Tile 2.1 lite) | int8 (19.4 GB), nvfp4 (15.5 GB), bf16 (27.9 GB) |
 | `fibo2-dev` | Fibo 2.0 (BRIA AI) Dev: text to image, with the turbo LoRA; non-commercial license (CC BY-NC 4.0) | int8 (15.6 GB), bf16 (27.7 GB) |
 | `fibo2-edit-turbo` | Fibo 2.0 Edit Turbo: image edit in 4 steps; non-commercial license (CC BY-NC 4.0) | int8 (13.6 GB), bf16 (25.7 GB) |
+| `ausboss-fibo2` | FIBO 2.0 Generate + Edit workflow by AusBoss: Qwen3-VL 8B (auto prompt), SeedVR2, AusBoss nodes, without the base model (with `fibo2-edit-turbo[int8]`) | 13.3 GB |
 | `qwen_image_2.1-turbo` | Qwen Image 2.1 Turbo | int8 (26.8 GB), bf16 (41.9 GB) |
 | `qwen_image_2.1` | Qwen Image 2.1 | int8 (26.8 GB), bf16 (41.9 GB) |
 | `alissonerdx-bfs` | [BFS: Best Face Swap](https://huggingface.co/Alissonerdx/BFS-Best-Face-Swap) LoRAs and workflows, without the base model (see below) | qwen_2.1 (1.3 GB), krea2 (1.8 GB), flux2-klein-4b (1.8 GB), flux2-klein-9b (994 MB) |
@@ -94,6 +96,7 @@ which is what the workflows declare.
 | [`moss/ausboss/`](moss/ausboss/) | `ausboss-moss-image` (with `moss-image[int8]`) | MOSS-Image text to image by AusBoss (4/8/50 steps, img2img, SeedVR2 2x) |
 | [`z-image/`](z-image/) | `z-image-turbo`, `z-image-turbo-controlnet` | Official ComfyUI templates (MIT) |
 | [`fibo2/`](fibo2/) | `fibo2-dev`, `fibo2-edit-turbo` | Written for this repository (no official template yet) |
+| [`fibo2/ausboss/`](fibo2/ausboss/) | `ausboss-fibo2` (with `fibo2-edit-turbo[int8]`) | FIBO 2.0 edit or text to image by AusBoss (4 steps, auto prompt, SeedVR2 2x) |
 | [`h3/obvpm/`](h3/obvpm/) | `minimax-h3-obvpm-r2v` | OBVPM Timeline R2V |
 | [`qwen_image_2.1/alissonerdx_bfs/`](qwen_image_2.1/alissonerdx_bfs/) | `alissonerdx-bfs[qwen_2.1]` (with `qwen_image_2.1[int8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`flux2/klein/alissonerdx_bfs/`](flux2/klein/alissonerdx_bfs/) | `alissonerdx-bfs[flux2-klein-4b]`, `alissonerdx-bfs[flux2-klein-9b]` (with `flux2-klein-4b[fp8]`, `flux2-klein-9b[fp8]`) | BFS workflows by Alissonerdx (MIT) |

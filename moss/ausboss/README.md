@@ -9,7 +9,7 @@ Changes:
   files of `moss-image` in `moss-image/` (diffusion model, text encoder, VAE), the speed LoRAs
   in `loras/moss-image/lodestones/` (8 steps) and `loras/moss-image/akhaliq/` (4 steps), the
   SeedVR2 files in `diffusion_models/seedvr2/` and `vae/seedvr2/` (`ausboss-moss-image`, which
-  also installs the AusBoss nodes);
+  extends `seedvr2` and also installs the AusBoss nodes);
 - the 4-step LoRA keeps its original name, `lora.safetensors` (the original workflow had it
   renamed `MOSS-Image-SFT-4-steps.safetensors`): the LoRA Loader rows, the Steps switches and
   the notes were changed to match;

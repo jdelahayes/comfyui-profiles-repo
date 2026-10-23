@@ -1,0 +1,4503 @@
+{
+  "id": "b0cf3a12-d17a-4e05-aa1d-815612fc6c54",
+  "revision": 0,
+  "last_node_id": 90,
+  "last_link_id": 272,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "AUSBOSS_NODES_WorkflowNote",
+      "pos": [
+        0,
+        222
+      ],
+      "size": [
+        440,
+        2000
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "🆎 AusBoss",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_WorkflowNote",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        "{\"v\": 1, \"title\": \"FIBO 2.0 Generate + Edit\", \"subtitle\": \"Change a picture you load, or make a new one, with FIBO 2.0 Edit Turbo in 4 steps. Switches write the prompt for you and make the result twice as big.\", \"author\": \"AusBoss\", \"layout\": \"card\", \"accent\": \"\", \"body\": \"[▶ AusBoss on YouTube](https://www.youtube.com/@ausbossdev) · videos on these nodes and workflows\\n\\n---\\n\\n1. Load your picture.\\n2. Write the change: \\\"Make it snow.\\\" With **Auto prompt** on, a few words are enough.\\n3. Press **Run**. A before and after slider shows your picture against the edit.\\n4. To make a new picture instead, switch **Edit a picture** off, write a prompt and set the size in **Latent Size**.\\n\\n**FIBO 2.0 needs ComfyUI's latest development version (nightly)** until the next ComfyUI release: its support went into ComfyUI on 2026-10-21. A git install: `git pull` on master, then `pip install -r requirements.txt`. Without it, the run stops at **TextEncodeFibo2**, a node ComfyUI does not know yet.\\n\\n**FIBO 2.0 is for non-commercial use only.** Its files are under CC BY-NC 4.0; for commercial use you need a licence from Bria.\\n\\n### Switches\\n\\n- **Edit a picture** on: the prompt changes the picture you load. Off: the prompt makes a new picture at the **Latent Size**.\\n- **Auto prompt** on: Qwen3-VL 8B writes the long prompt FIBO 2.0 reads, a description of the result in JSON, from your few words. For an edit it looks at your picture. What it wrote shows in **Show Text**. It takes about 6 to 9 seconds more and needs the Qwen3-VL 8B file below.\\n- **Upscale the result** on: SeedVR2 makes the result twice as big on each side and sharpens it. It needs the two SeedVR2 files below.\\n- The slider under **Save Image** shows your picture against the edit; a new picture shows on both sides. With **Upscale the result** on, a second slider shows the result before and after the upscale.\\n\\n### Tips\\n\\n- FIBO 2.0 Edit Turbo draws new pictures and edits in 4 steps at CFG 1. On an RTX 5090 a new picture takes about 2 seconds and an edit about 3 seconds. **Upscale the result** adds about 5 to 10 seconds.\\n- For an edit, say what changes and what stays: \\\"Change her top to a red sweater. Keep everything else the same.\\\"\\n- To keep changing the same picture: pick **Erase** on the slider and paint where the edit should show (the rest stays your picture), press **Save**, drop the saved picture on the picture node, and run the next edit. **Copy**, a click on the picture node and Ctrl+V work too (Copy needs ComfyUI opened as localhost or https).\\n- Your picture is resized to 1 megapixel, the size FIBO 2.0 was made for, and the edit keeps its shape.\\n- Your own LoRAs for FIBO 2.0 go in the **LoRA Loader**.\\n- To change how Auto prompt writes, open the box **Write the prompt**: both instructions are plain text.\\n- FIBO 2.0 does not know famous people or game characters by name.\\n- If the run stops with \\\"Value not in list\\\", a file is missing. Download it from the list below.\\n\\n### Uncensored text encoders (optional)\\n\\nVersions of the two text encoders with the model's refusals taken out (\\\"Heretic\\\"), made by the community, not by Bria or Qwen. You don't need them; the workflow opens with the regular files picked.\\n\\n- For FIBO 2.0's text encoder: [qwen3-vl-4b-heretic_int8_dynamic_convrot.safetensors](https://huggingface.co/ethanfel/Qwen3-VL-4B-Heretic-ComfyUI-ConvRot-INT8/resolve/main/qwen3-vl-4b-heretic_int8_dynamic_convrot.safetensors) → `models/text_encoders` · 4.84 GB. Pick it in **Text encoder**.\\n- For Auto prompt: [qwen3-vl-8b-heretic-1.3.0_fp8_e4m3fn.safetensors](https://huggingface.co/DreamFast/Qwen3-VL-8B-Heretic-1.3.0/resolve/main/comfyui/qwen3-vl-8b-heretic-1.3.0_fp8_e4m3fn.safetensors) → `models/text_encoders` · 10.02 GB. Pick it in **Text encoder for Auto prompt**.\\n- My quick test, one new picture and one edit with each on plain prompts: both load in this workflow and make normal pictures, and with the 4B the edit kept the picture as the regular file does.\\n\\nFIBO 2.0 is by Bria AI; these are Comfy-Org's ComfyUI files.\\n\\nNeeds ComfyUI's latest development version (nightly) with FIBO 2.0 support and AusBoss nodes 2.13.0 or newer (update first).\", \"models\": [{\"name\": \"fibo2/fibo2_edit_turbo_int8_convrot.safetensors\", \"dir\": \"diffusion_models\", \"size\": \"8.41 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/diffusion_models/fibo2_edit_turbo_int8_convrot.safetensors\", \"note\": \"\"}, {\"name\": \"fibo2/qwen3vl_4b_int8_convrot.safetensors\", \"dir\": \"text_encoders\", \"size\": \"4.86 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/text_encoders/qwen3vl_4b_int8_convrot.safetensors\", \"note\": \"the same file FLUX 3 Image Klein uses: you may have it already\"}, {\"name\": \"fibo2/flux2-vae.safetensors\", \"dir\": \"vae\", \"size\": \"336 MB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/vae/flux2-vae.safetensors\", \"note\": \"the same file FLUX 3 Image Klein uses\"}, {\"name\": \"qwen_image_2.1/qwen3vl_8b_int8_convrot.safetensors\", \"dir\": \"text_encoders\", \"size\": \"9.35 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/text_encoders/qwen3vl_8b_int8_convrot.safetensors\", \"note\": \"only for Auto prompt (Qwen Image 2.1's text encoder: you may have it already)\"}, {\"name\": \"seedvr2/seedvr2_3b_int8_convrot.safetensors\", \"dir\": \"diffusion_models\", \"size\": \"3.46 GB\", \"url\": \"https://huggingface.co/Comfy-Org/SeedVR2/resolve/main/diffusion_models/seedvr2_3b_int8_convrot.safetensors\", \"note\": \"only for Upscale the result\"}, {\"name\": \"seedvr2/seedvr2_ema_vae_fp16.safetensors\", \"dir\": \"vae\", \"size\": \"501 MB\", \"url\": \"https://huggingface.co/Comfy-Org/SeedVR2/resolve/main/vae/seedvr2_ema_vae_fp16.safetensors\", \"note\": \"only for Upscale the result: SeedVR2's own VAE\"}, {\"name\": \"fibo2/fibo2_edit_turbo_bf16.safetensors\", \"dir\": \"diffusion_models\", \"size\": \"16.5 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/diffusion_models/fibo2_edit_turbo_bf16.safetensors\", \"note\": \"optional: the full-size file, pick it in Diffusion model\"}, {\"name\": \"fibo2/qwen3vl_4b_bf16.safetensors\", \"dir\": \"text_encoders\", \"size\": \"8.88 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/text_encoders/qwen3vl_4b_bf16.safetensors\", \"note\": \"optional: the full-size file, pick it in Text encoder\"}], \"packs\": [{\"name\": \"ComfyUI-AusBoss\", \"url\": \"https://github.com/ausboss/ComfyUI-AusBoss\", \"node\": \"AUSBOSS_NODES_Callout\"}], \"links\": [{\"label\": \"YouTube · ausbossdev\", \"url\": \"https://www.youtube.com/@ausbossdev\"}, {\"label\": \"FIBO 2.0 files · Hugging Face\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0\"}, {\"label\": \"GitHub · ausboss\", \"url\": \"https://github.com/ausboss\"}, {\"label\": \"Civitai · AusBoss\", \"url\": \"https://civitai.com/user/AusBoss\"}, {\"label\": \"X · Zanzibased\", \"url\": \"https://x.com/Zanzibased\"}]}"
+      ],
+      "widgets_values_named": {
+        "note": "{\"v\": 1, \"title\": \"FIBO 2.0 Generate + Edit\", \"subtitle\": \"Change a picture you load, or make a new one, with FIBO 2.0 Edit Turbo in 4 steps. Switches write the prompt for you and make the result twice as big.\", \"author\": \"AusBoss\", \"layout\": \"card\", \"accent\": \"\", \"body\": \"[▶ AusBoss on YouTube](https://www.youtube.com/@ausbossdev) · videos on these nodes and workflows\\n\\n---\\n\\n1. Load your picture.\\n2. Write the change: \\\"Make it snow.\\\" With **Auto prompt** on, a few words are enough.\\n3. Press **Run**. A before and after slider shows your picture against the edit.\\n4. To make a new picture instead, switch **Edit a picture** off, write a prompt and set the size in **Latent Size**.\\n\\n**FIBO 2.0 needs ComfyUI's latest development version (nightly)** until the next ComfyUI release: its support went into ComfyUI on 2026-10-21. A git install: `git pull` on master, then `pip install -r requirements.txt`. Without it, the run stops at **TextEncodeFibo2**, a node ComfyUI does not know yet.\\n\\n**FIBO 2.0 is for non-commercial use only.** Its files are under CC BY-NC 4.0; for commercial use you need a licence from Bria.\\n\\n### Switches\\n\\n- **Edit a picture** on: the prompt changes the picture you load. Off: the prompt makes a new picture at the **Latent Size**.\\n- **Auto prompt** on: Qwen3-VL 8B writes the long prompt FIBO 2.0 reads, a description of the result in JSON, from your few words. For an edit it looks at your picture. What it wrote shows in **Show Text**. It takes about 6 to 9 seconds more and needs the Qwen3-VL 8B file below.\\n- **Upscale the result** on: SeedVR2 makes the result twice as big on each side and sharpens it. It needs the two SeedVR2 files below.\\n- The slider under **Save Image** shows your picture against the edit; a new picture shows on both sides. With **Upscale the result** on, a second slider shows the result before and after the upscale.\\n\\n### Tips\\n\\n- FIBO 2.0 Edit Turbo draws new pictures and edits in 4 steps at CFG 1. On an RTX 5090 a new picture takes about 2 seconds and an edit about 3 seconds. **Upscale the result** adds about 5 to 10 seconds.\\n- For an edit, say what changes and what stays: \\\"Change her top to a red sweater. Keep everything else the same.\\\"\\n- To keep changing the same picture: pick **Erase** on the slider and paint where the edit should show (the rest stays your picture), press **Save**, drop the saved picture on the picture node, and run the next edit. **Copy**, a click on the picture node and Ctrl+V work too (Copy needs ComfyUI opened as localhost or https).\\n- Your picture is resized to 1 megapixel, the size FIBO 2.0 was made for, and the edit keeps its shape.\\n- Your own LoRAs for FIBO 2.0 go in the **LoRA Loader**.\\n- To change how Auto prompt writes, open the box **Write the prompt**: both instructions are plain text.\\n- FIBO 2.0 does not know famous people or game characters by name.\\n- If the run stops with \\\"Value not in list\\\", a file is missing. Download it from the list below.\\n\\n### Uncensored text encoders (optional)\\n\\nVersions of the two text encoders with the model's refusals taken out (\\\"Heretic\\\"), made by the community, not by Bria or Qwen. You don't need them; the workflow opens with the regular files picked.\\n\\n- For FIBO 2.0's text encoder: [qwen3-vl-4b-heretic_int8_dynamic_convrot.safetensors](https://huggingface.co/ethanfel/Qwen3-VL-4B-Heretic-ComfyUI-ConvRot-INT8/resolve/main/qwen3-vl-4b-heretic_int8_dynamic_convrot.safetensors) → `models/text_encoders` · 4.84 GB. Pick it in **Text encoder**.\\n- For Auto prompt: [qwen3-vl-8b-heretic-1.3.0_fp8_e4m3fn.safetensors](https://huggingface.co/DreamFast/Qwen3-VL-8B-Heretic-1.3.0/resolve/main/comfyui/qwen3-vl-8b-heretic-1.3.0_fp8_e4m3fn.safetensors) → `models/text_encoders` · 10.02 GB. Pick it in **Text encoder for Auto prompt**.\\n- My quick test, one new picture and one edit with each on plain prompts: both load in this workflow and make normal pictures, and with the 4B the edit kept the picture as the regular file does.\\n\\nFIBO 2.0 is by Bria AI; these are Comfy-Org's ComfyUI files.\\n\\nNeeds ComfyUI's latest development version (nightly) with FIBO 2.0 support and AusBoss nodes 2.13.0 or newer (update first).\", \"models\": [{\"name\": \"fibo2/fibo2_edit_turbo_int8_convrot.safetensors\", \"dir\": \"diffusion_models\", \"size\": \"8.41 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/diffusion_models/fibo2_edit_turbo_int8_convrot.safetensors\", \"note\": \"\"}, {\"name\": \"fibo2/qwen3vl_4b_int8_convrot.safetensors\", \"dir\": \"text_encoders\", \"size\": \"4.86 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/text_encoders/qwen3vl_4b_int8_convrot.safetensors\", \"note\": \"the same file FLUX 3 Image Klein uses: you may have it already\"}, {\"name\": \"fibo2/flux2-vae.safetensors\", \"dir\": \"vae\", \"size\": \"336 MB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/vae/flux2-vae.safetensors\", \"note\": \"the same file FLUX 3 Image Klein uses\"}, {\"name\": \"qwen_image_2.1/qwen3vl_8b_int8_convrot.safetensors\", \"dir\": \"text_encoders\", \"size\": \"9.35 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/text_encoders/qwen3vl_8b_int8_convrot.safetensors\", \"note\": \"only for Auto prompt (Qwen Image 2.1's text encoder: you may have it already)\"}, {\"name\": \"seedvr2/seedvr2_3b_int8_convrot.safetensors\", \"dir\": \"diffusion_models\", \"size\": \"3.46 GB\", \"url\": \"https://huggingface.co/Comfy-Org/SeedVR2/resolve/main/diffusion_models/seedvr2_3b_int8_convrot.safetensors\", \"note\": \"only for Upscale the result\"}, {\"name\": \"seedvr2/seedvr2_ema_vae_fp16.safetensors\", \"dir\": \"vae\", \"size\": \"501 MB\", \"url\": \"https://huggingface.co/Comfy-Org/SeedVR2/resolve/main/vae/seedvr2_ema_vae_fp16.safetensors\", \"note\": \"only for Upscale the result: SeedVR2's own VAE\"}, {\"name\": \"fibo2/fibo2_edit_turbo_bf16.safetensors\", \"dir\": \"diffusion_models\", \"size\": \"16.5 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/diffusion_models/fibo2_edit_turbo_bf16.safetensors\", \"note\": \"optional: the full-size file, pick it in Diffusion model\"}, {\"name\": \"fibo2/qwen3vl_4b_bf16.safetensors\", \"dir\": \"text_encoders\", \"size\": \"8.88 GB\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/text_encoders/qwen3vl_4b_bf16.safetensors\", \"note\": \"optional: the full-size file, pick it in Text encoder\"}], \"packs\": [{\"name\": \"ComfyUI-AusBoss\", \"url\": \"https://github.com/ausboss/ComfyUI-AusBoss\", \"node\": \"AUSBOSS_NODES_Callout\"}], \"links\": [{\"label\": \"YouTube · ausbossdev\", \"url\": \"https://www.youtube.com/@ausbossdev\"}, {\"label\": \"FIBO 2.0 files · Hugging Face\", \"url\": \"https://huggingface.co/Comfy-Org/Fibo-2.0\"}, {\"label\": \"GitHub · ausboss\", \"url\": \"https://github.com/ausboss\"}, {\"label\": \"Civitai · AusBoss\", \"url\": \"https://civitai.com/user/AusBoss\"}, {\"label\": \"X · Zanzibased\", \"url\": \"https://x.com/Zanzibased\"}]}"
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 2,
+      "type": "AUSBOSS_NODES_WorkflowSwitches",
+      "pos": [
+        964,
+        492.0
+      ],
+      "size": [
+        424,
+        128
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Workflow Switches - What to run",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_WorkflowSwitches",
+        "ausboss_workflow_switches": {
+          "off": "bypass",
+          "groups": "none",
+          "match": "",
+          "order": "canvas",
+          "exclusive": false,
+          "switches": [
+            {
+              "id": 1,
+              "title": "Edit a picture",
+              "nodes": [
+                6
+              ],
+              "groups": [],
+              "on": {
+                "39": {
+                  "size from your picture": true
+                },
+                "41": {
+                  "write an edit": true
+                }
+              },
+              "off": {
+                "39": {
+                  "size from your picture": false
+                },
+                "41": {
+                  "write an edit": false
+                }
+              },
+              "nodes_off": [
+                5
+              ]
+            },
+            {
+              "id": 3,
+              "title": "Auto prompt",
+              "nodes": [
+                41,
+                15,
+                70
+              ],
+              "groups": [],
+              "on": {},
+              "off": {}
+            },
+            {
+              "id": 2,
+              "title": "Upscale the result",
+              "nodes": [
+                40,
+                12,
+                71,
+                72
+              ],
+              "groups": [],
+              "on": {},
+              "off": {}
+            }
+          ]
+        },
+        "ausboss_show_edit": false,
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {},
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 3,
+      "type": "AUSBOSS_NODES_Text",
+      "pos": [
+        500,
+        80.0
+      ],
+      "size": [
+        424,
+        300
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            260
+          ]
+        }
+      ],
+      "title": "Text - Your prompt",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Text",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        "Make it snow: snowflakes falling and a thin layer of snow on the ground. Keep everything else the same."
+      ],
+      "widgets_values_named": {
+        "text": "Make it snow: snowflakes falling and a thin layer of snow on the ground. Keep everything else the same."
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 4,
+      "type": "AUSBOSS_NODES_Seed",
+      "pos": [
+        964,
+        693.0
+      ],
+      "size": [
+        424,
+        216
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": [
+            256,
+            257
+          ]
+        }
+      ],
+      "title": "Seed",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Seed",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        20261009,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "seed": 20261009,
+        "control_after_generate": "randomize"
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 5,
+      "type": "AUSBOSS_NODES_Resolution",
+      "pos": [
+        964,
+        984.0
+      ],
+      "size": [
+        424,
+        677
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "link": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": null
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "COMBO",
+          "link": null
+        },
+        {
+          "name": "batch_size",
+          "shape": 7,
+          "type": "INT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            259
+          ]
+        }
+      ],
+      "title": "Latent Size - Size of a new picture",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Resolution",
+        "ausbossResolutionPortrait": true,
+        "ausbossResolutionSnap": 32,
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        832,
+        1248,
+        "128ch",
+        1
+      ],
+      "widgets_values_named": {
+        "width": 832,
+        "height": 1248,
+        "latent": "128ch",
+        "batch_size": 1
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 6,
+      "type": "AUSBOSS_NODES_ImageCropRotatePad",
+      "pos": [
+        500,
+        748.0
+      ],
+      "size": [
+        424,
+        1108.0
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            258,
+            261
+          ]
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "stitcher",
+          "type": "AUSBOSS_STITCHER",
+          "links": null
+        },
+        {
+          "name": "original",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "prompt_image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "Image Crop + Rotate + Pad - Your picture",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_ImageCropRotatePad",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": {
+        "image": "",
+        "rotation_degrees": 0,
+        "crop_aspect_ratio": "free",
+        "crop_x": 0,
+        "crop_y": 0,
+        "crop_width": 0,
+        "crop_height": 0,
+        "pad_left": 0,
+        "pad_top": 0,
+        "pad_right": 0,
+        "pad_bottom": 0,
+        "feather": 24,
+        "canvas_multiple": 1,
+        "fill_color": "#808080",
+        "resize_to_megapixels": true,
+        "megapixels": 1,
+        "resize_method": "lanczos",
+        "resolution_steps": 32,
+        "stitch_blend": 32,
+        "stitch_grow": 0,
+        "painted_area": "fill"
+      },
+      "widgets_values_named": {
+        "image": "",
+        "rotation_degrees": 0,
+        "crop_aspect_ratio": "free",
+        "crop_x": 0,
+        "crop_y": 0,
+        "crop_width": 0,
+        "crop_height": 0,
+        "pad_left": 0,
+        "pad_top": 0,
+        "pad_right": 0,
+        "pad_bottom": 0,
+        "feather": 24,
+        "canvas_multiple": 1,
+        "fill_color": "#808080",
+        "resize_to_megapixels": true,
+        "megapixels": 1,
+        "resize_method": "lanczos",
+        "resolution_steps": 32,
+        "stitch_blend": 32,
+        "stitch_grow": 0,
+        "painted_area": "fill",
+        "upload": "image"
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 8,
+      "type": "CLIPLoader",
+      "pos": [
+        1468,
+        1165.0
+      ],
+      "size": [
+        300,
+        106
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            254
+          ]
+        }
+      ],
+      "title": "Text encoder",
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "models": [
+          {
+            "name": "fibo2/qwen3vl_4b_int8_convrot.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/text_encoders/qwen3vl_4b_int8_convrot.safetensors",
+            "directory": "text_encoders"
+          }
+        ],
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0"
+      },
+      "widgets_values": [
+        "fibo2/qwen3vl_4b_int8_convrot.safetensors",
+        "fibo2",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "fibo2/qwen3vl_4b_int8_convrot.safetensors",
+        "type": "fibo2",
+        "device": "default"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 9,
+      "type": "VAELoader",
+      "pos": [
+        1468,
+        1349.0
+      ],
+      "size": [
+        300,
+        58
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            255
+          ]
+        }
+      ],
+      "title": "VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "fibo2/flux2-vae.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/vae/flux2-vae.safetensors",
+            "directory": "vae"
+          }
+        ],
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0"
+      },
+      "widgets_values": [
+        "fibo2/flux2-vae.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "fibo2/flux2-vae.safetensors"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 10,
+      "type": "UNETLoader",
+      "pos": [
+        1468,
+        1481.0
+      ],
+      "size": [
+        300,
+        82
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            252
+          ]
+        }
+      ],
+      "title": "Diffusion model",
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "models": [
+          {
+            "name": "fibo2/fibo2_edit_turbo_int8_convrot.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Fibo-2.0/resolve/main/diffusion_models/fibo2_edit_turbo_int8_convrot.safetensors",
+            "directory": "diffusion_models"
+          }
+        ],
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0"
+      },
+      "widgets_values": [
+        "fibo2/fibo2_edit_turbo_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "fibo2/fibo2_edit_turbo_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      },
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 11,
+      "type": "AUSBOSS_NODES_LoraLoader",
+      "pos": [
+        1808,
+        1461.0
+      ],
+      "size": [
+        580,
+        202
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 252
+        },
+        {
+          "name": "clip",
+          "shape": 7,
+          "type": "CLIP",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            253
+          ]
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null
+        },
+        {
+          "name": "triggers",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "title": "LoRA Loader - Your FIBO 2.0 LoRAs",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_LoraLoader",
+        "ausbossLoraLinked": true,
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        "[]",
+        ", ",
+        "error"
+      ],
+      "widgets_values_named": {
+        "loras": "[]",
+        "trigger_separator": ", ",
+        "on_missing": "error"
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 12,
+      "type": "AUSBOSS_NODES_Compare",
+      "pos": [
+        2468,
+        1458.0
+      ],
+      "size": [
+        460,
+        480
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 271
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 272
+        },
+        {
+          "name": "filename",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "Image Compare A/B - Before and after the upscale",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Compare",
+        "ausboss_compare_mode": "slide",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {},
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 13,
+      "type": "AUSBOSS_NODES_SaveImage",
+      "pos": [
+        2468,
+        80.0
+      ],
+      "size": [
+        460,
+        430
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 268
+        },
+        {
+          "name": "filename",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "caption_text",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "file_path",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "Save Image",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_SaveImage",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": {
+        "filename_prefix": "fibo2",
+        "format": "png",
+        "save_metadata": true,
+        "exact_name": "",
+        "on_existing": "overwrite",
+        "output_dir": "",
+        "caption": "",
+        "name_counter": true,
+        "name_date": false,
+        "name_time": false,
+        "name_size": false,
+        "name_batch": false,
+        "preview": false
+      },
+      "widgets_values_named": {
+        "filename_prefix": "fibo2",
+        "format": "png",
+        "save_metadata": true,
+        "exact_name": "",
+        "on_existing": "overwrite",
+        "output_dir": "",
+        "caption": "",
+        "name_counter": true,
+        "name_date": false,
+        "name_time": false,
+        "name_size": false,
+        "name_batch": false,
+        "preview": false
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 14,
+      "type": "AUSBOSS_NODES_RunTimer",
+      "pos": [
+        2593,
+        2012.0
+      ],
+      "size": [
+        210,
+        67
+      ],
+      "flags": {
+        "no_title": true
+      },
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Run Timer",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_RunTimer",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "color": "#07090a",
+      "bgcolor": "#07090a"
+    },
+    {
+      "id": 15,
+      "type": "AUSBOSS_NODES_ShowText",
+      "pos": [
+        1808,
+        399.0
+      ],
+      "size": [
+        580,
+        200
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "*",
+          "link": 263
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "title": "Show Text - Prompt sent to FIBO 2.0",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_ShowText",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {},
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 39,
+      "type": "8874450f-0ac5-5985-a35d-02a36a9855bf",
+      "pos": [
+        1468,
+        673.0
+      ],
+      "size": [
+        264,
+        212
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "prompt",
+          "type": "*",
+          "link": 264
+        },
+        {
+          "name": "seed",
+          "type": "*",
+          "link": 256
+        },
+        {
+          "name": "your picture",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 258
+        },
+        {
+          "name": "new picture size",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 259
+        },
+        {
+          "name": "text encoder",
+          "type": "CLIP",
+          "link": 254
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 255
+        },
+        {
+          "name": "diffusion model",
+          "type": "MODEL",
+          "link": 253
+        }
+      ],
+      "outputs": [
+        {
+          "name": "picture",
+          "type": "IMAGE",
+          "links": [
+            265,
+            271
+          ]
+        },
+        {
+          "name": "before, for the slider",
+          "type": "IMAGE",
+          "links": [
+            269
+          ]
+        }
+      ],
+      "properties": {
+        "previewExposures": []
+      },
+      "widgets_values": [
+        true
+      ],
+      "widgets_values_named": {
+        "size from your picture": true
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 40,
+      "type": "a921e364-2eef-5330-b242-1ab1285bb151",
+      "pos": [
+        1808,
+        673.0
+      ],
+      "size": [
+        580,
+        150
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "picture",
+          "type": "IMAGE",
+          "link": 265
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 257
+        },
+        {
+          "name": "seedvr2 model",
+          "type": "MODEL",
+          "link": 266
+        },
+        {
+          "name": "seedvr2 vae",
+          "type": "VAE",
+          "link": 267
+        }
+      ],
+      "outputs": [
+        {
+          "name": "picture",
+          "type": "IMAGE",
+          "links": [
+            268,
+            270,
+            272
+          ]
+        }
+      ],
+      "properties": {
+        "previewExposures": []
+      },
+      "widgets_values": [
+        20261017
+      ],
+      "widgets_values_named": {
+        "seed": 20261017
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 41,
+      "type": "9827ad56-56c7-5901-b3be-8a7b8c0ebd4c",
+      "pos": [
+        1468,
+        399.0
+      ],
+      "size": [
+        300,
+        132
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "your prompt",
+          "type": "*",
+          "link": 260
+        },
+        {
+          "name": "your picture",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 261
+        },
+        {
+          "name": "text encoder",
+          "type": "CLIP",
+          "link": 262
+        }
+      ],
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            263,
+            264
+          ]
+        }
+      ],
+      "properties": {
+        "previewExposures": []
+      },
+      "widgets_values": [
+        true
+      ],
+      "widgets_values_named": {
+        "write an edit": true
+      },
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 42,
+      "type": "AUSBOSS_NODES_Callout",
+      "pos": [
+        500,
+        450.0
+      ],
+      "size": [
+        424,
+        194
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Callout",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Callout",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        "⬆️#3 Write the change: Make it snow.\n###### With **Auto prompt** on, a few words are enough. With **Edit a picture** off, write a prompt for a new picture.\n\n⬇️#6 Load your **picture** here.\n###### Drag the blue handles to crop it."
+      ],
+      "widgets_values_named": {
+        "text": "⬆️#3 Write the change: Make it snow.\n###### With **Auto prompt** on, a few words are enough. With **Edit a picture** off, write a prompt for a new picture.\n\n⬇️#6 Load your **picture** here.\n###### Drag the blue handles to crop it."
+      },
+      "color": "#07090a",
+      "bgcolor": "#07090a"
+    },
+    {
+      "id": 43,
+      "type": "AUSBOSS_NODES_Callout",
+      "pos": [
+        964,
+        80.0
+      ],
+      "size": [
+        424,
+        342
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Callout",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        "⬇️#2 **Edit a picture** on: the prompt changes the picture you load. Off: it makes a new picture.\n\n⬇️#2 **Auto prompt** on: Qwen3-VL writes FIBO 2.0's long prompt from a few words of yours.\n###### ➡️#15 Click this arrow to see what FIBO 2.0 gets.\n\n⬇️#2 **Upscale the result** makes the result twice as big with SeedVR2.\n###### It needs two files from the note. All three switches can be on together."
+      ],
+      "widgets_values_named": {
+        "text": "⬇️#2 **Edit a picture** on: the prompt changes the picture you load. Off: it makes a new picture.\n\n⬇️#2 **Auto prompt** on: Qwen3-VL writes FIBO 2.0's long prompt from a few words of yours.\n###### ➡️#15 Click this arrow to see what FIBO 2.0 gets.\n\n⬇️#2 **Upscale the result** makes the result twice as big with SeedVR2.\n###### It needs two files from the note. All three switches can be on together."
+      },
+      "color": "#07090a",
+      "bgcolor": "#07090a",
+      "title": "Callout"
+    },
+    {
+      "id": 44,
+      "type": "AUSBOSS_NODES_Callout",
+      "pos": [
+        1468,
+        80.0
+      ],
+      "size": [
+        920,
+        245
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Callout",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Callout",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        "Three boxes do the work: one writes the prompt, one makes or changes the picture, one makes it twice as big with SeedVR2.\n###### Double-click one to see inside.\n\n⬇️#71 [**Upscale the result**](#2) needs these two **SeedVR2** files.\n###### Get them from the note. They load only while that switch is on."
+      ],
+      "widgets_values_named": {
+        "text": "Three boxes do the work: one writes the prompt, one makes or changes the picture, one makes it twice as big with SeedVR2.\n###### Double-click one to see inside.\n\n⬇️#71 [**Upscale the result**](#2) needs these two **SeedVR2** files.\n###### Get them from the note. They load only while that switch is on."
+      },
+      "color": "#07090a",
+      "bgcolor": "#07090a"
+    },
+    {
+      "id": 45,
+      "type": "AUSBOSS_NODES_Callout",
+      "pos": [
+        1808,
+        1165.0
+      ],
+      "size": [
+        580,
+        226
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Callout",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        "⬇️#10 **Diffusion model**: the FIBO 2.0 Edit Turbo file, for new pictures and edits.\n###### 4 steps at CFG 1 are built in. Non-commercial use only (CC BY-NC 4.0).\n\n⬇️#11 **LoRAs**: add LoRAs made for FIBO 2.0 here.\n\n⬇️#70 This second **text encoder** is only for **Auto prompt**.\n###### Qwen3-VL 8B writes FIBO 2.0's prompt. With Auto prompt off it is not loaded."
+      ],
+      "widgets_values_named": {
+        "text": "⬇️#10 **Diffusion model**: the FIBO 2.0 Edit Turbo file, for new pictures and edits.\n###### 4 steps at CFG 1 are built in. Non-commercial use only (CC BY-NC 4.0).\n\n⬇️#11 **LoRAs**: add LoRAs made for FIBO 2.0 here.\n\n⬇️#70 This second **text encoder** is only for **Auto prompt**.\n###### Qwen3-VL 8B writes FIBO 2.0's prompt. With Auto prompt off it is not loaded."
+      },
+      "color": "#07090a",
+      "bgcolor": "#07090a",
+      "title": "Callout"
+    },
+    {
+      "id": 54,
+      "type": "AUSBOSS_NODES_Compare",
+      "pos": [
+        2468,
+        584.0
+      ],
+      "size": [
+        460,
+        800
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 269
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 270
+        },
+        {
+          "name": "filename",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "Image Compare A/B - Before and after the edit",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Compare",
+        "ausboss_compare_mode": "slide",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {},
+      "color": "#14424d",
+      "bgcolor": "#161f21"
+    },
+    {
+      "id": 69,
+      "type": "AUSBOSS_NODES_Callout",
+      "pos": [
+        0,
+        30
+      ],
+      "size": [
+        440,
+        122
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Callout",
+      "properties": {
+        "Node name for S&R": "AUSBOSS_NODES_Callout",
+        "cnr_id": "ausboss-nodes",
+        "ver": "2.13.0"
+      },
+      "widgets_values": [
+        "[▶ **AusBoss on YouTube**](https://www.youtube.com/@ausbossdev)\n###### Videos on these nodes and workflows. Click to open the channel."
+      ],
+      "widgets_values_named": {
+        "text": "[▶ **AusBoss on YouTube**](https://www.youtube.com/@ausbossdev)\n###### Videos on these nodes and workflows. Click to open the channel."
+      },
+      "color": "#07090a",
+      "bgcolor": "#07090a"
+    },
+    {
+      "id": 70,
+      "type": "CLIPLoader",
+      "pos": [
+        1468,
+        1637.0
+      ],
+      "size": [
+        300,
+        106
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            262
+          ]
+        }
+      ],
+      "title": "Text encoder for Auto prompt",
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "models": [
+          {
+            "name": "qwen_image_2.1/qwen3vl_8b_int8_convrot.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/text_encoders/qwen3vl_8b_int8_convrot.safetensors",
+            "directory": "text_encoders"
+          }
+        ],
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0"
+      },
+      "widgets_values": [
+        "qwen_image_2.1/qwen3vl_8b_int8_convrot.safetensors",
+        "qwen_image",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen_image_2.1/qwen3vl_8b_int8_convrot.safetensors",
+        "type": "qwen_image",
+        "device": "default"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 71,
+      "type": "UNETLoader",
+      "pos": [
+        1808,
+        897.0
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            266
+          ]
+        }
+      ],
+      "title": "SeedVR2 model",
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "models": [
+          {
+            "name": "seedvr2/seedvr2_3b_int8_convrot.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/SeedVR2/resolve/main/diffusion_models/seedvr2_3b_int8_convrot.safetensors",
+            "directory": "diffusion_models"
+          }
+        ]
+      },
+      "widgets_values": [
+        "seedvr2/seedvr2_3b_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "seedvr2/seedvr2_3b_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      },
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 72,
+      "type": "VAELoader",
+      "pos": [
+        2118,
+        897.0
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            267
+          ]
+        }
+      ],
+      "title": "SeedVR2 VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.42.0",
+        "models": [
+          {
+            "name": "seedvr2/seedvr2_ema_vae_fp16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/SeedVR2/resolve/main/vae/seedvr2_ema_vae_fp16.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "seedvr2/seedvr2_ema_vae_fp16.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "seedvr2/seedvr2_ema_vae_fp16.safetensors"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 90,
+      "type": "WorkflowProfiles",
+      "pos": [
+        0,
+        62
+      ],
+      "size": [
+        464.6,
+        106
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "WorkflowProfiles"
+      },
+      "widgets_values": [
+        "fibo2-edit-turbo[int8], ausboss-fibo2",
+        "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
+      ]
+    }
+  ],
+  "links": [
+    [
+      252,
+      10,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      253,
+      11,
+      0,
+      39,
+      6,
+      "MODEL"
+    ],
+    [
+      254,
+      8,
+      0,
+      39,
+      4,
+      "CLIP"
+    ],
+    [
+      255,
+      9,
+      0,
+      39,
+      5,
+      "VAE"
+    ],
+    [
+      256,
+      4,
+      0,
+      39,
+      1,
+      "INT"
+    ],
+    [
+      257,
+      4,
+      0,
+      40,
+      1,
+      "INT"
+    ],
+    [
+      258,
+      6,
+      0,
+      39,
+      2,
+      "IMAGE"
+    ],
+    [
+      259,
+      5,
+      2,
+      39,
+      3,
+      "LATENT"
+    ],
+    [
+      260,
+      3,
+      0,
+      41,
+      0,
+      "STRING"
+    ],
+    [
+      261,
+      6,
+      0,
+      41,
+      1,
+      "IMAGE"
+    ],
+    [
+      262,
+      70,
+      0,
+      41,
+      2,
+      "CLIP"
+    ],
+    [
+      263,
+      41,
+      0,
+      15,
+      0,
+      "STRING"
+    ],
+    [
+      264,
+      41,
+      0,
+      39,
+      0,
+      "STRING"
+    ],
+    [
+      265,
+      39,
+      0,
+      40,
+      0,
+      "IMAGE"
+    ],
+    [
+      266,
+      71,
+      0,
+      40,
+      2,
+      "MODEL"
+    ],
+    [
+      267,
+      72,
+      0,
+      40,
+      3,
+      "VAE"
+    ],
+    [
+      268,
+      40,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      269,
+      39,
+      1,
+      54,
+      0,
+      "IMAGE"
+    ],
+    [
+      270,
+      40,
+      0,
+      54,
+      1,
+      "IMAGE"
+    ],
+    [
+      271,
+      39,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      272,
+      40,
+      0,
+      12,
+      1,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "1 · Your input",
+      "bounding": [
+        480,
+        0.0,
+        928,
+        1876
+      ],
+      "color": "#1d5560",
+      "flags": {
+        "pinned": true
+      }
+    },
+    {
+      "id": 2,
+      "title": "2 · Behind the scenes",
+      "bounding": [
+        1448,
+        0.0,
+        960,
+        1045.0
+      ],
+      "color": "#1d5560",
+      "flags": {
+        "pinned": true
+      }
+    },
+    {
+      "id": 3,
+      "title": "3 · Models",
+      "bounding": [
+        1448,
+        1085.0,
+        960,
+        784
+      ],
+      "color": "#1d5560",
+      "flags": {
+        "pinned": true
+      }
+    },
+    {
+      "id": 4,
+      "title": "4 · Result",
+      "bounding": [
+        2448,
+        0.0,
+        500,
+        2129.0
+      ],
+      "color": "#1d5560",
+      "flags": {
+        "pinned": true
+      }
+    }
+  ],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "8874450f-0ac5-5985-a35d-02a36a9855bf",
+        "version": 1,
+        "state": {
+          "lastGroupId": 20,
+          "lastNodeId": 89,
+          "lastLinkId": 272,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Generate or edit with FIBO 2.0",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -260,
+            120,
+            150,
+            200
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1100,
+            120,
+            200,
+            80
+          ]
+        },
+        "inputs": [
+          {
+            "id": "2617bed0-6836-52d1-b5b0-0d71571e34b1",
+            "name": "prompt",
+            "type": "*",
+            "linkIds": [
+              215
+            ],
+            "localized_name": "prompt",
+            "pos": [
+              51,
+              24
+            ]
+          },
+          {
+            "id": "4c212a98-d7e0-5bc5-b643-65f82a743856",
+            "name": "seed",
+            "type": "*",
+            "linkIds": [
+              223
+            ],
+            "localized_name": "seed",
+            "pos": [
+              51,
+              44
+            ]
+          },
+          {
+            "id": "edf232cb-24b0-5185-a975-6d61b869d9a3",
+            "name": "your picture",
+            "type": "IMAGE",
+            "linkIds": [
+              219,
+              233
+            ],
+            "localized_name": "your picture",
+            "shape": 7,
+            "pos": [
+              51,
+              64
+            ]
+          },
+          {
+            "id": "347d920f-c483-579e-b535-50eadaba23f2",
+            "name": "new picture size",
+            "type": "LATENT",
+            "linkIds": [
+              220
+            ],
+            "localized_name": "new picture size",
+            "shape": 7,
+            "pos": [
+              51,
+              84
+            ]
+          },
+          {
+            "id": "a83918e3-b314-50fe-90bd-4e50217a246f",
+            "name": "text encoder",
+            "type": "CLIP",
+            "linkIds": [
+              217
+            ],
+            "localized_name": "text encoder",
+            "pos": [
+              51,
+              104
+            ]
+          },
+          {
+            "id": "644d0368-cdf8-5d78-932f-d0dc100cc114",
+            "name": "vae",
+            "type": "VAE",
+            "linkIds": [
+              218,
+              230
+            ],
+            "localized_name": "vae",
+            "shape": 7,
+            "pos": [
+              51,
+              124
+            ]
+          },
+          {
+            "id": "f799fb16-3a3a-5e10-8870-5c8ad89211a1",
+            "name": "diffusion model",
+            "type": "MODEL",
+            "linkIds": [
+              224
+            ],
+            "localized_name": "diffusion model",
+            "pos": [
+              51,
+              144
+            ]
+          },
+          {
+            "id": "f9801fe8-da2c-59a5-a1ff-8eb851b48057",
+            "name": "size from your picture",
+            "type": "BOOLEAN",
+            "linkIds": [
+              222,
+              232
+            ],
+            "localized_name": "size from your picture",
+            "pos": [
+              51,
+              164
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "bb46b5e8-0a43-539d-a396-bb8f4711c4f3",
+            "name": "picture",
+            "type": "IMAGE",
+            "linkIds": [
+              231
+            ],
+            "localized_name": "picture",
+            "pos": [
+              24,
+              24
+            ]
+          },
+          {
+            "id": "8edf54b3-ca99-5b4c-934c-fd221f77f20d",
+            "name": "before, for the slider",
+            "type": "IMAGE",
+            "linkIds": [
+              235
+            ],
+            "localized_name": "before, for the slider",
+            "pos": [
+              0,
+              0
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 49,
+            "type": "AUSBOSS_NODES_Callout",
+            "pos": [
+              20,
+              80.0
+            ],
+            "size": [
+              460,
+              150
+            ],
+            "flags": {
+              "pinned": true
+            },
+            "order": 0,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [],
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Callout",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "FIBO 2.0 reads your prompt, and your picture when one is loaded.\n###### The switch under it takes the size from your picture, or from Latent Size."
+            ],
+            "widgets_values_named": {
+              "text": "FIBO 2.0 reads your prompt, and your picture when one is loaded.\n###### The switch under it takes the size from your picture, or from Latent Size."
+            },
+            "color": "#07090a",
+            "bgcolor": "#07090a",
+            "title": "Callout"
+          },
+          {
+            "id": 23,
+            "type": "Reroute",
+            "pos": [
+              20,
+              304.0
+            ],
+            "size": [
+              75,
+              26
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "",
+                "type": "*",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 215
+              }
+            ],
+            "outputs": [
+              {
+                "name": "",
+                "type": "STRING",
+                "links": [
+                  216
+                ]
+              }
+            ],
+            "properties": {
+              "showOutputText": false,
+              "horizontal": false
+            }
+          },
+          {
+            "id": 24,
+            "type": "TextEncodeFibo2",
+            "pos": [
+              20,
+              404.0
+            ],
+            "size": [
+              460,
+              334
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 217
+              },
+              {
+                "localized_name": "image_1",
+                "name": "images.image_1",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 219
+              },
+              {
+                "localized_name": "image_2",
+                "name": "images.image_2",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": null
+              },
+              {
+                "localized_name": "image_3",
+                "name": "images.image_3",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": null
+              },
+              {
+                "localized_name": "image_4",
+                "name": "images.image_4",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": null
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "shape": 7,
+                "type": "VAE",
+                "link": 218
+              },
+              {
+                "localized_name": "prompt",
+                "name": "prompt",
+                "type": "STRING",
+                "widget": {
+                  "name": "prompt"
+                },
+                "link": 216
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "positive",
+                "name": "positive",
+                "type": "CONDITIONING",
+                "links": [
+                  225
+                ]
+              },
+              {
+                "localized_name": "negative",
+                "name": "negative",
+                "type": "CONDITIONING",
+                "links": [
+                  226
+                ]
+              },
+              {
+                "localized_name": "latent",
+                "name": "latent",
+                "type": "LATENT",
+                "links": [
+                  221
+                ]
+              }
+            ],
+            "title": "Text Encode FIBO 2.0 - Your prompt and picture",
+            "properties": {
+              "Node name for S&R": "TextEncodeFibo2",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "",
+              "",
+              0,
+              0,
+              1
+            ],
+            "widgets_values_named": {
+              "prompt": "",
+              "negative_prompt": "",
+              "width": 0,
+              "height": 0,
+              "batch_size": 1
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 25,
+            "type": "ComfySwitchNode",
+            "pos": [
+              20,
+              812.0
+            ],
+            "size": [
+              460,
+              78
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "on_false",
+                "name": "on_false",
+                "shape": 7,
+                "type": "LATENT",
+                "link": 220
+              },
+              {
+                "localized_name": "on_true",
+                "name": "on_true",
+                "shape": 7,
+                "type": "LATENT",
+                "link": 221
+              },
+              {
+                "localized_name": "switch",
+                "name": "switch",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "switch"
+                },
+                "link": 222
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "output",
+                "name": "output",
+                "type": "LATENT",
+                "links": [
+                  227
+                ]
+              }
+            ],
+            "title": "If/Else Switch - Whose size",
+            "properties": {
+              "Node name for S&R": "ComfySwitchNode",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              false
+            ],
+            "widgets_values_named": {
+              "switch": false
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 50,
+            "type": "AUSBOSS_NODES_Callout",
+            "pos": [
+              560,
+              80.0
+            ],
+            "size": [
+              460,
+              152
+            ],
+            "flags": {
+              "pinned": true
+            },
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [],
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Callout",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "4 steps, CFG 1, euler, simple: the settings for FIBO 2.0 Edit Turbo.\n###### Then the picture is decoded. The last switch gives the slider your picture, or the result for a new one."
+            ],
+            "widgets_values_named": {
+              "text": "4 steps, CFG 1, euler, simple: the settings for FIBO 2.0 Edit Turbo.\n###### Then the picture is decoded. The last switch gives the slider your picture, or the result for a new one."
+            },
+            "color": "#07090a",
+            "bgcolor": "#07090a",
+            "title": "Callout"
+          },
+          {
+            "id": 26,
+            "type": "Reroute",
+            "pos": [
+              560,
+              306.0
+            ],
+            "size": [
+              75,
+              26
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "",
+                "type": "*",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 223
+              }
+            ],
+            "outputs": [
+              {
+                "name": "",
+                "type": "INT",
+                "links": [
+                  228
+                ]
+              }
+            ],
+            "properties": {
+              "showOutputText": false,
+              "horizontal": false
+            }
+          },
+          {
+            "id": 29,
+            "type": "KSampler",
+            "pos": [
+              560,
+              406.0
+            ],
+            "size": [
+              460,
+              262
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "link": 224
+              },
+              {
+                "localized_name": "positive",
+                "name": "positive",
+                "type": "CONDITIONING",
+                "link": 225
+              },
+              {
+                "localized_name": "negative",
+                "name": "negative",
+                "type": "CONDITIONING",
+                "link": 226
+              },
+              {
+                "localized_name": "latent_image",
+                "name": "latent_image",
+                "type": "LATENT",
+                "link": 227
+              },
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 228
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "LATENT",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  229
+                ]
+              }
+            ],
+            "title": "KSampler - 4 steps, CFG 1, euler",
+            "properties": {
+              "Node name for S&R": "KSampler",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              20261009,
+              "fixed",
+              4,
+              1,
+              "euler",
+              "simple",
+              1
+            ],
+            "widgets_values_named": {
+              "seed": 20261009,
+              "control_after_generate": "fixed",
+              "steps": 4,
+              "cfg": 1,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 30,
+            "type": "VAEDecode",
+            "pos": [
+              560,
+              742.0
+            ],
+            "size": [
+              460,
+              46
+            ],
+            "flags": {},
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "samples",
+                "name": "samples",
+                "type": "LATENT",
+                "link": 229
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "link": 230
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  231,
+                  234
+                ]
+              }
+            ],
+            "title": "Decode",
+            "properties": {
+              "Node name for S&R": "VAEDecode",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 82,
+            "type": "ComfySwitchNode",
+            "pos": [
+              560,
+              862.0
+            ],
+            "size": [
+              460,
+              78
+            ],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "on_false",
+                "name": "on_false",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 234
+              },
+              {
+                "localized_name": "on_true",
+                "name": "on_true",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 233
+              },
+              {
+                "localized_name": "switch",
+                "name": "switch",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "switch"
+                },
+                "link": 232
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "output",
+                "name": "output",
+                "type": "IMAGE",
+                "links": [
+                  235
+                ]
+              }
+            ],
+            "title": "If/Else Switch - Your picture, or the result, for the slider",
+            "properties": {
+              "Node name for S&R": "ComfySwitchNode",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              false
+            ],
+            "widgets_values_named": {
+              "switch": false
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          }
+        ],
+        "groups": [
+          {
+            "id": 5,
+            "title": "1 · Read",
+            "bounding": [
+              0,
+              0.0,
+              500,
+              940.0
+            ],
+            "color": "#1d5560",
+            "flags": {
+              "pinned": true
+            }
+          },
+          {
+            "id": 6,
+            "title": "2 · Draw",
+            "bounding": [
+              540,
+              0.0,
+              500,
+              990
+            ],
+            "color": "#1d5560",
+            "flags": {
+              "pinned": true
+            }
+          }
+        ],
+        "links": [
+          {
+            "id": 215,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 23,
+            "target_slot": 0,
+            "type": "*"
+          },
+          {
+            "id": 220,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 25,
+            "target_slot": 0,
+            "type": "LATENT"
+          },
+          {
+            "id": 221,
+            "origin_id": 24,
+            "origin_slot": 2,
+            "target_id": 25,
+            "target_slot": 1,
+            "type": "LATENT"
+          },
+          {
+            "id": 222,
+            "origin_id": -10,
+            "origin_slot": 7,
+            "target_id": 25,
+            "target_slot": 2,
+            "type": "BOOLEAN"
+          },
+          {
+            "id": 223,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 26,
+            "target_slot": 0,
+            "type": "*"
+          },
+          {
+            "id": 224,
+            "origin_id": -10,
+            "origin_slot": 6,
+            "target_id": 29,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 225,
+            "origin_id": 24,
+            "origin_slot": 0,
+            "target_id": 29,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 226,
+            "origin_id": 24,
+            "origin_slot": 1,
+            "target_id": 29,
+            "target_slot": 2,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 227,
+            "origin_id": 25,
+            "origin_slot": 0,
+            "target_id": 29,
+            "target_slot": 3,
+            "type": "LATENT"
+          },
+          {
+            "id": 228,
+            "origin_id": 26,
+            "origin_slot": 0,
+            "target_id": 29,
+            "target_slot": 4,
+            "type": "INT"
+          },
+          {
+            "id": 229,
+            "origin_id": 29,
+            "origin_slot": 0,
+            "target_id": 30,
+            "target_slot": 0,
+            "type": "LATENT"
+          },
+          {
+            "id": 230,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 30,
+            "target_slot": 1,
+            "type": "VAE"
+          },
+          {
+            "id": 231,
+            "origin_id": 30,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 232,
+            "origin_id": -10,
+            "origin_slot": 7,
+            "target_id": 82,
+            "target_slot": 2,
+            "type": "BOOLEAN"
+          },
+          {
+            "id": 233,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 82,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 234,
+            "origin_id": 30,
+            "origin_slot": 0,
+            "target_id": 82,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 235,
+            "origin_id": 82,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 217,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 24,
+            "target_slot": 0,
+            "type": "CLIP"
+          },
+          {
+            "id": 219,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 24,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 218,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 24,
+            "target_slot": 5,
+            "type": "VAE"
+          },
+          {
+            "id": 216,
+            "origin_id": 23,
+            "origin_slot": 0,
+            "target_id": 24,
+            "target_slot": 6,
+            "type": "STRING"
+          }
+        ],
+        "extra": {}
+      },
+      {
+        "id": "9827ad56-56c7-5901-b3be-8a7b8c0ebd4c",
+        "version": 1,
+        "state": {
+          "lastGroupId": 20,
+          "lastNodeId": 89,
+          "lastLinkId": 272,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Write the prompt",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -260,
+            120,
+            150,
+            120
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            2180,
+            120,
+            150,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "16b03fdd-0f7c-5e88-9357-9af123eb4115",
+            "name": "your prompt",
+            "type": "*",
+            "linkIds": [
+              205
+            ],
+            "localized_name": "your prompt",
+            "pos": [
+              51,
+              24
+            ]
+          },
+          {
+            "id": "679a95a7-2101-5604-878d-86ccd500f384",
+            "name": "your picture",
+            "type": "IMAGE",
+            "linkIds": [
+              212
+            ],
+            "localized_name": "your picture",
+            "shape": 7,
+            "pos": [
+              51,
+              44
+            ]
+          },
+          {
+            "id": "a42f6abb-e4f7-57f1-ab8a-813b4f6220da",
+            "name": "text encoder",
+            "type": "CLIP",
+            "linkIds": [
+              211
+            ],
+            "localized_name": "text encoder",
+            "pos": [
+              51,
+              64
+            ]
+          },
+          {
+            "id": "3224dcfa-d47d-5e28-9416-b35e99b23a07",
+            "name": "write an edit",
+            "type": "BOOLEAN",
+            "linkIds": [
+              208
+            ],
+            "localized_name": "write an edit",
+            "pos": [
+              51,
+              84
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "1f630b01-e2dc-5373-a525-e724eda3c2ef",
+            "name": "prompt",
+            "type": "STRING",
+            "linkIds": [
+              214
+            ],
+            "localized_name": "prompt",
+            "pos": [
+              24,
+              24
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 46,
+            "type": "AUSBOSS_NODES_Callout",
+            "pos": [
+              20,
+              80.0
+            ],
+            "size": [
+              460,
+              152
+            ],
+            "flags": {
+              "pinned": true
+            },
+            "order": 0,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [],
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Callout",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "How Qwen3-VL turns a few words into FIBO 2.0's prompt for a new picture.\n###### Change these words to change how prompts get written. Your words go where {user} is."
+            ],
+            "widgets_values_named": {
+              "text": "How Qwen3-VL turns a few words into FIBO 2.0's prompt for a new picture.\n###### Change these words to change how prompts get written. Your words go where {user} is."
+            },
+            "color": "#07090a",
+            "bgcolor": "#07090a",
+            "title": "Callout"
+          },
+          {
+            "id": 17,
+            "type": "AUSBOSS_NODES_Text",
+            "pos": [
+              20,
+              306.0
+            ],
+            "size": [
+              460,
+              1002
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "links": [
+                  206
+                ]
+              }
+            ],
+            "title": "Text - How a new picture's prompt is written",
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Text",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "You write prompts for FIBO 2.0, an image model that reads a JSON description of the picture to draw.\n\nYou receive a short idea from the user. Write one JSON object that describes the finished picture in rich detail.\n\nHow to write it:\n- Keep everything the idea says. Fill in what it leaves open (the place, the light, the colours, the camera angle, the framing, small details) so it fits the idea and makes a strong picture.\n- When the idea is about a person, frame them so their face and upper body read clearly (a medium shot or a close-up) unless the idea asks for a wide or full-body view.\n- Every person in the picture is an adult. Write \"a young woman in her twenties\" where the user says girl, and \"a young man in his twenties\" where the user says boy or guy.\n- A photograph unless the idea asks for another style; then set style_medium to that style and describe everything in it.\n- Text: put in text_render only words the idea gives, copied letter by letter, and words that belong to an object by nature (STOP on a stop sign). Never invent titles or slogans. Otherwise text_render is [].\n- Left and right are each person's own.\n\nThe JSON object has exactly these keys:\n- \"short_description\": the picture in a few sentences, 200 words at most.\n- \"objects\": up to five main things, people first. Each has \"description\", \"location\" (where in the frame), \"relationship\" (to the other things), \"relative_size\", \"shape_and_color\", \"texture\", \"appearance_details\" and \"orientation\". A person also has \"pose\", \"expression\", \"clothing\", \"action\", \"gender\" and \"skin_tone_and_texture\". A group of the same thing also has \"number_of_objects\".\n- \"background_setting\": the place and everything in the background.\n- \"lighting\": an object with \"conditions\", \"direction\" and \"shadows\".\n- \"aesthetics\": an object with \"composition\", \"color_scheme\" and \"mood_atmosphere\".\n- \"photographic_characteristics\": an object with \"depth_of_field\", \"focus\", \"camera_angle\" and \"lens_focal_length\".\n- \"style_medium\": \"photograph\" unless the idea asks for another style.\n- \"artistic_style\": three words at most.\n- \"context\": what kind of picture this is, in one sentence.\n- \"text_render\": a list of objects with \"text\", \"location\", \"size\", \"color\", \"font\" and \"appearance_details\", or [].\n\nWrite only the JSON object, with no words before or after it and no code fence. End with its closing brace.\n\nThe idea:\n{user}\n"
+            ],
+            "widgets_values_named": {
+              "text": "You write prompts for FIBO 2.0, an image model that reads a JSON description of the picture to draw.\n\nYou receive a short idea from the user. Write one JSON object that describes the finished picture in rich detail.\n\nHow to write it:\n- Keep everything the idea says. Fill in what it leaves open (the place, the light, the colours, the camera angle, the framing, small details) so it fits the idea and makes a strong picture.\n- When the idea is about a person, frame them so their face and upper body read clearly (a medium shot or a close-up) unless the idea asks for a wide or full-body view.\n- Every person in the picture is an adult. Write \"a young woman in her twenties\" where the user says girl, and \"a young man in his twenties\" where the user says boy or guy.\n- A photograph unless the idea asks for another style; then set style_medium to that style and describe everything in it.\n- Text: put in text_render only words the idea gives, copied letter by letter, and words that belong to an object by nature (STOP on a stop sign). Never invent titles or slogans. Otherwise text_render is [].\n- Left and right are each person's own.\n\nThe JSON object has exactly these keys:\n- \"short_description\": the picture in a few sentences, 200 words at most.\n- \"objects\": up to five main things, people first. Each has \"description\", \"location\" (where in the frame), \"relationship\" (to the other things), \"relative_size\", \"shape_and_color\", \"texture\", \"appearance_details\" and \"orientation\". A person also has \"pose\", \"expression\", \"clothing\", \"action\", \"gender\" and \"skin_tone_and_texture\". A group of the same thing also has \"number_of_objects\".\n- \"background_setting\": the place and everything in the background.\n- \"lighting\": an object with \"conditions\", \"direction\" and \"shadows\".\n- \"aesthetics\": an object with \"composition\", \"color_scheme\" and \"mood_atmosphere\".\n- \"photographic_characteristics\": an object with \"depth_of_field\", \"focus\", \"camera_angle\" and \"lens_focal_length\".\n- \"style_medium\": \"photograph\" unless the idea asks for another style.\n- \"artistic_style\": three words at most.\n- \"context\": what kind of picture this is, in one sentence.\n- \"text_render\": a list of objects with \"text\", \"location\", \"size\", \"color\", \"font\" and \"appearance_details\", or [].\n\nWrite only the JSON object, with no words before or after it and no code fence. End with its closing brace.\n\nThe idea:\n{user}\n"
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 47,
+            "type": "AUSBOSS_NODES_Callout",
+            "pos": [
+              560,
+              80.0
+            ],
+            "size": [
+              460,
+              150
+            ],
+            "flags": {
+              "pinned": true
+            },
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [],
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Callout",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "How Qwen3-VL turns a short request into FIBO 2.0's prompt for an edit.\n###### It looks at your picture. Edit a picture switches to this one."
+            ],
+            "widgets_values_named": {
+              "text": "How Qwen3-VL turns a short request into FIBO 2.0's prompt for an edit.\n###### It looks at your picture. Edit a picture switches to this one."
+            },
+            "color": "#07090a",
+            "bgcolor": "#07090a",
+            "title": "Callout"
+          },
+          {
+            "id": 19,
+            "type": "AUSBOSS_NODES_Text",
+            "pos": [
+              560,
+              304.0
+            ],
+            "size": [
+              460,
+              1280
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "links": [
+                  207
+                ]
+              }
+            ],
+            "title": "Text - How an edit's prompt is written",
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Text",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "You write prompts for FIBO 2.0, an image editing model that reads a JSON description of the finished picture.\n\nYou receive:\n1. A picture.\n2. A short edit request from the user.\n\nWrite one JSON object that describes the picture as it will look after the edit.\n\nHow to write it:\n- Look at the picture closely first: each person (face, hair, expression, pose, what each hand does, clothes, jewelry), each object, the place, the light, the colours, the camera angle and the framing.\n- Change only what the request asks for, plus what has to change with it (a new place brings its own light; rain makes the street wet). Everything else stays exactly as it is in the picture: the same people with the same faces and hair, the same pose, the same clothes, the same objects in the same places, the same framing, camera angle and lens, the same style.\n- Describe the finished picture as it is, never the edit. Write \"she wears a white linen shirt\", not \"her shirt was changed to white\". The words changed, added, removed, replaced, now, instead and original belong only in edit_instruction.\n- A photograph stays a photograph unless the request asks for another style. When it does, set style_medium to that style (a watercolor painting, an anime illustration, an oil painting) and describe every part of the picture in that style.\n- Text: put in text_render the words the request asks to write or change, and large readable words already in the picture that stay (a sign, a print on clothing), copied letter by letter. Otherwise text_render is [].\n- Left and right are the person's own: her left hand is on the right of the picture when she faces the camera.\n\nThe JSON object has exactly these keys:\n- \"short_description\": the finished picture in a few sentences, 200 words at most.\n- \"objects\": up to five main things, people first. Each has \"description\", \"location\" (where in the frame), \"relationship\" (to the other things), \"relative_size\", \"shape_and_color\", \"texture\", \"appearance_details\" and \"orientation\". A person also has \"pose\", \"expression\", \"clothing\", \"action\", \"gender\" and \"skin_tone_and_texture\". A group of the same thing also has \"number_of_objects\".\n- \"background_setting\": the place and everything in the background.\n- \"lighting\": an object with \"conditions\", \"direction\" and \"shadows\".\n- \"aesthetics\": an object with \"composition\", \"color_scheme\" and \"mood_atmosphere\".\n- \"photographic_characteristics\": an object with \"depth_of_field\", \"focus\", \"camera_angle\" and \"lens_focal_length\".\n- \"style_medium\": \"photograph\" unless the request asks for another style.\n- \"artistic_style\": three words at most.\n- \"context\": what kind of picture this is, in one sentence.\n- \"text_render\": a list of objects with \"text\", \"location\", \"size\", \"color\", \"font\" and \"appearance_details\", or [].\n- \"edit_instruction\": the request rewritten as one direct command that starts with a verb (Change, Add, Remove, Make, Turn, Replace, Zoom out) and names what changes the way it looks in the picture. Never mention \"the original image\".\n\nWrite only the JSON object, with no words before or after it and no code fence. End with its closing brace.\n\nThe edit request:\n{user}\n"
+            ],
+            "widgets_values_named": {
+              "text": "You write prompts for FIBO 2.0, an image editing model that reads a JSON description of the finished picture.\n\nYou receive:\n1. A picture.\n2. A short edit request from the user.\n\nWrite one JSON object that describes the picture as it will look after the edit.\n\nHow to write it:\n- Look at the picture closely first: each person (face, hair, expression, pose, what each hand does, clothes, jewelry), each object, the place, the light, the colours, the camera angle and the framing.\n- Change only what the request asks for, plus what has to change with it (a new place brings its own light; rain makes the street wet). Everything else stays exactly as it is in the picture: the same people with the same faces and hair, the same pose, the same clothes, the same objects in the same places, the same framing, camera angle and lens, the same style.\n- Describe the finished picture as it is, never the edit. Write \"she wears a white linen shirt\", not \"her shirt was changed to white\". The words changed, added, removed, replaced, now, instead and original belong only in edit_instruction.\n- A photograph stays a photograph unless the request asks for another style. When it does, set style_medium to that style (a watercolor painting, an anime illustration, an oil painting) and describe every part of the picture in that style.\n- Text: put in text_render the words the request asks to write or change, and large readable words already in the picture that stay (a sign, a print on clothing), copied letter by letter. Otherwise text_render is [].\n- Left and right are the person's own: her left hand is on the right of the picture when she faces the camera.\n\nThe JSON object has exactly these keys:\n- \"short_description\": the finished picture in a few sentences, 200 words at most.\n- \"objects\": up to five main things, people first. Each has \"description\", \"location\" (where in the frame), \"relationship\" (to the other things), \"relative_size\", \"shape_and_color\", \"texture\", \"appearance_details\" and \"orientation\". A person also has \"pose\", \"expression\", \"clothing\", \"action\", \"gender\" and \"skin_tone_and_texture\". A group of the same thing also has \"number_of_objects\".\n- \"background_setting\": the place and everything in the background.\n- \"lighting\": an object with \"conditions\", \"direction\" and \"shadows\".\n- \"aesthetics\": an object with \"composition\", \"color_scheme\" and \"mood_atmosphere\".\n- \"photographic_characteristics\": an object with \"depth_of_field\", \"focus\", \"camera_angle\" and \"lens_focal_length\".\n- \"style_medium\": \"photograph\" unless the request asks for another style.\n- \"artistic_style\": three words at most.\n- \"context\": what kind of picture this is, in one sentence.\n- \"text_render\": a list of objects with \"text\", \"location\", \"size\", \"color\", \"font\" and \"appearance_details\", or [].\n- \"edit_instruction\": the request rewritten as one direct command that starts with a verb (Change, Add, Remove, Make, Turn, Replace, Zoom out) and names what changes the way it looks in the picture. Never mention \"the original image\".\n\nWrite only the JSON object, with no words before or after it and no code fence. End with its closing brace.\n\nThe edit request:\n{user}\n"
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 48,
+            "type": "AUSBOSS_NODES_Callout",
+            "pos": [
+              1100,
+              80.0
+            ],
+            "size": [
+              460,
+              150
+            ],
+            "flags": {
+              "pinned": true
+            },
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [],
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Callout",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "Qwen3-VL 8B writes the result as FIBO 2.0's JSON prompt.\n###### Its seed is fixed: the same words give the same prompt."
+            ],
+            "widgets_values_named": {
+              "text": "Qwen3-VL 8B writes the result as FIBO 2.0's JSON prompt.\n###### Its seed is fixed: the same words give the same prompt."
+            },
+            "color": "#07090a",
+            "bgcolor": "#07090a",
+            "title": "Callout"
+          },
+          {
+            "id": 16,
+            "type": "Reroute",
+            "pos": [
+              1100,
+              304.0
+            ],
+            "size": [
+              75,
+              26
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "",
+                "type": "*",
+                "link": 205
+              }
+            ],
+            "outputs": [
+              {
+                "name": "",
+                "type": "STRING",
+                "links": [
+                  210
+                ]
+              }
+            ],
+            "properties": {
+              "showOutputText": false,
+              "horizontal": false
+            }
+          },
+          {
+            "id": 21,
+            "type": "ComfySwitchNode",
+            "pos": [
+              1100,
+              404.0
+            ],
+            "size": [
+              460,
+              78
+            ],
+            "flags": {},
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "on_false",
+                "name": "on_false",
+                "shape": 7,
+                "type": "STRING",
+                "link": 206
+              },
+              {
+                "localized_name": "on_true",
+                "name": "on_true",
+                "shape": 7,
+                "type": "STRING",
+                "link": 207
+              },
+              {
+                "localized_name": "switch",
+                "name": "switch",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "switch"
+                },
+                "link": 208
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "output",
+                "name": "output",
+                "type": "STRING",
+                "links": [
+                  209
+                ]
+              }
+            ],
+            "title": "If/Else Switch - New picture or edit",
+            "properties": {
+              "Node name for S&R": "ComfySwitchNode",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              false
+            ],
+            "widgets_values_named": {
+              "switch": false
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 76,
+            "type": "StringReplace",
+            "pos": [
+              1100,
+              556.0
+            ],
+            "size": [
+              460,
+              200
+            ],
+            "flags": {},
+            "order": 9,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string",
+                "name": "string",
+                "type": "STRING",
+                "widget": {
+                  "name": "string"
+                },
+                "link": 209
+              },
+              {
+                "localized_name": "replace",
+                "name": "replace",
+                "type": "STRING",
+                "widget": {
+                  "name": "replace"
+                },
+                "link": 210
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  213
+                ]
+              }
+            ],
+            "title": "Replace Text - Your words where {user} is",
+            "properties": {
+              "Node name for S&R": "StringReplace",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "",
+              "{user}",
+              ""
+            ],
+            "widgets_values_named": {
+              "string": "",
+              "find": "{user}",
+              "replace": ""
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 22,
+            "type": "TextGenerate",
+            "pos": [
+              1100,
+              830.0
+            ],
+            "size": [
+              460,
+              456
+            ],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 211
+              },
+              {
+                "localized_name": "image",
+                "name": "image",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 212
+              },
+              {
+                "localized_name": "video",
+                "name": "video",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": null
+              },
+              {
+                "localized_name": "audio",
+                "name": "audio",
+                "shape": 7,
+                "type": "AUDIO",
+                "link": null
+              },
+              {
+                "localized_name": "system_prompt",
+                "name": "system_prompt",
+                "shape": 7,
+                "type": "STRING",
+                "link": null
+              },
+              {
+                "localized_name": "prompt",
+                "name": "prompt",
+                "type": "STRING",
+                "widget": {
+                  "name": "prompt"
+                },
+                "link": 213
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "generated_text",
+                "name": "generated_text",
+                "type": "STRING",
+                "links": [
+                  200
+                ]
+              },
+              {
+                "localized_name": "thinking",
+                "name": "thinking",
+                "type": "STRING",
+                "links": null
+              }
+            ],
+            "title": "Generate Text - Qwen3-VL writes FIBO 2.0's prompt",
+            "properties": {
+              "Node name for S&R": "TextGenerate",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "",
+              6000,
+              "on",
+              0.2,
+              0,
+              1,
+              0,
+              1,
+              1,
+              0,
+              false,
+              true,
+              "auto"
+            ],
+            "widgets_values_named": {
+              "prompt": "",
+              "max_length": 6000,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 0.2,
+              "sampling_mode.top_k": 0,
+              "sampling_mode.top_p": 1,
+              "sampling_mode.min_p": 0,
+              "sampling_mode.repetition_penalty": 1,
+              "sampling_mode.seed": 1,
+              "sampling_mode.presence_penalty": 0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "auto"
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 73,
+            "type": "AUSBOSS_NODES_Callout",
+            "pos": [
+              1640,
+              80.0
+            ],
+            "size": [
+              460,
+              136
+            ],
+            "flags": {
+              "pinned": true
+            },
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [],
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Callout",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "The JSON is tidied, so FIBO 2.0 can read it.\n###### A missing last brace, a trailing comma or a code fence would make it read the whole text as words."
+            ],
+            "widgets_values_named": {
+              "text": "The JSON is tidied, so FIBO 2.0 can read it.\n###### A missing last brace, a trailing comma or a code fence would make it read the whole text as words."
+            },
+            "color": "#07090a",
+            "bgcolor": "#07090a",
+            "title": "Callout"
+          },
+          {
+            "id": 77,
+            "type": "RegexReplace",
+            "pos": [
+              1640,
+              304.0
+            ],
+            "size": [
+              460,
+              292
+            ],
+            "flags": {},
+            "order": 10,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string",
+                "name": "string",
+                "type": "STRING",
+                "widget": {
+                  "name": "string"
+                },
+                "link": 200
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  201
+                ]
+              }
+            ],
+            "title": "Regex Replace - Drop code fences",
+            "properties": {
+              "Node name for S&R": "RegexReplace",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "",
+              "```[a-z]*",
+              "",
+              true,
+              false,
+              false,
+              0
+            ],
+            "widgets_values_named": {
+              "string": "",
+              "regex_pattern": "```[a-z]*",
+              "replace": "",
+              "case_insensitive": true,
+              "multiline": false,
+              "dotall": false,
+              "count": 0
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 78,
+            "type": "RegexReplace",
+            "pos": [
+              1640,
+              670.0
+            ],
+            "size": [
+              460,
+              292
+            ],
+            "flags": {},
+            "order": 11,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string",
+                "name": "string",
+                "type": "STRING",
+                "widget": {
+                  "name": "string"
+                },
+                "link": 201
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  202
+                ]
+              }
+            ],
+            "title": "Regex Replace - Start at the first {",
+            "properties": {
+              "Node name for S&R": "RegexReplace",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "",
+              "^[^{]*(?=\\{)",
+              "",
+              true,
+              false,
+              false,
+              1
+            ],
+            "widgets_values_named": {
+              "string": "",
+              "regex_pattern": "^[^{]*(?=\\{)",
+              "replace": "",
+              "case_insensitive": true,
+              "multiline": false,
+              "dotall": false,
+              "count": 1
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 79,
+            "type": "RegexReplace",
+            "pos": [
+              1640,
+              1036.0
+            ],
+            "size": [
+              460,
+              292
+            ],
+            "flags": {},
+            "order": 12,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string",
+                "name": "string",
+                "type": "STRING",
+                "widget": {
+                  "name": "string"
+                },
+                "link": 202
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  203
+                ]
+              }
+            ],
+            "title": "Regex Replace - Trim the end",
+            "properties": {
+              "Node name for S&R": "RegexReplace",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "",
+              "\\s+\\Z",
+              "",
+              true,
+              false,
+              false,
+              1
+            ],
+            "widgets_values_named": {
+              "string": "",
+              "regex_pattern": "\\s+\\Z",
+              "replace": "",
+              "case_insensitive": true,
+              "multiline": false,
+              "dotall": false,
+              "count": 1
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 80,
+            "type": "RegexReplace",
+            "pos": [
+              1640,
+              1402.0
+            ],
+            "size": [
+              460,
+              292
+            ],
+            "flags": {},
+            "order": 13,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string",
+                "name": "string",
+                "type": "STRING",
+                "widget": {
+                  "name": "string"
+                },
+                "link": 203
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  204
+                ]
+              }
+            ],
+            "title": "Regex Replace - Close the last brace",
+            "properties": {
+              "Node name for S&R": "RegexReplace",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "",
+              "\\A(\\{[\\s\\S]*[^}])\\Z",
+              "\\1}",
+              true,
+              false,
+              false,
+              1
+            ],
+            "widgets_values_named": {
+              "string": "",
+              "regex_pattern": "\\A(\\{[\\s\\S]*[^}])\\Z",
+              "replace": "\\1}",
+              "case_insensitive": true,
+              "multiline": false,
+              "dotall": false,
+              "count": 1
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 81,
+            "type": "RegexReplace",
+            "pos": [
+              1640,
+              1768.0
+            ],
+            "size": [
+              460,
+              292
+            ],
+            "flags": {},
+            "order": 14,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "string",
+                "name": "string",
+                "type": "STRING",
+                "widget": {
+                  "name": "string"
+                },
+                "link": 204
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "STRING",
+                "name": "STRING",
+                "type": "STRING",
+                "links": [
+                  214
+                ]
+              }
+            ],
+            "title": "Regex Replace - Drop trailing commas",
+            "properties": {
+              "Node name for S&R": "RegexReplace",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "",
+              ",(\\s*[}\\]])",
+              "\\1",
+              true,
+              false,
+              false,
+              0
+            ],
+            "widgets_values_named": {
+              "string": "",
+              "regex_pattern": ",(\\s*[}\\]])",
+              "replace": "\\1",
+              "case_insensitive": true,
+              "multiline": false,
+              "dotall": false,
+              "count": 0
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          }
+        ],
+        "groups": [
+          {
+            "id": 7,
+            "title": "1 · For a new picture",
+            "bounding": [
+              0,
+              0.0,
+              500,
+              1358
+            ],
+            "color": "#1d5560",
+            "flags": {
+              "pinned": true
+            }
+          },
+          {
+            "id": 8,
+            "title": "2 · For an edit",
+            "bounding": [
+              540,
+              0.0,
+              500,
+              1634.0
+            ],
+            "color": "#1d5560",
+            "flags": {
+              "pinned": true
+            }
+          },
+          {
+            "id": 9,
+            "title": "3 · Write",
+            "bounding": [
+              1080,
+              0.0,
+              500,
+              1336.0
+            ],
+            "color": "#1d5560",
+            "flags": {
+              "pinned": true
+            }
+          },
+          {
+            "id": 10,
+            "title": "4 · Tidy the JSON",
+            "bounding": [
+              1620,
+              0.0,
+              500,
+              2110.0
+            ],
+            "color": "#1d5560",
+            "flags": {
+              "pinned": true
+            }
+          }
+        ],
+        "links": [
+          {
+            "id": 200,
+            "origin_id": 22,
+            "origin_slot": 0,
+            "target_id": 77,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 201,
+            "origin_id": 77,
+            "origin_slot": 0,
+            "target_id": 78,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 202,
+            "origin_id": 78,
+            "origin_slot": 0,
+            "target_id": 79,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 203,
+            "origin_id": 79,
+            "origin_slot": 0,
+            "target_id": 80,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 204,
+            "origin_id": 80,
+            "origin_slot": 0,
+            "target_id": 81,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 205,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 16,
+            "target_slot": 0,
+            "type": "*"
+          },
+          {
+            "id": 206,
+            "origin_id": 17,
+            "origin_slot": 0,
+            "target_id": 21,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 207,
+            "origin_id": 19,
+            "origin_slot": 0,
+            "target_id": 21,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 208,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 21,
+            "target_slot": 2,
+            "type": "BOOLEAN"
+          },
+          {
+            "id": 209,
+            "origin_id": 21,
+            "origin_slot": 0,
+            "target_id": 76,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 210,
+            "origin_id": 16,
+            "origin_slot": 0,
+            "target_id": 76,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 214,
+            "origin_id": 81,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "STRING"
+          },
+          {
+            "id": 211,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 22,
+            "target_slot": 0,
+            "type": "CLIP"
+          },
+          {
+            "id": 212,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 22,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 213,
+            "origin_id": 76,
+            "origin_slot": 0,
+            "target_id": 22,
+            "target_slot": 5,
+            "type": "STRING"
+          }
+        ],
+        "extra": {}
+      },
+      {
+        "id": "a921e364-2eef-5330-b242-1ab1285bb151",
+        "version": 1,
+        "state": {
+          "lastGroupId": 20,
+          "lastNodeId": 89,
+          "lastLinkId": 272,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Upscale 2x with SeedVR2",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -260,
+            120,
+            170,
+            160
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1100,
+            120,
+            170,
+            80
+          ]
+        },
+        "inputs": [
+          {
+            "id": "32a0c07b-5961-56a5-bf4f-1bee2b34d568",
+            "name": "picture",
+            "type": "IMAGE",
+            "linkIds": [
+              236
+            ],
+            "localized_name": "picture",
+            "pos": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "e1c7c2c2-4807-5060-b42d-8314ac16fe3f",
+            "name": "seed",
+            "type": "INT",
+            "linkIds": [
+              246
+            ],
+            "localized_name": "seed",
+            "pos": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "9c8e4c39-d840-556a-91f2-b978d4c05c74",
+            "name": "seedvr2 model",
+            "type": "MODEL",
+            "linkIds": [
+              240,
+              242
+            ],
+            "localized_name": "seedvr2 model",
+            "pos": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "04ed34be-7c64-5efc-aa68-d8508dd5ae96",
+            "name": "seedvr2 vae",
+            "type": "VAE",
+            "linkIds": [
+              239,
+              248
+            ],
+            "localized_name": "seedvr2 vae",
+            "pos": [
+              0,
+              0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "0b336943-ac53-5329-a672-6150ca0e614b",
+            "name": "picture",
+            "type": "IMAGE",
+            "linkIds": [
+              251
+            ],
+            "localized_name": "picture",
+            "pos": [
+              0,
+              0
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 74,
+            "type": "AUSBOSS_NODES_Callout",
+            "pos": [
+              20,
+              80.0
+            ],
+            "size": [
+              460,
+              122
+            ],
+            "flags": {
+              "pinned": true
+            },
+            "order": 0,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [],
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Callout",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "Your picture is made twice as big on each side.\n###### 832 x 1248 becomes 1664 x 2496, about 4 megapixels."
+            ],
+            "widgets_values_named": {
+              "text": "Your picture is made twice as big on each side.\n###### 832 x 1248 becomes 1664 x 2496, about 4 megapixels."
+            },
+            "color": "#07090a",
+            "bgcolor": "#07090a",
+            "title": "Callout"
+          },
+          {
+            "id": 83,
+            "type": "AUSBOSS_NODES_ImageResize",
+            "pos": [
+              20,
+              300.0
+            ],
+            "size": [
+              460,
+              330
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 236
+              },
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "shape": 7,
+                "type": "MASK",
+                "link": null
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "link": null
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "links": [
+                  237,
+                  250
+                ]
+              },
+              {
+                "localized_name": "mask",
+                "name": "mask",
+                "type": "MASK",
+                "links": []
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": []
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": []
+              }
+            ],
+            "title": "Image Resize - Twice the size on each side",
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_ImageResize",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "scale_factor",
+              0,
+              0,
+              1024,
+              1,
+              2,
+              "fit",
+              "#000000",
+              16,
+              "lanczos"
+            ],
+            "widgets_values_named": {
+              "target_mode": "scale_factor",
+              "width": 0,
+              "height": 0,
+              "edge_length": 1024,
+              "megapixels": 1,
+              "scale_factor": 2,
+              "keep_proportion": "fit",
+              "fill_color": "#000000",
+              "divisible_by": 16,
+              "interpolation": "lanczos"
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 75,
+            "type": "AUSBOSS_NODES_Callout",
+            "pos": [
+              560,
+              80.0
+            ],
+            "size": [
+              460,
+              122
+            ],
+            "flags": {
+              "pinned": true
+            },
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [],
+            "properties": {
+              "Node name for S&R": "AUSBOSS_NODES_Callout",
+              "cnr_id": "ausboss-nodes",
+              "ver": "2.13.0"
+            },
+            "widgets_values": [
+              "One step of SeedVR2 3B sharpens it.\n###### Then its colors are set back to FIBO 2.0's picture. Its seed is the **Seed**."
+            ],
+            "widgets_values_named": {
+              "text": "One step of SeedVR2 3B sharpens it.\n###### Then its colors are set back to FIBO 2.0's picture. Its seed is the **Seed**."
+            },
+            "color": "#07090a",
+            "bgcolor": "#07090a",
+            "title": "Callout"
+          },
+          {
+            "id": 84,
+            "type": "SeedVR2Preprocess",
+            "pos": [
+              560,
+              300.0
+            ],
+            "size": [
+              460,
+              46
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "resized_images",
+                "name": "resized_images",
+                "type": "IMAGE",
+                "link": 237
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "links": [
+                  238
+                ]
+              }
+            ],
+            "title": "SeedVR2 Preprocess",
+            "properties": {
+              "Node name for S&R": "SeedVR2Preprocess",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 85,
+            "type": "VAEEncodeTiled",
+            "pos": [
+              560,
+              416.0
+            ],
+            "size": [
+              460,
+              154
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "pixels",
+                "name": "pixels",
+                "type": "IMAGE",
+                "link": 238
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "link": 239
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "LATENT",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  241,
+                  245
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "VAEEncodeTiled",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              512,
+              128,
+              4096,
+              8
+            ],
+            "widgets_values_named": {
+              "tile_size": 512,
+              "overlap": 128,
+              "temporal_size": 4096,
+              "temporal_overlap": 8
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 86,
+            "type": "SeedVR2Conditioning",
+            "pos": [
+              560,
+              640.0
+            ],
+            "size": [
+              460,
+              66
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "link": 240
+              },
+              {
+                "localized_name": "latent",
+                "name": "vae_conditioning",
+                "type": "LATENT",
+                "link": 241
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "positive",
+                "name": "positive",
+                "type": "CONDITIONING",
+                "links": [
+                  243
+                ]
+              },
+              {
+                "localized_name": "negative",
+                "name": "negative",
+                "type": "CONDITIONING",
+                "links": [
+                  244
+                ]
+              }
+            ],
+            "title": "SeedVR2 Conditioning",
+            "properties": {
+              "Node name for S&R": "SeedVR2Conditioning",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 87,
+            "type": "KSampler",
+            "pos": [
+              560,
+              776.0
+            ],
+            "size": [
+              460,
+              262
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "link": 242
+              },
+              {
+                "localized_name": "positive",
+                "name": "positive",
+                "type": "CONDITIONING",
+                "link": 243
+              },
+              {
+                "localized_name": "negative",
+                "name": "negative",
+                "type": "CONDITIONING",
+                "link": 244
+              },
+              {
+                "localized_name": "latent_image",
+                "name": "latent_image",
+                "type": "LATENT",
+                "link": 245
+              },
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 246
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "LATENT",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  247
+                ]
+              }
+            ],
+            "title": "KSampler - 1 step, CFG 1",
+            "properties": {
+              "Node name for S&R": "KSampler",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              20261017,
+              "fixed",
+              1,
+              1,
+              "euler",
+              "simple",
+              1
+            ],
+            "widgets_values_named": {
+              "seed": 20261017,
+              "control_after_generate": "fixed",
+              "steps": 1,
+              "cfg": 1,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 88,
+            "type": "VAEDecodeTiled",
+            "pos": [
+              560,
+              1108.0
+            ],
+            "size": [
+              460,
+              154
+            ],
+            "flags": {},
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "samples",
+                "name": "samples",
+                "type": "LATENT",
+                "link": 247
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "link": 248
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  249
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "VAEDecodeTiled",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              512,
+              128,
+              4096,
+              8
+            ],
+            "widgets_values_named": {
+              "tile_size": 512,
+              "overlap": 128,
+              "temporal_size": 4096,
+              "temporal_overlap": 8
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          },
+          {
+            "id": 89,
+            "type": "SeedVR2PostProcessing",
+            "pos": [
+              560,
+              1332.0
+            ],
+            "size": [
+              460,
+              82
+            ],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "link": 249
+              },
+              {
+                "localized_name": "original_resized_images",
+                "name": "original_resized_images",
+                "type": "IMAGE",
+                "link": 250
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "links": [
+                  251
+                ]
+              }
+            ],
+            "title": "SeedVR2 Post Processing - Colors back to FIBO 2.0's",
+            "properties": {
+              "Node name for S&R": "SeedVR2PostProcessing",
+              "cnr_id": "comfy-core",
+              "ver": "0.42.0"
+            },
+            "widgets_values": [
+              "lab"
+            ],
+            "widgets_values_named": {
+              "color_correction_method": "lab"
+            },
+            "color": "#14424d",
+            "bgcolor": "#161f21"
+          }
+        ],
+        "groups": [
+          {
+            "id": 15,
+            "title": "1 · Twice the size",
+            "bounding": [
+              0,
+              0.0,
+              500,
+              650.0
+            ],
+            "color": "#1d5560",
+            "flags": {
+              "pinned": true
+            }
+          },
+          {
+            "id": 16,
+            "title": "2 · SeedVR2 sharpens it",
+            "bounding": [
+              540,
+              0.0,
+              500,
+              1434.0
+            ],
+            "color": "#1d5560",
+            "flags": {
+              "pinned": true
+            }
+          }
+        ],
+        "links": [
+          {
+            "id": 236,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 83,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 237,
+            "origin_id": 83,
+            "origin_slot": 0,
+            "target_id": 84,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 238,
+            "origin_id": 84,
+            "origin_slot": 0,
+            "target_id": 85,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 239,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 85,
+            "target_slot": 1,
+            "type": "VAE"
+          },
+          {
+            "id": 240,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 86,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 241,
+            "origin_id": 85,
+            "origin_slot": 0,
+            "target_id": 86,
+            "target_slot": 1,
+            "type": "LATENT"
+          },
+          {
+            "id": 242,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 87,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 243,
+            "origin_id": 86,
+            "origin_slot": 0,
+            "target_id": 87,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 244,
+            "origin_id": 86,
+            "origin_slot": 1,
+            "target_id": 87,
+            "target_slot": 2,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 245,
+            "origin_id": 85,
+            "origin_slot": 0,
+            "target_id": 87,
+            "target_slot": 3,
+            "type": "LATENT"
+          },
+          {
+            "id": 246,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 87,
+            "target_slot": 4,
+            "type": "INT"
+          },
+          {
+            "id": 247,
+            "origin_id": 87,
+            "origin_slot": 0,
+            "target_id": 88,
+            "target_slot": 0,
+            "type": "LATENT"
+          },
+          {
+            "id": 248,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 88,
+            "target_slot": 1,
+            "type": "VAE"
+          },
+          {
+            "id": 249,
+            "origin_id": 88,
+            "origin_slot": 0,
+            "target_id": 89,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 250,
+            "origin_id": 83,
+            "origin_slot": 0,
+            "target_id": 89,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 251,
+            "origin_id": 89,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          }
+        ],
+        "extra": {}
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6,
+      "offset": [
+        6,
+        60
+      ]
+    },
+    "frontendVersion": "1.57.1"
+  },
+  "version": 0.4
+}

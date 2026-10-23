@@ -398,15 +398,22 @@
         {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_base_t2i_bboxes.json", "size": 71634}
       ]
     },
+    "seedvr2": {
+      "description": "SeedVR2 3B int8 et son VAE : agrandissement 2x des workflows AusBoss (Comfy-Org/SeedVR2).",
+      "size": "4,0 Go",
+      "extends": ["comfyui-common"],
+      "models": [
+        {"type": "diffusion_models/seedvr2", "hf": "Comfy-Org/SeedVR2", "file": "diffusion_models/seedvr2_3b_int8_convrot.safetensors", "size": 3458259704},
+        {"type": "vae/seedvr2", "hf": "Comfy-Org/SeedVR2", "file": "vae/seedvr2_ema_vae_fp16.safetensors", "size": 501324814}
+      ]
+    },
     "ausboss-moss-image": {
       "description": "Workflow MOSS-Image d'AusBoss (4/8/50 steps, auto prompt, layout boxes, img2img, agrandissement 2x SeedVR2), sans le modèle de base : à installer avec moss-image[int8].",
       "size": "6,3 Go",
-      "extends": ["comfyui-common"],
+      "extends": ["seedvr2"],
       "models": [
         {"type": "loras/moss-image/lodestones", "hf": "lodestones/MOSS-Image-SFT-8-steps-dmd", "file": "lora_latest.safetensors", "size": 1189176800},
-        {"type": "loras/moss-image/akhaliq", "hf": "akhaliq/MOSS-Image-SFT-4-steps", "file": "lora.safetensors", "size": 1189176752},
-        {"type": "diffusion_models/seedvr2", "hf": "Comfy-Org/SeedVR2", "file": "diffusion_models/seedvr2_3b_int8_convrot.safetensors", "size": 3458259704},
-        {"type": "vae/seedvr2", "hf": "Comfy-Org/SeedVR2", "file": "vae/seedvr2_ema_vae_fp16.safetensors", "size": 501324814}
+        {"type": "loras/moss-image/akhaliq", "hf": "akhaliq/MOSS-Image-SFT-4-steps", "file": "lora.safetensors", "size": 1189176752}
       ],
       "custom_nodes": [
         {"git": "https://github.com/ausboss/ComfyUI-AusBoss.git"}
@@ -493,6 +500,20 @@
       ],
       "workflows": [
         {"github": "jdelahayes/comfyui-profiles-repo", "file": "fibo2/fibo2_edit_turbo.json", "size": 10177}
+      ]
+    },
+    "ausboss-fibo2": {
+      "description": "Workflow FIBO 2.0 Generate + Edit d'AusBoss (édition ou génération en 4 steps, auto prompt Qwen3-VL 8B, agrandissement 2x SeedVR2), sans le modèle de base : à installer avec fibo2-edit-turbo[int8]. Licence des poids CC BY-NC 4.0.",
+      "size": "13,3 Go",
+      "extends": ["seedvr2"],
+      "models": [
+        {"type": "text_encoders/qwen_image_2.1", "hf": "Comfy-Org/Qwen-Image-2.1", "file": "text_encoders/qwen3vl_8b_int8_convrot.safetensors", "size": 9350798360}
+      ],
+      "custom_nodes": [
+        {"git": "https://github.com/ausboss/ComfyUI-AusBoss.git"}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "fibo2/ausboss/fibo20GenerateEdit4Step_v10.json", "size": 135250}
       ]
     },
 
