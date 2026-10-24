@@ -7,6 +7,7 @@ MIT license (see `LICENSE.upstream`).
 | Workflow | Profile |
 |---|---|
 | `image_flux2_klein_image_edit_9b_distilled.json` | `flux2-klein-9b[fp8]` |
+| `image_flux2_klein_image_edit_9b_distilled_gguf.json` (GGUF loaders) | `flux2-klein-9b[gguf]` |
 | `image_flux2_klein_9b_kv_image_edit.json` | `flux2-klein-9b[kv-fp8]` |
 | `image_flux2_klein_image_edit_9b_base.json` | `flux2-klein-base-9b[fp8]` |
 | `image_flux2_klein_image_edit_4b_distilled.json` | `flux2-klein-4b[fp8]` |
@@ -37,3 +38,9 @@ as `qwen_3_4b`, in `text_encoders/qwen3-4b/`), loaded by
 with `UnetLoaderGGUF` and `CLIPLoaderGGUF` in place of `UNETLoader` and `CLIPLoader`: the GGUF files
 cannot be switched in with **Check the workflow's models…**, hence a workflow of its own. Other
 quantizations (Q4_K_M, Q6_K, Q8_0…) of the same repositories can be picked in the loaders.
+
+`flux2-klein-9b` has a `gguf` variant too, for GPUs of 8 GB and more:
+[unsloth](https://huggingface.co/unsloth/FLUX.2-klein-9B-GGUF) Q4_K_M model (5.9 GB) and
+[Q5_K_M Qwen3-8B](https://huggingface.co/unsloth/Qwen3-8B-GGUF) text encoder (5.9 GB, same weights as
+`qwen_3_8b`), not gated; same GGUF loaders in its workflow. On 6 GB, prefer `flux2-klein-4b[gguf]`:
+the 9B only fits in Q3_K_M, with a visible loss of quality.

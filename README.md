@@ -70,7 +70,7 @@ blocks for the others.
 | `krea2-styles` | Krea 2 Turbo + 10 official style LoRAs | int8 (23.5 GB), fp8 (23.6 GB), bf16 (40.3 GB) |
 | `krea2-heretic` | Krea 2 Turbo + uncensored text encoders and LoRAs | int8 (33.7 GB), fp8 (23.8 GB), bf16 (40.6 GB) |
 | `krea2-loras-purplelady` | Krea 2 Turbo + [purplelady](https://civitai.com/user/purplelady)'s LoRAs | int8 (20.2 GB), fp8 (20.3 GB), bf16 (37.0 GB) |
-| `flux2-klein-9b` | FLUX.2 [klein] 9B distilled: text to image, multi-reference edit | fp8 (18.7 GB), kv-fp8 (19.1 GB), nvfp4 (13.1 GB), bf16 (35.1 GB) |
+| `flux2-klein-9b` | FLUX.2 [klein] 9B distilled: text to image, multi-reference edit | fp8 (18.7 GB), kv-fp8 (19.1 GB), nvfp4 (13.1 GB), bf16 (35.1 GB), gguf (12.3 GB, for GPUs of 8 GB and more) |
 | `flux2-klein-base-9b` | FLUX.2 [klein] Base 9B, not distilled | fp8 (18.8 GB), nvfp4 (13.2 GB), bf16 (35.1 GB) |
 | `flux2-klein-4b` | FLUX.2 [klein] 4B distilled (Apache 2.0): text to image, multi-reference edit | fp8 (12.7 GB), nvfp4 (6.9 GB), bf16 (16.4 GB) |
 | `flux2-klein-base-4b` | FLUX.2 [klein] Base 4B, not distilled | fp8 (12.7 GB), nvfp4 (6.9 GB), bf16 (16.4 GB), gguf (7.9 GB, for 6–8 GB GPUs) |
