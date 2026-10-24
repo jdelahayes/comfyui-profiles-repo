@@ -92,7 +92,7 @@ blocks for the others.
 | `qwen_image_2.1` | Qwen Image 2.1 | int8 (26.8 GB), bf16 (41.9 GB) |
 | `ausboss-qwen_image_2.1` | The 12 Qwen Image 2.1 workflows by AusBoss, with everything they need: full and turbo int8 models, AusBoss, Viggle, Pruna T8 and BFS LoRAs, AusBoss nodes (Inpaint and Cut Out + Remove also need `sam3.1`) | 36.3 GB |
 | `alissonerdx-bfs` | [BFS: Best Face Swap](https://huggingface.co/Alissonerdx/BFS-Best-Face-Swap) LoRAs and workflows, without the base model (see below) | qwen_2.1 (1.3 GB), krea2 (1.8 GB), flux2-klein-4b (1.8 GB), flux2-klein-9b (994 MB) |
-| `qwen_image_edit_2511-turbo` | Qwen Image Edit 2511 + Lightning 4 steps and edit LoRAs | int8 (31.6 GB) |
+| `qwen_image_edit_2511-turbo` | Qwen Image Edit 2511 + Lightning 4 steps and edit LoRAs, with the official templates: image edit, camera angles, action poses | int8 (31.6 GB) |
 | `yue2-3b` | YuE2 3B, music generation | int8 (5.3 GB) |
 
 `comfy_profiles.py list` (or the panel) shows the full, up-to-date list with descriptions.

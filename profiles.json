@@ -675,7 +675,7 @@
     },
 
     "qwen_image_edit_2511-turbo": {
-      "description": "Qwen Image Edit 2511 + Turbo",
+      "description": "Qwen Image Edit 2511 + Lightning 4 steps, avec les templates ComfyUI officiels : édition d'image, changement d'angle de caméra (LoRA Multiple Angles de fal) et poses d'action (LoRA SYSTMS Action).",
       "size": {"int8": "31,6 Go"},
       "extends": ["comfyui-common", "qwen-image-vae"],
       "variants": ["int8"],
@@ -686,6 +686,11 @@
         {"type": "loras/qwen_image_edit_2511/lightx2v", "hf": "lightx2v/Qwen-Image-Edit-2511-Lightning", "file": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors", "size": 849608296, "sha256": "22226e8d05d354bb356627d428809f5afd7819399b077238a2b70a82883a904f"},
         {"type": "loras/qwen_image_edit_2511/fal", "hf": "fal/Qwen-Image-Edit-2511-Multiple-Angles-LoRA", "file": "qwen-image-edit-2511-multiple-angles-lora.safetensors", "size": 295140688, "sha256": "42426ded4e25fd22879d9e198b857556445ef4ca56e8da3246d0345155bb6765"},
         {"type": "loras/qwen_image_edit_2511/systms", "hf": "systms/SYSTMS-ACTION-LoRA-Qwen-Image-Edit-2511", "file": "QWEN_EDIT_ACTION_V1.safetensors", "size": 295146192, "sha256": "52287ccc0544b0fa611df7ee15c96f1320548b7eec5feed759f7ffbf7adeae3a"}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_edit_2511/image_qwen_image_edit_2511_int8.json", "size": 59346},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_edit_2511/template_qwen_multiangle.app.json", "size": 69121},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_edit_2511/template_qwen_image_edit_2511_systms_action.json", "size": 59011}
       ]
     },
 
