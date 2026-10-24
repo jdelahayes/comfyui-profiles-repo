@@ -10,6 +10,7 @@ MIT license (see `LICENSE.upstream`).
 | `image_flux2_klein_image_edit_9b_distilled_gguf.json` (GGUF loaders) | `flux2-klein-9b[gguf]` |
 | `image_flux2_klein_9b_kv_image_edit.json` | `flux2-klein-9b[kv-fp8]` |
 | `image_flux2_klein_image_edit_9b_base.json` | `flux2-klein-base-9b[fp8]` |
+| `image_flux2_klein_image_edit_9b_base_gguf.json` (GGUF loaders) | `flux2-klein-base-9b[gguf]` |
 | `image_flux2_klein_image_edit_4b_distilled.json` | `flux2-klein-4b[fp8]` |
 | `image_flux2_klein_image_edit_4b_distilled_gguf.json` (GGUF loaders) | `flux2-klein-4b[gguf]` |
 | `image_flux2_klein_image_edit_4b_base.json` | `flux2-klein-base-4b[fp8]` |
@@ -43,4 +44,7 @@ quantizations (Q4_K_M, Q6_K, Q8_0…) of the same repositories can be picked in 
 [unsloth](https://huggingface.co/unsloth/FLUX.2-klein-9B-GGUF) Q4_K_M model (5.9 GB) and
 [Q5_K_M Qwen3-8B](https://huggingface.co/unsloth/Qwen3-8B-GGUF) text encoder (5.9 GB, same weights as
 `qwen_3_8b`), not gated; same GGUF loaders in its workflow. On 6 GB, prefer `flux2-klein-4b[gguf]`:
-the 9B only fits in Q3_K_M, with a visible loss of quality.
+the 9B only fits in Q3_K_M, with a visible loss of quality. `flux2-klein-base-9b[gguf]` is the
+same for the Base 9B ([unsloth](https://huggingface.co/unsloth/FLUX.2-klein-base-9B-GGUF) Q4_K_M,
+5.9 GB), with the same text encoder; at 20 steps, it suffers even more from a model that
+overflows the VRAM.

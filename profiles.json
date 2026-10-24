@@ -270,18 +270,20 @@
       ]
     },
     "flux2-klein-base-9b": {
-      "description": "FLUX.2 [klein] Base 9B, non distillé : 20 steps, CFG 5 ; meilleure diversité, pour le fine-tuning et l'entraînement de LoRA. nvfp4 : GPU Blackwell uniquement. Dépôts gated : licence à accepter sur Hugging Face.",
-      "size": {"fp8": "18,8 Go", "nvfp4": "13,2 Go", "bf16": "35,1 Go"},
+      "description": "FLUX.2 [klein] Base 9B, non distillé : 20 steps, CFG 5 ; meilleure diversité, pour le fine-tuning et l'entraînement de LoRA. nvfp4 : GPU Blackwell uniquement. gguf : GPU de 8 Go et plus, modèle Q4_K_M et text encoder Q5_K_M (unsloth, non gated), workflow à loaders GGUF. Dépôts gated : licence à accepter sur Hugging Face.",
+      "size": {"fp8": "18,8 Go", "nvfp4": "13,2 Go", "bf16": "35,1 Go", "gguf": "12,3 Go"},
       "extends": ["flux2-klein-9b-common"],
-      "variants": ["fp8", "nvfp4", "bf16"],
+      "variants": ["fp8", "nvfp4", "bf16", "gguf"],
       "default_variant": "fp8",
       "models": [
         {"variant": "fp8", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9b-fp8", "file": "flux-2-klein-base-9b-fp8.safetensors", "size": 9567278472, "sha256": "a9f5028c24a7a96f4f45beb883aad287d9bccc246227a6803edc898ddda42cf4"},
         {"variant": "nvfp4", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9b-nvfp4", "file": "flux-2-klein-base-9b-nvfp4.safetensors", "size": 5809193808, "sha256": "730d6bdbd5069cd4cd263cfdc4801d0d06ca14457b903baa5d953a8c2f9e84c9"},
-        {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9B", "file": "flux-2-klein-base-9b.safetensors", "size": 18157185168, "sha256": "4a54fad7f5f741b99eee217198daac20b8d8e515e2a1f5b064fd51cf074f95bd"}
+        {"variant": "bf16", "type": "diffusion_models/flux2-klein", "hf": "black-forest-labs/FLUX.2-klein-base-9B", "file": "flux-2-klein-base-9b.safetensors", "size": 18157185168, "sha256": "4a54fad7f5f741b99eee217198daac20b8d8e515e2a1f5b064fd51cf074f95bd"},
+        {"variant": "gguf", "type": "diffusion_models/flux2-klein", "hf": "unsloth/FLUX.2-klein-base-9B-GGUF", "file": "flux-2-klein-base-9b-Q4_K_M.gguf", "size": 5909829920, "sha256": "70395338f2cb3647b6a259d3cc60e42d9adf0bbbc56a5ae95338389c1c8bb497"}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_base.json", "size": 100168}
+        {"variant": ["fp8", "nvfp4", "bf16"], "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_base.json", "size": 100168},
+        {"variant": "gguf", "github": "jdelahayes/comfyui-profiles-repo", "file": "flux2/klein/image_flux2_klein_image_edit_9b_base_gguf.json", "size": 99954}
       ]
     },
 
