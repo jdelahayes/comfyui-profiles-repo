@@ -10,6 +10,7 @@ MIT license (see `LICENSE.upstream`).
 | `image_flux2_klein_9b_kv_image_edit.json` | `flux2-klein-9b[kv-fp8]` |
 | `image_flux2_klein_image_edit_9b_base.json` | `flux2-klein-base-9b[fp8]` |
 | `image_flux2_klein_image_edit_4b_distilled.json` | `flux2-klein-4b[fp8]` |
+| `image_flux2_klein_image_edit_4b_distilled_gguf.json` (GGUF loaders) | `flux2-klein-4b[gguf]` |
 | `image_flux2_klein_image_edit_4b_base.json` | `flux2-klein-base-4b[fp8]` |
 | `image_flux2_klein_text_to_image.json` (4B distilled and Base side by side, bf16) | `flux2-klein-4b-all` |
 
@@ -27,3 +28,12 @@ The fp8 workflows serve every variant: for another one, change it in the workflo
 profiles" node (e.g. `flux2-klein-9b[bf16]`) and use **Check the workflow's models…**
 (comfyui-profiles ≥ 0.10). The KV edit workflow needs the `kv-fp8` model. The 4B has no fp8
 text encoder: its fp8 and bf16 variants both use `qwen_3_4b` in bf16.
+
+The `gguf` variant of `flux2-klein-4b` is for GPUs with little VRAM (6–8 GB, e.g. a laptop RTX
+3060): [unsloth](https://huggingface.co/unsloth/FLUX.2-klein-4B-GGUF) Q5_K_M model (3.1 GB) and
+[Q8_0 Qwen3-4B](https://huggingface.co/unsloth/Qwen3-4B-GGUF) text encoder (4.3 GB, same weights
+as `qwen_3_4b`, in `text_encoders/qwen3-4b/`), loaded by
+[ComfyUI-GGUF](https://github.com/city96/ComfyUI-GGUF). Its workflow is the 4B distilled template
+with `UnetLoaderGGUF` and `CLIPLoaderGGUF` in place of `UNETLoader` and `CLIPLoader`: the GGUF files
+cannot be switched in with **Check the workflow's models…**, hence a workflow of its own. Other
+quantizations (Q4_K_M, Q6_K, Q8_0…) of the same repositories can be picked in the loaders.

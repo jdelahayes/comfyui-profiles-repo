@@ -73,7 +73,7 @@ blocks for the others.
 | `flux2-klein-9b` | FLUX.2 [klein] 9B distilled: text to image, multi-reference edit | fp8 (18.7 GB), kv-fp8 (19.1 GB), nvfp4 (13.1 GB), bf16 (35.1 GB) |
 | `flux2-klein-base-9b` | FLUX.2 [klein] Base 9B, not distilled | fp8 (18.8 GB), nvfp4 (13.2 GB), bf16 (35.1 GB) |
 | `flux2-klein-4b` | FLUX.2 [klein] 4B distilled (Apache 2.0): text to image, multi-reference edit | fp8 (12.7 GB), nvfp4 (6.9 GB), bf16 (16.4 GB) |
-| `flux2-klein-base-4b` | FLUX.2 [klein] Base 4B, not distilled | fp8 (12.7 GB), nvfp4 (6.9 GB), bf16 (16.4 GB) |
+| `flux2-klein-base-4b` | FLUX.2 [klein] Base 4B, not distilled | fp8 (12.7 GB), nvfp4 (6.9 GB), bf16 (16.4 GB), gguf (7.9 GB, for 6–8 GB GPUs) |
 | `flux2-klein-4b-all` | `flux2-klein-4b` + `flux2-klein-base-4b` in bf16, with the text to image template comparing them | 24.1 GB |
 | `flux3-klein` | FLUX.3 [klein] distilled: text to image, edit with up to 10 references | int8 (17.7 GB), nvfp4 (17.2 GB), bf16 (39.1 GB) |
 | `flux3-klein-base` | FLUX.3 [klein] Base, not distilled | int8 (17.7 GB), nvfp4 (17.2 GB), bf16 (39.1 GB) |
