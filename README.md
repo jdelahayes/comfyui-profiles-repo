@@ -81,6 +81,7 @@ blocks for the others.
 | `moss-image-base` | MOSS-Image Base | w4a8 (13.3 GB), int8 (15.7 GB), bf16 (30.1 GB) |
 | `ausboss-moss-image` | MOSS-Image workflow by AusBoss: speed LoRAs, SeedVR2, AusBoss nodes, without the base model (with `moss-image[int8]`) | 6.3 GB |
 | `seedvr2` | SeedVR2 3B int8 and its VAE: 2x upscale of the AusBoss workflows | 4.0 GB |
+| `seedvr2-7b` | SeedVR2 7B int8 and its VAE: more faithful upscale than the 3B, slower and heavier in VRAM (pick it in the SeedVR2 loader) | 8.8 GB |
 | `sam3.1` | SAM 3.1: segmentation of a named or clicked thing, for the masks of the AusBoss workflows | 1.7 GB |
 | `z-image-turbo` | Z-Image Turbo: text to image in 8 steps, 2K upscale | int8 (12.2 GB), nvfp4 (8.4 GB), bf16 (20.8 GB) |
 | `z-image-turbo-controlnet` | Z-Image Turbo + Fun ControlNets (Union, Union 2.1 lite, Tile 2.1 lite) | int8 (19.4 GB), nvfp4 (15.5 GB), bf16 (27.9 GB) |

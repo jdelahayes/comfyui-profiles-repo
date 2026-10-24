@@ -444,6 +444,15 @@
         {"type": "vae/seedvr2", "hf": "Comfy-Org/SeedVR2", "file": "vae/seedvr2_ema_vae_fp16.safetensors", "size": 501324814, "sha256": "20678548f420d98d26f11442d3528f8b8c94e57ee046ef93dbb7633da8612ca1"}
       ]
     },
+    "seedvr2-7b": {
+      "description": "SeedVR2 7B int8 et son VAE : agrandissement plus fidèle que le 3B, plus lent et plus lourd en VRAM, à choisir dans le loader SeedVR2 (Comfy-Org/SeedVR2).",
+      "size": "8,8 Go",
+      "extends": ["comfyui-common"],
+      "models": [
+        {"type": "diffusion_models/seedvr2", "hf": "Comfy-Org/SeedVR2", "file": "diffusion_models/seedvr2_7b_int8_convrot.safetensors", "size": 8334897976, "sha256": "5aa0d25fc9d35e449b659d0c9a5dcb22e2a4fa04032101b95a39da42b32c1be6"},
+        {"type": "vae/seedvr2", "hf": "Comfy-Org/SeedVR2", "file": "vae/seedvr2_ema_vae_fp16.safetensors", "size": 501324814, "sha256": "20678548f420d98d26f11442d3528f8b8c94e57ee046ef93dbb7633da8612ca1"}
+      ]
+    },
     "ausboss-moss-image": {
       "description": "Workflow MOSS-Image d'AusBoss (4/8/50 steps, auto prompt, layout boxes, img2img, agrandissement 2x SeedVR2), sans le modèle de base : à installer avec moss-image[int8].",
       "size": "6,3 Go",
