@@ -61,7 +61,7 @@ blocks for the others.
 | `minimax-h3-ref2va` | MiniMax H3 Ref2VA | int8 (52.2 GB), bf16 (124.3 GB) |
 | `minimax-h3-all` | `minimax-h3-fl2va` + `minimax-h3-ref2va` | int8 (73.2 GB), bf16 (190.6 GB) |
 | `minimax-h3-hybrid-int8` | MiniMax H3 Hybrid (smhfacct) | 52.2 GB |
-| `minimax-h3-obvpm-r2v` | MiniMax H3 OBVPM Timeline R2V, with its workflows | 50.5 GB |
+| `minimax-h3-obvpm-r2v` | MiniMax H3 OBVPM Timeline R2V, with its workflows | 92.5 GB |
 | `flux2-vae` | FLUX.2 VAE shared by FLUX.2 [klein], FLUX.3 [klein], MOSS-Image and Fibo 2.0, in `vae/flux2/` | 336 MB |
 | `qwen-image-vae` | Qwen Image VAE shared by Krea 2 and Qwen Image Edit 2511, in `vae/qwen-image/` | 254 MB |
 | `qwen3vl-4b` | Qwen3-VL-4B text encoder shared by Krea 2, FLUX.3 [klein] (int8) and Fibo 2.0, in `text_encoders/qwen3vl/` | int8 (4.9 GB), fp8 (5.2 GB), bf16 (8.9 GB) |

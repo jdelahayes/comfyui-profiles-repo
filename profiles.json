@@ -87,8 +87,8 @@
     },
 
     "minimax-h3-obvpm-r2v": {
-      "description": "MiniMax H3 OBVPM Timeline R2V (workflows h3/obvpm : Ref2VA int8, text encoder nvfp4, LoRA turbo)",
-      "size": "50,5 Go",
+      "description": "MiniMax H3 OBVPM Timeline R2V (workflows h3/obvpm : Ref2VA, FL2VA et Hybrid int8, text encoder nvfp4, LoRA turbo)",
+      "size": "92,5 Go",
       "extends": ["minimax-h3-common[]"],
       "custom_nodes": [
         {"gdrive": "https://drive.google.com/file/d/1oQ-RoHad2miNaDtNl-LhznrRslrO21LF/view?usp=sharing", "name": "comfyui-obvpm-timeline"},
@@ -98,6 +98,8 @@
       ],
       "models": [
         {"type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors", "size": 20970379616, "sha256": "9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779"},
+        {"type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors", "size": 20970379616, "sha256": "e889202c41dafb67b10d67b97f0d8541508036a6090af23425a5c2615d03c47a"},
+        {"type": "diffusion_models/h3/smhfacct", "hf": "smhfacct/Minimax-H3-fl2va-ref2va-hybrid-models", "file": "minimax_h3_hybrid_fl2va_ref2va_b20-49-int8.safetensors", "size": 20970379632, "sha256": "8320246da06e5aae94988dc1ab336b19ebf2491b4393a330fb33bafca39f9d9a"},
         {"type": "text_encoders/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors", "size": 15687142551, "sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6"},
         {"type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_video_vae_int8_convrot.safetensors", "size": 2811065184, "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"},
         {"type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "vae/minimax_h3_video_vae_fp16.safetensors", "size": 5207808496, "sha256": "7c1f131492e7eddacaac9069a61b81bdd39de5cc96561e677c5eab1cdce5e522"},
@@ -106,12 +108,12 @@
         {"type": "loras/h3/drbaph", "hf": "drbaph/MiniMax-H3-Turbo-Lora-ComfyUI", "file": "minimax_h3_turbo_v4_step600_ema_pruned_comfyui.safetensors", "size": 620285592, "sha256": "7098acf3ee75028fd9fcd948f50fcc8d995057fabb76f86bd3ca2c0ffc58e409"}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro.json", "size": 507403},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro-refmod.json", "size": 528013},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.0-011-pro-refmod-picker.json", "size": 517379},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.2-012-pro.json", "size": 502438},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.2-012-pro-fantastic-loaders.json", "size": 435529},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.4.2-012-pro-fantastic-full.json", "size": 446342}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro.json", "size": 344018},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-refmod.json", "size": 355146},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-refmod-picker.json", "size": 349658},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-refmod-fantastic.json", "size": 346875},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-fantastic-loaders.json", "size": 326533},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-fantastic-full.json", "size": 332349}
       ]
     },
 
