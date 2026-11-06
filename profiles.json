@@ -77,6 +77,23 @@
       "default_variant": "int8"
     },
 
+    "minimax-h3-pika-flex": {
+      "description": "MiniMax H3 FL2VA + Ref2VA + LoRAs Pika H3 Flex (FL2VA et Ref2VA), avec les templates officiels ComfyUI : texte vers vidéo, première/dernière image vers vidéo, références vers vidéo.",
+      "size": {"int8": "77,1 Go", "bf16": "194,5 Go"},
+      "extends": ["minimax-h3-all"],
+      "variants": ["int8", "bf16"],
+      "default_variant": "int8",
+      "models": [
+        {"type": "loras/h3/pika", "hf": "Comfy-Org/MiniMax-H3", "file": "loras/pika_h3_flex_fl2va_v1_bf16.safetensors", "size": 1956172304, "sha256": "cc5453aeecd6189468409003fe4cf1b57e52ff3a830a0a154b87decbe07358b7"},
+        {"type": "loras/h3/pika", "hf": "Comfy-Org/MiniMax-H3", "file": "loras/pika_h3_flex_ref2va_v1_bf16.safetensors", "size": 1956172304, "sha256": "de3745ceb7d8d5c20898dd8fa3a05f1c0b00089ccd55297b2a8bab95c766b0e0"}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/pika/video_pika_h3_flex_t2v.json", "size": 63488},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/pika/video_pika_h3_flex_fl2va.json", "size": 66656},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/pika/video_pika_h3_flex_ref2va.json", "size": 41105}
+      ]
+    },
+
     "minimax-h3-hybrid-int8": {
       "description": "MiniMax H3 Hybrid (smhfacct, int8)",
       "size": "52,2 Go",
