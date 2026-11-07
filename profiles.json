@@ -125,12 +125,12 @@
         {"type": "loras/h3/drbaph", "hf": "drbaph/MiniMax-H3-Turbo-Lora-ComfyUI", "file": "minimax_h3_turbo_v4_step600_ema_pruned_comfyui.safetensors", "size": 620285592, "sha256": "7098acf3ee75028fd9fcd948f50fcc8d995057fabb76f86bd3ca2c0ffc58e409"}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro.json", "size": 344018},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-refmod.json", "size": 355146},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-refmod-picker.json", "size": 349658},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-refmod-fantastic.json", "size": 346875},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-fantastic-loaders.json", "size": 326533},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.0-014-pro-fantastic-full.json", "size": 332349}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.2-015-pro.json", "size": 358283},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.2-015-pro-refmod.json", "size": 369271},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.2-015-pro-refmod-picker.json", "size": 363783},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.2-015-pro-refmod-fantastic.json", "size": 361000},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.2-015-pro-fantastic-loaders.json", "size": 340684},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/obvpm/h3_obvpm_timeline_r2v_v0.5.2-015-pro-fantastic-full.json", "size": 346503}
       ]
     },
 
