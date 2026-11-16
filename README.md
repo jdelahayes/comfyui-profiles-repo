@@ -29,6 +29,8 @@ sha256) in several families is installed once, in a shared folder:
 - `vae/flux2/` (`flux2-vae`): the FLUX.2 VAE of FLUX.2 [klein], FLUX.3 [klein], MOSS-Image and
   Fibo 2.0;
 - `vae/qwen-image/` (`qwen-image-vae`): the Qwen Image VAE of Krea 2 and Qwen Image Edit 2511;
+- `text_encoders/qwen3.5/` (`qwen3.5-9b`): the Qwen3.5-9B text encoder of MOSS-Image and the
+  prompt enhancer of MiniMax H3 Image;
 - `text_encoders/qwen3-4b/`: the bf16 Qwen3-4B text encoder of FLUX.2 [klein] 4B and Z-Image
   Turbo, declared in both profiles (it is not used by all their variants).
 
@@ -61,11 +63,13 @@ blocks for the others.
 | `minimax-h3-ref2va` | MiniMax H3 Ref2VA | int8 (52.2 GB), bf16 (124.3 GB) |
 | `minimax-h3-all` | `minimax-h3-fl2va` + `minimax-h3-ref2va` | int8 (73.2 GB), bf16 (190.6 GB) |
 | `minimax-h3-pika-flex` | `minimax-h3-all` + Pika H3 Flex LoRAs (FL2VA and Ref2VA), with the official templates: text, first/last frame, references to video | int8 (77.1 GB), bf16 (194.5 GB) |
+| `minimax-h3-image` | MiniMax H3 Image: text to image and image edit, with the official templates (prompt enhancer Qwen3.5-9B w4a8) | int8 (56.6 GB), w4a8 (48.2 GB), bf16 (100.3 GB) |
 | `minimax-h3-hybrid-int8` | MiniMax H3 Hybrid (smhfacct) | 52.2 GB |
 | `minimax-h3-obvpm-r2v` | MiniMax H3 OBVPM Timeline R2V, with its workflows | 92.5 GB |
 | `flux2-vae` | FLUX.2 VAE shared by FLUX.2 [klein], FLUX.3 [klein], MOSS-Image and Fibo 2.0, in `vae/flux2/` | 336 MB |
 | `qwen-image-vae` | Qwen Image VAE shared by Krea 2 and Qwen Image Edit 2511, in `vae/qwen-image/` | 254 MB |
 | `qwen3vl-4b` | Qwen3-VL-4B text encoder shared by Krea 2, FLUX.3 [klein] (int8) and Fibo 2.0, in `text_encoders/qwen3vl/` | int8 (4.9 GB), fp8 (5.2 GB), bf16 (8.9 GB) |
+| `qwen3.5-9b` | Qwen3.5-9B text encoder shared by MOSS-Image and MiniMax H3 Image (prompt enhancer), in `text_encoders/qwen3.5/` | w4a8 (7.3 GB), int8 (9.7 GB), bf16 (19.3 GB) |
 | `krea2-turbo` | Krea 2 Turbo | int8 (18.9 GB), fp8 (18.9 GB), bf16 (35.7 GB) |
 | `krea2-raw` | Krea 2 Raw + turbo LoRA | int8 (19.3 GB), fp8 (19.4 GB), bf16 (36.1 GB) |
 | `krea2-styles` | Krea 2 Turbo + 10 official style LoRAs | int8 (23.5 GB), fp8 (23.6 GB), bf16 (40.3 GB) |
@@ -116,6 +120,7 @@ which is what the workflows declare.
 | [`fibo2/`](fibo2/) | `fibo2-dev`, `fibo2-edit-turbo` | Written for this repository (no official template yet) |
 | [`fibo2/ausboss/`](fibo2/ausboss/) | `ausboss-fibo2` (with `fibo2-edit-turbo[int8]`) | FIBO 2.0 edit or text to image by AusBoss (4 steps, auto prompt, SeedVR2 2x) |
 | [`h3/obvpm/`](h3/obvpm/) | `minimax-h3-obvpm-r2v` | OBVPM Timeline R2V |
+| [`h3/image/`](h3/image/) | `minimax-h3-image` | Official ComfyUI templates (MIT) |
 | [`h3/pika/`](h3/pika/) | `minimax-h3-pika-flex` | Official ComfyUI templates (MIT) |
 | [`qwen_image_2.1/ausboss/`](qwen_image_2.1/ausboss/) | `ausboss-qwen_image_2.1` (and `sam3.1` for Inpaint, Cut Out + Remove) | Qwen Image 2.1 workflows by AusBoss (generate + edit, outpaint, inpaint, swaps, upscale) |
 | [`qwen_image_2.1/alissonerdx_bfs/`](qwen_image_2.1/alissonerdx_bfs/) | `alissonerdx-bfs[qwen_2.1]` (with `qwen_image_2.1[int8]`) | BFS workflows by Alissonerdx (MIT) |

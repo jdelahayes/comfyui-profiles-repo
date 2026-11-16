@@ -162,7 +162,7 @@
         "er_sde",
         "simple",
         "moss-image/moss_image_sft_int8_convrot.safetensors",
-        "moss-image/qwen3.5_9b_w4a8_gptq.safetensors",
+        "qwen3.5/qwen3.5_9b_w4a8_gptq.safetensors",
         "moss-image/flux2-vae_small.safetensors"
       ],
       "widgets_values_named": {
@@ -178,7 +178,7 @@
         "sampler_name": "er_sde",
         "scheduler": "simple",
         "unet_name": "moss-image/moss_image_sft_int8_convrot.safetensors",
-        "clip_name": "moss-image/qwen3.5_9b_w4a8_gptq.safetensors",
+        "clip_name": "qwen3.5/qwen3.5_9b_w4a8_gptq.safetensors",
         "vae_name": "moss-image/flux2-vae_small.safetensors"
       }
     },
@@ -1476,19 +1476,19 @@
               "Node name for S&R": "CLIPLoader",
               "models": [
                 {
-                  "name": "moss-image/qwen3.5_9b_w4a8_gptq.safetensors",
+                  "name": "qwen3.5/qwen3.5_9b_w4a8_gptq.safetensors",
                   "url": "https://huggingface.co/Comfy-Org/MOSS-Image/resolve/main/text_encoders/qwen3.5_9b_w4a8_gptq.safetensors",
                   "directory": "text_encoders"
                 }
               ]
             },
             "widgets_values": [
-              "moss-image/qwen3.5_9b_w4a8_gptq.safetensors",
+              "qwen3.5/qwen3.5_9b_w4a8_gptq.safetensors",
               "moss_image",
               "default"
             ],
             "widgets_values_named": {
-              "clip_name": "moss-image/qwen3.5_9b_w4a8_gptq.safetensors",
+              "clip_name": "qwen3.5/qwen3.5_9b_w4a8_gptq.safetensors",
               "type": "moss_image",
               "device": "default"
             },

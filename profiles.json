@@ -94,6 +94,26 @@
       ]
     },
 
+    "minimax-h3-image": {
+      "description": "MiniMax H3 Image : texte vers image et édition d'image (templates officiels ComfyUI), avec le text encoder MiniMax H3 et le prompt enhancer Qwen3.5-9B w4a8. int8 et w4a8 : text encoder int8 ; bf16 : text encoder bf16.",
+      "size": {"int8": "56,6 Go", "w4a8": "48,2 Go", "bf16": "100,3 Go"},
+      "extends": ["comfyui-common", "qwen3.5-9b[w4a8]"],
+      "variants": ["int8", "w4a8", "bf16"],
+      "default_variant": "int8",
+      "models": [
+        {"type": "vae/h3", "hf": "Comfy-Org/MiniMax-H3-Image", "file": "vae/minimax_h3_image_vae_fp16.safetensors", "size": 1168505312, "sha256": "d80e9c2e5cfc9844869961ff5a58c9a9e52182df6bfb30b26018dd7f348721af"},
+        {"variant": "int8", "type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3-Image", "file": "diffusion_models/minimax_h3_image_pruned_int8_convrot.safetensors", "size": 20979314802, "sha256": "83eb140f1ff95c068f8a6886e6d3f3d0d4ab2e07bb2fe6d2ef992a51146ee622"},
+        {"variant": "w4a8", "type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3-Image", "file": "diffusion_models/minimax_h3_image_pruned_w4a8.safetensors", "size": 12549794530, "sha256": "517cc19b85348386f4df7c806dce80d839d0899e7cdaa3e1dbb09de964381dbb"},
+        {"variant": "bf16", "type": "diffusion_models/h3", "hf": "Comfy-Org/MiniMax-H3-Image", "file": "diffusion_models/minimax_h3_image_pruned_bf16.safetensors", "size": 40234657162, "sha256": "a767f5325db019588b3491a93d80288d336c826a7aeb87bec67675e554367222"},
+        {"variant": ["int8", "w4a8"], "type": "text_encoders/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors", "size": 27141342152, "sha256": "bc2ced0fbea64757fa9acddccfc0b3f4819d1dcf1da6c124d690d368be283923"},
+        {"variant": "bf16", "type": "text_encoders/h3", "hf": "Comfy-Org/MiniMax-H3", "file": "text_encoders/qwen3vl_32b_minimax_h3_bf16.safetensors", "size": 51506295256, "sha256": "600d567f6a9629c8574e8e7041b199bdd9c59a986afa7906910a81919610607d"}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/image/image_minimax_h3_image_t2i.json", "size": 87916},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/image/image_minimax_h3_image_edit.json", "size": 113577}
+      ]
+    },
+
     "minimax-h3-hybrid-int8": {
       "description": "MiniMax H3 Hybrid (smhfacct, int8)",
       "size": "52,2 Go",
@@ -140,6 +160,19 @@
       "extends": ["comfyui-common"],
       "models": [
         {"type": "vae/qwen-image", "hf": "Comfy-Org/Krea-2", "file": "vae/qwen_image_vae.safetensors", "size": 253806246, "sha256": "a70580f0213e67967ee9c95f05bb400e8fb08307e017a924bf3441223e023d1f"}
+      ]
+    },
+
+    "qwen3.5-9b": {
+      "description": "Text encoder Qwen3.5-9B partagé par MOSS-Image et MiniMax H3 Image (prompt enhancer) : un seul exemplaire dans text_encoders/qwen3.5/. Même fichier (sha256) dans Comfy-Org/Qwen3.5, Comfy-Org/MOSS-Image et Comfy-Org/MiniMax-H3-Image.",
+      "size": {"w4a8": "7,3 Go", "int8": "9,7 Go", "bf16": "19,3 Go"},
+      "extends": ["comfyui-common"],
+      "variants": ["w4a8", "int8", "bf16"],
+      "default_variant": "w4a8",
+      "models": [
+        {"variant": "w4a8", "type": "text_encoders/qwen3.5", "hf": "Comfy-Org/Qwen3.5", "file": "text_encoders/qwen3.5_9b_w4a8_gptq.safetensors", "size": 7343591088, "sha256": "4cc6a1543ad2061806da46f35f90cadb4801dcba246c44782cf42ec0feb6407c"},
+        {"variant": "int8", "type": "text_encoders/qwen3.5", "hf": "Comfy-Org/Qwen3.5", "file": "text_encoders/qwen3.5_9b_int8_convrot.safetensors", "size": 9748121532, "sha256": "32e3787472f708fa5f83624acbf5ef23f7fc89c439e05065ea57cfe5a97f025a"},
+        {"variant": "bf16", "type": "text_encoders/qwen3.5", "hf": "Comfy-Org/Qwen3.5", "file": "text_encoders/qwen3.5_9b_bf16.safetensors", "size": 19306312328, "sha256": "7e6e9f08d598f829cb940e60ac0c698e1f1c27a47daffd7e598cd78c78b4cc53"}
       ]
     },
 
@@ -412,16 +445,13 @@
     },
 
     "moss-image-common": {
-      "description": "MOSS-Image commun : VAE FLUX.2 (complet et small), text encoder Qwen3.5-9B (w4a8 : GPTQ w4a8 ; int8 : int8 ; bf16 : bf16).",
+      "description": "MOSS-Image commun : VAE FLUX.2 (complet et small), text encoder Qwen3.5-9B partagé (qwen3.5-9b ; w4a8 : GPTQ w4a8 ; int8 : int8 ; bf16 : bf16).",
       "size": {"w4a8": "7,9 Go", "int8": "10,3 Go", "bf16": "19,9 Go"},
-      "extends": ["comfyui-common", "flux2-vae"],
+      "extends": ["comfyui-common", "flux2-vae", "qwen3.5-9b"],
       "variants": ["w4a8", "int8", "bf16"],
       "default_variant": "w4a8",
       "models": [
-        {"type": "vae/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "vae/flux2-vae_small.safetensors", "size": 249521340, "sha256": "d8d52ba036475f5fb07c8b435e176d3d97ebfa82f0d1a1c317f9cc1e25bd013b"},
-        {"variant": "w4a8", "type": "text_encoders/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "text_encoders/qwen3.5_9b_w4a8_gptq.safetensors", "size": 7343591088, "sha256": "4cc6a1543ad2061806da46f35f90cadb4801dcba246c44782cf42ec0feb6407c"},
-        {"variant": "int8", "type": "text_encoders/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "text_encoders/qwen3.5_9b_int8_convrot.safetensors", "size": 9748121532, "sha256": "32e3787472f708fa5f83624acbf5ef23f7fc89c439e05065ea57cfe5a97f025a"},
-        {"variant": "bf16", "type": "text_encoders/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "text_encoders/qwen3.5_9b_bf16.safetensors", "size": 19306312328, "sha256": "7e6e9f08d598f829cb940e60ac0c698e1f1c27a47daffd7e598cd78c78b4cc53"}
+        {"type": "vae/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "vae/flux2-vae_small.safetensors", "size": 249521340, "sha256": "d8d52ba036475f5fb07c8b435e176d3d97ebfa82f0d1a1c317f9cc1e25bd013b"}
       ]
     },
     "moss-image": {
@@ -435,8 +465,8 @@
         {"variant": "bf16", "type": "diffusion_models/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "diffusion_models/moss_image_sft_bf16.safetensors", "size": 10164655808, "sha256": "f96738d8116d78b7316b57c663d8c98591ddafab7488f48e3099b7655e34ab6f"}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_t2i.json", "size": 60688},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_t2i_bboxes.json", "size": 75266}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_t2i.json", "size": 60673},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_t2i_bboxes.json", "size": 75251}
       ]
     },
     "moss-image-base": {
@@ -450,8 +480,8 @@
         {"variant": "bf16", "type": "diffusion_models/moss-image", "hf": "Comfy-Org/MOSS-Image", "file": "diffusion_models/moss_image_base_bf16.safetensors", "size": 10164655808, "sha256": "cacd158728a1fb9e57c408a922b54752ec71fceb566b3821269927964e62b41f"}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_base_t2i.json", "size": 59334},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_base_t2i_bboxes.json", "size": 71634}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_base_t2i.json", "size": 59319},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/image_moss_image_base_t2i_bboxes.json", "size": 71619}
       ]
     },
     "seedvr2": {
@@ -484,7 +514,7 @@
         {"git": "https://github.com/ausboss/ComfyUI-AusBoss.git"}
       ],
       "workflows": [
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/ausboss/mossImageTextToImage4Step_v14.json", "name": "ausboss/mossImageTextToImage4Step_v14.json", "size": 226407}
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "moss/ausboss/mossImageTextToImage4Step_v14.json", "name": "ausboss/mossImageTextToImage4Step_v14.json", "size": 226386}
       ]
     },
 
