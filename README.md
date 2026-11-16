@@ -64,6 +64,7 @@ blocks for the others.
 | `minimax-h3-all` | `minimax-h3-fl2va` + `minimax-h3-ref2va` | int8 (73.2 GB), bf16 (190.6 GB) |
 | `minimax-h3-pika-flex` | `minimax-h3-all` + Pika H3 Flex LoRAs (FL2VA and Ref2VA), with the official templates: text, first/last frame, references to video | int8 (77.1 GB), bf16 (194.5 GB) |
 | `minimax-h3-image` | MiniMax H3 Image: text to image and image edit, with the official templates (prompt enhancer Qwen3.5-9B w4a8) | int8 (56.6 GB), w4a8 (48.2 GB), bf16 (100.3 GB) |
+| `ausboss-minimax-h3-image` | MiniMax H3 Image Generate + Edit workflow by AusBoss (4/16 MP, 8 pictures, auto prompt, 2-step pDMD LoRA, SeedVR2 2x) with the int8 text encoder, without the base model (with `minimax-h3-image[int8]`) | 5.9 GB |
 | `minimax-h3-hybrid-int8` | MiniMax H3 Hybrid (smhfacct) | 52.2 GB |
 | `minimax-h3-obvpm-r2v` | MiniMax H3 OBVPM Timeline R2V, with its workflows | 92.5 GB |
 | `flux2-vae` | FLUX.2 VAE shared by FLUX.2 [klein], FLUX.3 [klein], MOSS-Image and Fibo 2.0, in `vae/flux2/` | 336 MB |
@@ -121,6 +122,7 @@ which is what the workflows declare.
 | [`fibo2/ausboss/`](fibo2/ausboss/) | `ausboss-fibo2` (with `fibo2-edit-turbo[int8]`) | FIBO 2.0 edit or text to image by AusBoss (4 steps, auto prompt, SeedVR2 2x) |
 | [`h3/obvpm/`](h3/obvpm/) | `minimax-h3-obvpm-r2v` | OBVPM Timeline R2V |
 | [`h3/image/`](h3/image/) | `minimax-h3-image` | Official ComfyUI templates (MIT) |
+| [`h3/image/ausboss/`](h3/image/ausboss/) | `ausboss-minimax-h3-image` (with `minimax-h3-image[int8]`) | MiniMax H3 Image generate + edit by AusBoss (4/16 MP, up to 8 pictures, auto prompt, 2-step LoRA, SeedVR2 2x) |
 | [`h3/pika/`](h3/pika/) | `minimax-h3-pika-flex` | Official ComfyUI templates (MIT) |
 | [`qwen_image_2.1/ausboss/`](qwen_image_2.1/ausboss/) | `ausboss-qwen_image_2.1` (and `sam3.1` for Inpaint, Cut Out + Remove) | Qwen Image 2.1 workflows by AusBoss (generate + edit, outpaint, inpaint, swaps, upscale) |
 | [`qwen_image_2.1/alissonerdx_bfs/`](qwen_image_2.1/alissonerdx_bfs/) | `alissonerdx-bfs[qwen_2.1]` (with `qwen_image_2.1[int8]`) | BFS workflows by Alissonerdx (MIT) |

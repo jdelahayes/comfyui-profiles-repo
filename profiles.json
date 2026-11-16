@@ -114,6 +114,21 @@
       ]
     },
 
+    "ausboss-minimax-h3-image": {
+      "description": "Workflow MiniMax H3 Image Generate + Edit d'AusBoss (texte vers image et édition 4/16 MP, jusqu'à 8 images, auto prompt, Fast 2 steps avec la LoRA pDMD, agrandissement 2x SeedVR2), avec le text encoder int8 au lieu du nvfp4 d'origine, sans le modèle de base : à installer avec minimax-h3-image[int8] (Low VRAM : minimax-h3-image[w4a8]).",
+      "size": "5,9 Go",
+      "extends": ["seedvr2"],
+      "models": [
+        {"type": "loras/h3/akhaliq", "hf": "akhaliq/p-h3-image-pdmd-2step", "file": "minimax_h3_pdmd_2nfe_comfyui.safetensors", "size": 1956194168, "sha256": "5feaeef13df31f98f36364a95e7ce9e8ff0afd71570d1c53d7c3be599e3a0f22"}
+      ],
+      "custom_nodes": [
+        {"git": "https://github.com/ausboss/ComfyUI-AusBoss.git"}
+      ],
+      "workflows": [
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/image/ausboss/minimaxH3ImageGenerateEdit_v11.json", "name": "ausboss/minimaxH3ImageGenerateEdit_v11.json", "size": 293235}
+      ]
+    },
+
     "minimax-h3-hybrid-int8": {
       "description": "MiniMax H3 Hybrid (smhfacct, int8)",
       "size": "52,2 Go",
