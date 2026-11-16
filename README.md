@@ -69,6 +69,7 @@ blocks for the others.
 | `minimax-h3-obvpm-r2v` | MiniMax H3 OBVPM Timeline R2V, with its workflows | 92.5 GB |
 | `flux2-vae` | FLUX.2 VAE shared by FLUX.2 [klein], FLUX.3 [klein], MOSS-Image and Fibo 2.0, in `vae/flux2/` | 336 MB |
 | `qwen-image-vae` | Qwen Image VAE shared by Krea 2 and Qwen Image Edit 2511, in `vae/qwen-image/` | 254 MB |
+| `qwen3.5-2b` | Qwen3.5-2B bf16 in `text_encoders/qwen3.5/`: lighter prompt writer (Generate Text) than the 9B, fits in 6 GB of VRAM; pick it in the prompt enhancer loader | 4.5 GB |
 | `qwen3vl-4b` | Qwen3-VL-4B text encoder shared by Krea 2, FLUX.3 [klein] (int8) and Fibo 2.0, in `text_encoders/qwen3vl/` | int8 (4.9 GB), fp8 (5.2 GB), bf16 (8.9 GB) |
 | `qwen3.5-9b` | Qwen3.5-9B text encoder shared by MOSS-Image and MiniMax H3 Image (prompt enhancer), in `text_encoders/qwen3.5/` | w4a8 (7.3 GB), int8 (9.7 GB), bf16 (19.3 GB) |
 | `krea2-turbo` | Krea 2 Turbo | int8 (18.9 GB), fp8 (18.9 GB), bf16 (35.7 GB) |
