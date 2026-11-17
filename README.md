@@ -97,6 +97,7 @@ blocks for the others.
 | `ausboss-fibo2` | FIBO 2.0 Generate + Edit workflow by AusBoss: Qwen3-VL 8B (auto prompt), SeedVR2, AusBoss nodes, without the base model (with `fibo2-edit-turbo[int8]`) | 13.3 GB |
 | `qwen_image_2.1-turbo` | Qwen Image 2.1 Turbo | int8 (26.8 GB), bf16 (41.9 GB) |
 | `qwen_image_2.1` | Qwen Image 2.1 | int8 (26.8 GB), bf16 (41.9 GB) |
+| `chatrlabs-qwen_image_2.1-uncensored` | [Qwen Image 2.1 Uncensored Omni](https://huggingface.co/chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized) by ChatR Labs (Omni LoRA merged, 35 steps, CFG 5), with the Qwen Image 2.1 int8 text encoder and its example workflow; non-commercial license (Qwen Research) | int8 (26.8 GB), fp8 (26.6 GB), nvfp4 (23.7 GB), gguf-q4 (24.0 GB, for 6 GB GPUs), gguf-q5 (24.7 GB), bf16 (33.7 GB) |
 | `ausboss-qwen_image_2.1` | The 12 Qwen Image 2.1 workflows by AusBoss, with everything they need: full and turbo int8 models, AusBoss, Viggle, Pruna T8 and BFS LoRAs, AusBoss nodes (Inpaint and Cut Out + Remove also need `sam3.1`) | 36.3 GB |
 | `alissonerdx-bfs` | [BFS: Best Face Swap](https://huggingface.co/Alissonerdx/BFS-Best-Face-Swap) LoRAs and workflows, without the base model (see below) | qwen_2.1 (1.3 GB), krea2 (1.8 GB), flux2-klein-4b (1.8 GB), flux2-klein-9b (994 MB) |
 | `qwen_image_edit_2511-turbo` | Qwen Image Edit 2511 + Lightning 4 steps and edit LoRAs, with the official templates: image edit, camera angles, action poses | int8 (31.6 GB) |
@@ -126,6 +127,7 @@ which is what the workflows declare.
 | [`h3/image/ausboss/`](h3/image/ausboss/) | `ausboss-minimax-h3-image` (with `minimax-h3-image[int8]`) | MiniMax H3 Image generate + edit by AusBoss (4/16 MP, up to 8 pictures, auto prompt, 2-step LoRA, SeedVR2 2x) |
 | [`h3/pika/`](h3/pika/) | `minimax-h3-pika-flex` | Official ComfyUI templates (MIT) |
 | [`qwen_image_2.1/ausboss/`](qwen_image_2.1/ausboss/) | `ausboss-qwen_image_2.1` (and `sam3.1` for Inpaint, Cut Out + Remove) | Qwen Image 2.1 workflows by AusBoss (generate + edit, outpaint, inpaint, swaps, upscale) |
+| [`qwen_image_2.1/chatrlabs/`](qwen_image_2.1/chatrlabs/) | `chatrlabs-qwen_image_2.1-uncensored[gguf-q4]`, `[gguf-q5]` | ChatR Labs example workflow, GGUF version, and an image edit workflow made from it (Qwen Research license) |
 | [`qwen_image_2.1/alissonerdx_bfs/`](qwen_image_2.1/alissonerdx_bfs/) | `alissonerdx-bfs[qwen_2.1]` (with `qwen_image_2.1[int8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`flux2/klein/alissonerdx_bfs/`](flux2/klein/alissonerdx_bfs/) | `alissonerdx-bfs[flux2-klein-4b]`, `alissonerdx-bfs[flux2-klein-9b]` (with `flux2-klein-4b[fp8]`, `flux2-klein-9b[fp8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`krea2/alissonerdx_bfs/`](krea2/alissonerdx_bfs/) | `alissonerdx-bfs[krea2]` (with `krea2-turbo[int8]`) | BFS workflows by Alissonerdx (MIT) |

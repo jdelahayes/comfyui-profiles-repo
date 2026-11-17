@@ -1,0 +1,692 @@
+{
+  "id": "4c6272bb-d9a1-41b6-b0c0-db8e3b167734",
+  "revision": 0,
+  "last_node_id": 486,
+  "last_link_id": 705,
+  "nodes": [
+    {
+      "id": 451,
+      "type": "UnetLoaderGGUF",
+      "pos": [
+        -650,
+        -250
+      ],
+      "size": [
+        510,
+        60
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "unet_name",
+          "name": "unet_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "unet_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            701
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UnetLoaderGGUF",
+        "cnr_id": "ComfyUI-GGUF",
+        "models": [
+          {
+            "name": "qwen_image_2.1/chatrlabs/qwen-image-2.1-step90000-Q4_K_M.gguf",
+            "url": "https://huggingface.co/chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized/resolve/main/qwen-image-2.1-step90000-Q4_K_M.gguf",
+            "directory": "diffusion_models"
+          }
+        ]
+      },
+      "widgets_values": [
+        "qwen_image_2.1/chatrlabs/qwen-image-2.1-step90000-Q4_K_M.gguf"
+      ],
+      "widgets_values_named": {
+        "unet_name": "qwen_image_2.1/chatrlabs/qwen-image-2.1-step90000-Q4_K_M.gguf"
+      },
+      "title": "Unet Loader (GGUF) : Q4_K_M (gguf-q4) ou Q5_K_M (gguf-q5)"
+    },
+    {
+      "id": 453,
+      "type": "CLIPLoader",
+      "pos": [
+        -650,
+        100
+      ],
+      "size": [
+        510,
+        120
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip_name",
+          "name": "clip_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "clip_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            647
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "models": [
+          {
+            "name": "qwen_image_2.1/qwen3vl_8b_int8_convrot.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/aacf31a6d48e707f352ecba714cee0680da3479b/text_encoders/qwen3vl_8b_int8_convrot.safetensors",
+            "directory": "text_encoders"
+          }
+        ]
+      },
+      "widgets_values": [
+        "qwen_image_2.1/qwen3vl_8b_int8_convrot.safetensors",
+        "qwen_image",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen_image_2.1/qwen3vl_8b_int8_convrot.safetensors",
+        "type": "qwen_image",
+        "device": "default"
+      }
+    },
+    {
+      "id": 454,
+      "type": "VAELoader",
+      "pos": [
+        -650,
+        400
+      ],
+      "size": [
+        510,
+        70
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "vae_name",
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            649
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "qwen_image_2.1/qwen_image_2.1_vae_bf16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/aacf31a6d48e707f352ecba714cee0680da3479b/vae/qwen_image_2.1_vae_bf16.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "qwen_image_2.1/qwen_image_2.1_vae_bf16.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "qwen_image_2.1/qwen_image_2.1_vae_bf16.safetensors"
+      }
+    },
+    {
+      "id": 452,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        -30,
+        130
+      ],
+      "size": [
+        530,
+        680
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 647
+        },
+        {
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            653
+          ]
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            655
+          ]
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImage21"
+      },
+      "widgets_values": [
+        "A blue ceramic mug on a wooden table by a window, soft morning light, product photography",
+        " ",
+        1024
+      ],
+      "widgets_values_named": {
+        "prompt": "A blue ceramic mug on a wooden table by a window, soft morning light, product photography",
+        "negative_prompt": " ",
+        "resolution": 1024
+      }
+    },
+    {
+      "id": 456,
+      "type": "EmptyLatentImage",
+      "pos": [
+        -30,
+        900
+      ],
+      "size": [
+        300,
+        120
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            654
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        768,
+        1152,
+        1
+      ],
+      "widgets_values_named": {
+        "width": 768,
+        "height": 1152,
+        "batch_size": 1
+      }
+    },
+    {
+      "id": 458,
+      "type": "KSampler",
+      "pos": [
+        900,
+        130
+      ],
+      "size": [
+        270,
+        270
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 700
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 653
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 655
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 654
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            651
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "randomize",
+        35,
+        5.0,
+        "er_sde",
+        "simple",
+        1.0
+      ],
+      "widgets_values_named": {
+        "seed": 42,
+        "control_after_generate": "randomize",
+        "steps": 35,
+        "cfg": 5.0,
+        "sampler_name": "er_sde",
+        "scheduler": "simple",
+        "denoise": 1.0
+      }
+    },
+    {
+      "id": 480,
+      "type": "QwenImage21Cache",
+      "pos": [
+        530,
+        -250
+      ],
+      "size": [
+        270,
+        90
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 701
+        },
+        {
+          "localized_name": "device",
+          "name": "device",
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "dtype",
+          "name": "dtype",
+          "type": "COMBO",
+          "widget": {
+            "name": "dtype"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            700
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "QwenImage21Cache"
+      },
+      "widgets_values": [
+        "auto",
+        "default"
+      ],
+      "widgets_values_named": {
+        "device": "auto",
+        "dtype": "default"
+      }
+    },
+    {
+      "id": 457,
+      "type": "VAEDecode",
+      "pos": [
+        1280,
+        160
+      ],
+      "size": [
+        230,
+        60
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 651
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 649
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            705
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 485,
+      "type": "SaveImage",
+      "pos": [
+        1600,
+        160
+      ],
+      "size": [
+        330,
+        90
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 705
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values_named": {
+        "filename_prefix": "chatrlabs_qwen_image_2.1"
+      },
+      "widgets_values": [
+        "chatrlabs_qwen_image_2.1"
+      ]
+    },
+    {
+      "id": 486,
+      "type": "WorkflowProfiles",
+      "pos": [
+        -650,
+        550
+      ],
+      "size": [
+        600,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "WorkflowProfiles"
+      },
+      "widgets_values": [
+        "chatrlabs-qwen_image_2.1-uncensored[gguf-q4]",
+        "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
+      ],
+      "widgets_values_named": {
+        "profiles": "chatrlabs-qwen_image_2.1-uncensored[gguf-q4]",
+        "source": "https://github.com/jdelahayes/comfyui-profiles-repo/raw/refs/heads/main/profiles.json"
+      }
+    }
+  ],
+  "links": [
+    [
+      647,
+      453,
+      0,
+      452,
+      0,
+      "CLIP"
+    ],
+    [
+      649,
+      454,
+      0,
+      457,
+      1,
+      "VAE"
+    ],
+    [
+      651,
+      458,
+      0,
+      457,
+      0,
+      "LATENT"
+    ],
+    [
+      653,
+      452,
+      0,
+      458,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      654,
+      456,
+      0,
+      458,
+      3,
+      "LATENT"
+    ],
+    [
+      655,
+      452,
+      1,
+      458,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      700,
+      480,
+      0,
+      458,
+      0,
+      "MODEL"
+    ],
+    [
+      701,
+      451,
+      0,
+      480,
+      0,
+      "MODEL"
+    ],
+    [
+      705,
+      457,
+      0,
+      485,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "definitions": {
+    "subgraphs": []
+  },
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.53.6",
+    "ds": {
+      "scale": 0.55,
+      "offset": [
+        800,
+        450
+      ]
+    }
+  },
+  "version": 0.4
+}
