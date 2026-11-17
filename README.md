@@ -127,7 +127,7 @@ which is what the workflows declare.
 | [`h3/image/ausboss/`](h3/image/ausboss/) | `ausboss-minimax-h3-image` (with `minimax-h3-image[int8]`) | MiniMax H3 Image generate + edit by AusBoss (4/16 MP, up to 8 pictures, auto prompt, 2-step LoRA, SeedVR2 2x) |
 | [`h3/pika/`](h3/pika/) | `minimax-h3-pika-flex` | Official ComfyUI templates (MIT) |
 | [`qwen_image_2.1/ausboss/`](qwen_image_2.1/ausboss/) | `ausboss-qwen_image_2.1` (and `sam3.1` for Inpaint, Cut Out + Remove) | Qwen Image 2.1 workflows by AusBoss (generate + edit, outpaint, inpaint, swaps, upscale) |
-| [`qwen_image_2.1/chatrlabs/`](qwen_image_2.1/chatrlabs/) | `chatrlabs-qwen_image_2.1-uncensored[gguf-q4]`, `[gguf-q5]` | ChatR Labs example workflow, GGUF version, and an image edit workflow made from it (Qwen Research license) |
+| [`qwen_image_2.1/chatrlabs/`](qwen_image_2.1/chatrlabs/) | `chatrlabs-qwen_image_2.1-uncensored[gguf-q4]`, `[gguf-q5]`; `qwen_image_2.1[int8]` with `chatrlabs-qwen_image_2.1-uncensored[]` (LoRA) | ChatR Labs example workflow, GGUF version, an image edit workflow made from it, and text to image with the Omni LoRA v0.1 on the base model (Qwen Research license) |
 | [`qwen_image_2.1/alissonerdx_bfs/`](qwen_image_2.1/alissonerdx_bfs/) | `alissonerdx-bfs[qwen_2.1]` (with `qwen_image_2.1[int8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`flux2/klein/alissonerdx_bfs/`](flux2/klein/alissonerdx_bfs/) | `alissonerdx-bfs[flux2-klein-4b]`, `alissonerdx-bfs[flux2-klein-9b]` (with `flux2-klein-4b[fp8]`, `flux2-klein-9b[fp8]`) | BFS workflows by Alissonerdx (MIT) |
 | [`krea2/alissonerdx_bfs/`](krea2/alissonerdx_bfs/) | `alissonerdx-bfs[krea2]` (with `krea2-turbo[int8]`) | BFS workflows by Alissonerdx (MIT) |

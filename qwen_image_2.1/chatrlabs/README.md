@@ -31,6 +31,15 @@ feeds the `KSampler`; resolution 1024 (pixel budget, image_1's aspect ratio is k
 prompt using `<image1>`, and a note on extra references (image_2 to image_10). Same models and
 settings as the text to image workflow.
 
+`qwen_image_2.1_chatrlabs_lora_t2i.json` is the same text to image workflow on the base model
+with the [Omni LoRA v0.1](https://huggingface.co/chatrlabs/Qwen-Image-2.1-Uncensored-Omni-LoRA-v0.1)
+(rank 128, step 32000): `UNETLoader` on `qwen_image_2.1/qwen_image_2.1_int8_convrot.safetensors`
+(`qwen_image_2.1[int8]`), `LoraLoaderModelOnly` at strength 1.0 before `QwenImage21Cache`
+(`loras/qwen_image_2.1/chatrlabs/`), 1024×1024 as recommended for the LoRA, and a note. Its
+"Workflow profiles" node declares `qwen_image_2.1[int8], chatrlabs-qwen_image_2.1-uncensored[]`:
+the base model, plus the LoRA and the shared items of the ChatR Labs profile without a merged
+model. Do not use the LoRA on the merged models, which already include step 90000.
+
 Settings kept: 35 steps, CFG 5, `er_sde` / `simple`, negative prompt `" "` (a single space: an
 empty one disables true CFG), `QwenImage21Cache`.
 

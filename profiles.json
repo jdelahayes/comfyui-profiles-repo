@@ -671,7 +671,7 @@
     },
 
     "chatrlabs-qwen_image_2.1-uncensored": {
-      "description": "Qwen Image 2.1 Uncensored Omni (ChatR Labs) : LoRA Omni rang 128 fusionnée dans Qwen Image 2.1 (step 90000), texte vers image et édition, 35 steps, CFG 5, er_sde/simple, prompt négatif \" \" ; pas de distillation. Text encoder Qwen3-VL-8B int8 et VAE de qwen_image_2.1-common pour toutes les variantes (comme le workflow d'exemple). nvfp4 : GPU Blackwell uniquement. gguf-q4 : Q4_K_M, pour les GPU de 6 Go ; gguf-q5 : Q5_K_M, à partir de 8 Go ; avec ComfyUI-GGUF. bf16 : safetensors renommé comme l'attend le workflow d'exemple (prompt explicite). Workflows GGUF (gguf-q4, gguf-q5) : texte vers image (celui d'exemple avec Unet Loader (GGUF), en 768×1152) et édition d'image. Avec la LoRA Omni v0.1 (step 32000, rang 128, force 1.0) : à charger sur Qwen Image 2.1 de base (qwen_image_2.1), pas sur les modèles fusionnés de ce profil qui contiennent déjà la step 90000. Licence Qwen Research (usage non commercial).",
+      "description": "Qwen Image 2.1 Uncensored Omni (ChatR Labs) : LoRA Omni rang 128 fusionnée dans Qwen Image 2.1 (step 90000), texte vers image et édition, 35 steps, CFG 5, er_sde/simple, prompt négatif \" \" ; pas de distillation. Text encoder Qwen3-VL-8B int8 et VAE de qwen_image_2.1-common pour toutes les variantes (comme le workflow d'exemple). nvfp4 : GPU Blackwell uniquement. gguf-q4 : Q4_K_M, pour les GPU de 6 Go ; gguf-q5 : Q5_K_M, à partir de 8 Go ; avec ComfyUI-GGUF. bf16 : safetensors renommé comme l'attend le workflow d'exemple (prompt explicite). Workflows GGUF (gguf-q4, gguf-q5) : texte vers image (celui d'exemple avec Unet Loader (GGUF), en 768×1152) et édition d'image. Avec la LoRA Omni v0.1 (step 32000, rang 128, force 1.0) : à charger sur Qwen Image 2.1 de base (qwen_image_2.1), pas sur les modèles fusionnés de ce profil qui contiennent déjà la step 90000. Workflow qwen_image_2.1_chatrlabs_lora_t2i : texte vers image avec la LoRA, à installer avec qwen_image_2.1[int8] et chatrlabs-qwen_image_2.1-uncensored[] (sans modèle fusionné). Licence Qwen Research (usage non commercial).",
       "size": {"int8": "27,4 Go", "fp8": "27,3 Go", "nvfp4": "24,4 Go", "gguf-q4": "24,6 Go", "gguf-q5": "25,4 Go", "bf16": "34,4 Go"},
       "extends": ["qwen_image_2.1-common[int8]"],
       "variants": ["int8", "fp8", "nvfp4", "gguf-q4", "gguf-q5", "bf16"],
@@ -690,6 +690,7 @@
       ],
       "workflows": [
         {"hf": "chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized", "file": "workflow_example.json", "name": "chatrlabs/chatrlabs_qwen_image_2.1_uncensored_t2i.json", "size": 14487},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/chatrlabs/qwen_image_2.1_chatrlabs_lora_t2i.json", "name": "chatrlabs/qwen_image_2.1_chatrlabs_lora_t2i.json", "size": 17048},
         {"variant": ["gguf-q4", "gguf-q5"], "github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/chatrlabs/chatrlabs_qwen_image_2.1_uncensored_gguf.json", "name": "chatrlabs/chatrlabs_qwen_image_2.1_uncensored_gguf.json", "size": 14053},
         {"variant": ["gguf-q4", "gguf-q5"], "github": "jdelahayes/comfyui-profiles-repo", "file": "qwen_image_2.1/chatrlabs/chatrlabs_qwen_image_2.1_uncensored_gguf_edit.json", "name": "chatrlabs/chatrlabs_qwen_image_2.1_uncensored_gguf_edit.json", "size": 15288}
       ]
