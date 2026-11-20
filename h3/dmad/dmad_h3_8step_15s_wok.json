@@ -106,14 +106,14 @@
     "Node name for S&R": "LoraLoaderModelOnly",
     "models": [
      {
-      "name": "h3/zhengmingyu/dmad_minimax_h3_4step_full_critic_comfyui.safetensors",
-      "url": "https://huggingface.co/ZhengmingYu/DMAD/resolve/main/minimax_h3/dmad_minimax_h3_4step_full_critic_comfyui.safetensors",
+      "name": "h3/zhengmingyu/dmad_minimax_h3_8step_full_critic_comfyui.safetensors",
+      "url": "https://huggingface.co/ZhengmingYu/DMAD/resolve/main/minimax_h3/dmad_minimax_h3_8step_full_critic_comfyui.safetensors",
       "directory": "loras"
      }
     ]
    },
    "widgets_values": [
-    "h3/zhengmingyu/dmad_minimax_h3_4step_full_critic_comfyui.safetensors",
+    "h3/zhengmingyu/dmad_minimax_h3_8step_full_critic_comfyui.safetensors",
     1
    ]
   },
@@ -985,7 +985,7 @@
    "outputs": [],
    "properties": {},
    "widgets_values": [
-    "## DMAD × MiniMax-H3 — 8-step text-to-audio-video (24 GB GPU)\n\n**Models** (installed by the `dmad-minimax-h3` profile, see the Workflow profiles node):\n- `diffusion_models/h3/minimax_h3_fl2va_pruned_int8_convrot.safetensors` — [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n- `text_encoders/h3/qwen3vl_32b_minimax_h3_int8_convrot.safetensors` — same repo\n- `vae/h3/minimax_h3_video_vae_int8_convrot.safetensors`, `vae/h3/minimax_h3_audio_vae_fp32.safetensors` — same repo\n- `loras/h3/zhengmingyu/dmad_minimax_h3_4step_full_critic_comfyui.safetensors` — [ZhengmingYu/DMAD](https://huggingface.co/ZhengmingYu/DMAD/tree/main/minimax_h3)\n\n**Settings that matter:** LoRA strength 1.0 · shift 12 / audio 2 · sampler `lcm` + scheduler `simple` · no CFG.\n**Steps:** 4 = fastest; 8 or 12 give finer detail on fast motion. Avoid `euler` (softer).\n**Prompt:** describe the shot, then `overall_soundscape:` and `non_diegetic_music:` for the audio.\n**Length:** 362 frames = 15 s at 24 fps (lengths are 5 + 17k: 124 = 5 s, 243 = 10 s, 362 = 15 s). On a 24 GB GPU this\nneeds the `H3 Memory Optimization` node of [H3-Optimizations](https://github.com/Zironic/H3-Optimizations) (install it\nwith ComfyUI-Manager); without it, 5 s clips still fit with stock nodes — bypass the node and set length 124.\n"
+    "## DMAD × MiniMax-H3 — 8-step text-to-audio-video (24 GB GPU)\n\n**Models** (installed by the `dmad-minimax-h3` profile, see the Workflow profiles node):\n- `diffusion_models/h3/minimax_h3_fl2va_pruned_int8_convrot.safetensors` — [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n- `text_encoders/h3/qwen3vl_32b_minimax_h3_int8_convrot.safetensors` — same repo\n- `vae/h3/minimax_h3_video_vae_int8_convrot.safetensors`, `vae/h3/minimax_h3_audio_vae_fp32.safetensors` — same repo\n- `loras/h3/zhengmingyu/dmad_minimax_h3_8step_full_critic_comfyui.safetensors` (8-step student; the 4-step `dmad_minimax_h3_4step_full_critic_comfyui.safetensors` also runs at 8 steps) — [ZhengmingYu/DMAD](https://huggingface.co/ZhengmingYu/DMAD/tree/main/minimax_h3)\n\n**Settings that matter:** LoRA strength 1.0 · shift 12 / audio 2 · sampler `lcm` + scheduler `simple` · no CFG.\n**Steps:** 8 for the 8-step LoRA (the 4-step LoRA runs at 4, 8 or 12 steps). Avoid `euler` (softer).\n**Prompt:** describe the shot, then `overall_soundscape:` and `non_diegetic_music:` for the audio.\n**Length:** 362 frames = 15 s at 24 fps (lengths are 5 + 17k: 124 = 5 s, 243 = 10 s, 362 = 15 s). On a 24 GB GPU this\nneeds the `H3 Memory Optimization` node of [H3-Optimizations](https://github.com/Zironic/H3-Optimizations) (install it\nwith ComfyUI-Manager); without it, 5 s clips still fit with stock nodes — bypass the node and set length 124.\n"
    ]
   },
   {

@@ -63,7 +63,7 @@ blocks for the others.
 | `minimax-h3-ref2va` | MiniMax H3 Ref2VA | int8 (52.2 GB), bf16 (124.3 GB) |
 | `minimax-h3-all` | `minimax-h3-fl2va` + `minimax-h3-ref2va` | int8 (73.2 GB), bf16 (190.6 GB) |
 | `minimax-h3-pika-flex` | `minimax-h3-all` + Pika H3 Flex LoRAs (FL2VA and Ref2VA), with the official templates: text, first/last frame, references to video | int8 (77.1 GB), bf16 (194.5 GB) |
-| `dmad-minimax-h3` | MiniMax H3 FL2VA in 4 steps with the [DMAD](https://huggingface.co/ZhengmingYu/DMAD) `4step_full_critic` LoRA, with its workflows (text to video with audio: 15 s in 4 or 8 steps, 5 s on 8 GB GPUs); MiniMax H3 Community License (excludes EU, UK, South Korea, USA) | int8 (54.2 GB), bf16 (126.3 GB) |
+| `dmad-minimax-h3` | MiniMax H3 FL2VA in 4 steps with the [DMAD](https://huggingface.co/ZhengmingYu/DMAD) `4step_full_critic` and `8step_full_critic` LoRAs, with their workflows (text to video with audio: 15 s in 4 or 8 steps, 5 s on 8 GB GPUs); MiniMax H3 Community License (excludes EU, UK, South Korea, USA) | int8 (56.2 GB), bf16 (128.2 GB) |
 | `minimax-h3-image` | MiniMax H3 Image: text to image and image edit, with the official templates (prompt enhancer Qwen3.5-9B w4a8) | int8 (56.6 GB), w4a8 (48.2 GB), bf16 (100.3 GB) |
 | `ausboss-minimax-h3-image` | MiniMax H3 Image Generate + Edit workflow by AusBoss (4/16 MP, 8 pictures, auto prompt, 2-step pDMD LoRA, SeedVR2 2x) with the int8 text encoder, without the base model (with `minimax-h3-image[int8]`) | 5.9 GB |
 | `minimax-h3-hybrid-int8` | MiniMax H3 Hybrid (smhfacct) | 52.2 GB |

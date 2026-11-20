@@ -95,17 +95,18 @@
     },
 
     "dmad-minimax-h3": {
-      "description": "DMAD (ZhengmingYu) : MiniMax H3 FL2VA en 4 steps, texte vers vidéo avec audio, avec la LoRA 4step_full_critic (format ComfyUI) et ses workflows (15 s en 4 ou 8 steps sur GPU de 16 Go et plus, 5 s sur GPU de 8 Go ; text encoder et VAE vidéo int8 au lieu du nvfp4 et du fp16 d'origine). Licence MiniMax H3 Community (hors UE, Royaume-Uni, Corée du Sud et États-Unis).",
-      "size": {"int8": "54,2 Go", "bf16": "126,3 Go"},
+      "description": "DMAD (ZhengmingYu) : MiniMax H3 FL2VA en 4 steps, texte vers vidéo avec audio, avec les LoRAs 4step_full_critic et 8step_full_critic (format ComfyUI) et leurs workflows (15 s en 4 ou 8 steps sur GPU de 16 Go et plus, 5 s sur GPU de 8 Go ; text encoder et VAE vidéo int8 au lieu du nvfp4 et du fp16 d'origine). Licence MiniMax H3 Community (hors UE, Royaume-Uni, Corée du Sud et États-Unis).",
+      "size": {"int8": "56,2 Go", "bf16": "128,2 Go"},
       "extends": ["minimax-h3-fl2va"],
       "variants": ["int8", "bf16"],
       "default_variant": "int8",
       "models": [
-        {"type": "loras/h3/zhengmingyu", "hf": "ZhengmingYu/DMAD", "file": "minimax_h3/dmad_minimax_h3_4step_full_critic_comfyui.safetensors", "size": 1956195976, "sha256": "d3ee9f599ef1ac2d76850e90372ce9064fdc2c16e7f3de6a7ba9bc90cb91eb1b"}
+        {"type": "loras/h3/zhengmingyu", "hf": "ZhengmingYu/DMAD", "file": "minimax_h3/dmad_minimax_h3_4step_full_critic_comfyui.safetensors", "size": 1956195976, "sha256": "d3ee9f599ef1ac2d76850e90372ce9064fdc2c16e7f3de6a7ba9bc90cb91eb1b"},
+        {"type": "loras/h3/zhengmingyu", "hf": "ZhengmingYu/DMAD", "file": "minimax_h3/dmad_minimax_h3_8step_full_critic_comfyui.safetensors", "size": 1956196016, "sha256": "acb2c015ca171eb175165fca962ba29e2ace8a78f6ce015017561c4b78474933"}
       ],
       "workflows": [
         {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/dmad/dmad_h3_4step_15s_podcast.json", "size": 19640},
-        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/dmad/dmad_h3_8step_15s_wok.json", "size": 21018},
+        {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/dmad/dmad_h3_8step_15s_wok.json", "size": 21135},
         {"github": "jdelahayes/comfyui-profiles-repo", "file": "h3/dmad/dmad_h3_4step_5s_8gb_guitar.json", "size": 19534}
       ]
     },
