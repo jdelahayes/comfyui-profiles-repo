@@ -1,0 +1,3 @@
+MiniMax H3 is licensed under the MiniMax H3 Community License Agreement, Copyright © 2026 MiniMax. All Rights Reserved.
+
+The DMAD checkpoints in this repository are Model Derivatives of MiniMax H3: the MiniMax-H3 text-to-audio-video transformer was modified by LoRA fine-tuning (DMAD distillation to 4 steps). They are distributed under the same agreement (see LICENSE).
